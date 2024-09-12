@@ -1,17 +1,14 @@
 import React from 'react'
 import './App.css'
-import { Button } from './components/ui/button'
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppRoutes from './router';
 
-function App() {
-
-
+const App: React.FC = () => {
   return (
-    <>
-      <div>
-        <Button>Tes ini button</Button>
-      </div>
-    </>
-  )
-}
+    <Router>
+      <AppRoutes />
+    </Router>
+  );
+};
 
-export default App
+export default App;
