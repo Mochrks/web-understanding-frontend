@@ -151,6 +151,11 @@ const homeData = [
         name: 'Testing React Applications',
         description: 'Understand how to write unit and integration tests for React applications.',
         route: '/testing-app'
+    },
+    {
+        name: 'Dashboards Layout',
+        description: 'Dashboard Layout  for React applications.',
+        route: '/dashboard'
     }
 ];
 

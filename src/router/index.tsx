@@ -11,6 +11,7 @@ import PaginationClient from '@/pages/pagination/client-side/PaginationClient';
 import PaginationInfiniteScroll from '@/pages/pagination/infinite-scroll/PaginationInfiniteScroll';
 import FramerAnimation from '@/pages/animation-framer-gsap/framer/FramerAnimation';
 import GsapAnimation from '@/pages/animation-framer-gsap/gsap/GsapAnimation';
+import Dashboard from '@/pages/dashboards/Dashboard';
 
 
 const AppRoutes: React.FC = () => {
@@ -25,6 +26,7 @@ const AppRoutes: React.FC = () => {
             <Route path="/pagination-infinite" element={<PaginationInfiniteScroll />} />
             <Route path="/animation-framer-motion" element={<FramerAnimation />} />
             <Route path="/animation-gsap" element={<GsapAnimation />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
     );
