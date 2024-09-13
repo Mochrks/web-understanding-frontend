@@ -257,11 +257,11 @@ export const Register = () => {
                 </CardContent>
                 <CardFooter className="flex flex-col justify-end gap-4">
                     <Button className="w-full">Register</Button>
-
                     <Button variant="outline" className='w-full' onClick={handleLogin}>Login</Button>
-
-
                 </CardFooter>
             </Card></div>
     )
 }
+
+
+export default Register;

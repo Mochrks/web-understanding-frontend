@@ -34,7 +34,7 @@ export const SearchAutoCompleted: React.FC = () => {
 
     return (
         <div className="container mx-auto p-4">
-            <Title name="Auto Completed Search Page" />
+            <Title name="Screen Auto Completed Search Page" />
             <div className="flex flex-col justify-center items-center">
                 {/* Search Input */}
                 <Input
@@ -50,9 +50,8 @@ export const SearchAutoCompleted: React.FC = () => {
                     {results.length > 0 ? (
                         results.map((item) => <Card key={item.id} {...item} />)
                     ) : (
-                        <div>
-
-                            <p >No results found.</p>
+                        <div className="col-span-1 sm:col-span-2 md:col-span-3 text-center text-gray-500">
+                            <p>Data Not Found</p>
                         </div>
                     )}
                 </div>

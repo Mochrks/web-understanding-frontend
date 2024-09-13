@@ -41,7 +41,7 @@ export const SearchManual: React.FC = () => {
 
     return (
         <div className="container mx-auto p-4">
-            <Title name="Manual Search Page" />
+            <Title name="Screen Manual Search Page" />
 
             {/* Search Input with Clear Button */}
             <div className="flex w-full mb-6 justify-center mt-10 ">
@@ -72,7 +72,9 @@ export const SearchManual: React.FC = () => {
                 {results.length > 0 ? (
                     results.map((item) => <Card key={item.id} {...item} />)
                 ) : (
-                    <p>No results found.</p>
+                    <div className="col-span-1 sm:col-span-2 md:col-span-3 text-center text-gray-500">
+                        <p>Data Not Found</p>
+                    </div>
                 )}
             </div>
         </div>
