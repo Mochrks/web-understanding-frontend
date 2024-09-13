@@ -9,6 +9,8 @@ import SearchManual from '@/pages/searching-data/manual-search/SearchManual';
 import NotFound from '@/components/demo/NotFound';
 import PaginationClient from '@/pages/pagination/client-side/PaginationClient';
 import PaginationInfiniteScroll from '@/pages/pagination/infinite-scroll/PaginationInfiniteScroll';
+import FramerAnimation from '@/pages/animation-framer-gsap/framer/FramerAnimation';
+import GsapAnimation from '@/pages/animation-framer-gsap/gsap/GsapAnimation';
 
 
 const AppRoutes: React.FC = () => {
@@ -21,6 +23,8 @@ const AppRoutes: React.FC = () => {
             <Route path="/search-manual" element={<SearchManual />} />
             <Route path="/pagination-client" element={<PaginationClient />} />
             <Route path="/pagination-infinite" element={<PaginationInfiniteScroll />} />
+            <Route path="/animation-framer-motion" element={<FramerAnimation />} />
+            <Route path="/animation-gsap" element={<GsapAnimation />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
     );
