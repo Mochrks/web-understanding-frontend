@@ -153,9 +153,44 @@ const homeData = [
         route: '/testing-app'
     },
     {
-        name: 'Dashboards Layout',
+        name: 'Dashboards Pages Layout',
         description: 'Dashboard Layout  for React applications.',
-        route: '/dashboard'
+        route: '/dashboard-layout'
+    },
+    {
+        name: 'Authentification Pages layout',
+        description: 'Authentification Pages  for React applications.',
+        route: '/authentification-layout'
+    },
+    {
+        name: 'User Profile pages layout',
+        description: 'User Profile pages  for React applications.',
+        route: '/user-profiles-layout'
+    },
+    {
+        name: 'E-Commerce pages layout',
+        description: 'E-Commerce pages  for React applications.',
+        route: '/e-commerce-layout'
+    },
+    {
+        name: 'Multi Step form pages layout',
+        description: 'Multi Step form pages  for React applications.',
+        route: '/multi-step-layout'
+    },
+    {
+        name: 'Notification And Message pages layout',
+        description: 'Notification And Message pages  for React applications.',
+        route: '/motif-message-layout'
+    },
+    {
+        name: 'User Feedback and Rating pages layout',
+        description: 'User Feedback and Rating pages  for React applications.',
+        route: '/feedback-rating-layout'
+    },
+    {
+        name: 'Coding practice pages layout',
+        description: 'Coding practice pages  for React applications.',
+        route: '/coding-practice-layout'
     }
 ];
 

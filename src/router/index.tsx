@@ -11,9 +11,16 @@ import PaginationClient from '@/pages/pagination/client-side/PaginationClient';
 import PaginationInfiniteScroll from '@/pages/pagination/infinite-scroll/PaginationInfiniteScroll';
 import FramerAnimation from '@/pages/animation-framer-gsap/framer/FramerAnimation';
 import GsapAnimation from '@/pages/animation-framer-gsap/gsap/GsapAnimation';
-import Dashboard from '@/pages/dashboards/Dashboard';
+import Dashboard from '@/pages/layouting/dashboards/Dashboard';
 import ConditionalRendering from '@/pages/conditional-rendering/ConditionalRendering';
 import UploadDownload from '@/pages/file-upload-download/UploadDownload';
+import AuthentificationPages from '@/pages/layouting/authentification/AuthenntificationPages';
+import UserProfilePages from '@/pages/layouting/user-profiles/UserProfilesPages';
+import EcommercePages from '@/pages/layouting/e-commerce/EcommercePages';
+import MultiStep from '@/pages/layouting/multi-step-forms/MultiStep';
+import NotificationAndMessaging from '@/pages/layouting/notification-messaging/NotificationAndMessaging';
+import CodingPracticePage from '@/pages/layouting/coding-practive-text-editor/CodingPracticePage';
+import UserFeedbackAndRating from '@/pages/layouting/user-feedback-rating/UserFeedbackAndRating';
 
 
 const AppRoutes: React.FC = () => {
@@ -28,9 +35,16 @@ const AppRoutes: React.FC = () => {
             <Route path="/pagination-infinite" element={<PaginationInfiniteScroll />} />
             <Route path="/animation-framer-motion" element={<FramerAnimation />} />
             <Route path="/animation-gsap" element={<GsapAnimation />} />
-            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/conditional-rendering" element={<ConditionalRendering />} />
             <Route path="/file-upload-download" element={<UploadDownload />} />
+            <Route path="/dashboard-layout" element={<Dashboard />} />
+            <Route path="/authentification-layout" element={<AuthentificationPages />} />
+            <Route path="/user-profiles-layout" element={<UserProfilePages />} />
+            <Route path="/e-commerce-layout" element={<EcommercePages />} />
+            <Route path="/multi-step-layout" element={<MultiStep />} />
+            <Route path="/motif-message-layout" element={<NotificationAndMessaging />} />
+            <Route path="/feedback-rating-layout" element={<UserFeedbackAndRating />} />
+            <Route path="/coding-practice-layout" element={<CodingPracticePage />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
     );
