@@ -12,6 +12,8 @@ import PaginationInfiniteScroll from '@/pages/pagination/infinite-scroll/Paginat
 import FramerAnimation from '@/pages/animation-framer-gsap/framer/FramerAnimation';
 import GsapAnimation from '@/pages/animation-framer-gsap/gsap/GsapAnimation';
 import Dashboard from '@/pages/dashboards/Dashboard';
+import ConditionalRendering from '@/pages/conditional-rendering/ConditionalRendering';
+import UploadDownload from '@/pages/file-upload-download/UploadDownload';
 
 
 const AppRoutes: React.FC = () => {
@@ -27,6 +29,8 @@ const AppRoutes: React.FC = () => {
             <Route path="/animation-framer-motion" element={<FramerAnimation />} />
             <Route path="/animation-gsap" element={<GsapAnimation />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/conditional-rendering" element={<ConditionalRendering />} />
+            <Route path="/file-upload-download" element={<UploadDownload />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
     );

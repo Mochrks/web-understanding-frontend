@@ -88,6 +88,11 @@ export const Login = () => {
                         </svg>
                         Continue with Google
                     </Button>
+                    <p className="text-muted-foreground text-sm text-center mt-5">
+                        By clicking Login, you agree to our{" "}
+                        <strong className="font-bold">Terms of Service</strong> and{" "}
+                        <strong className="font-bold">Privacy Policy</strong>.
+                    </p>
                 </div>
             </Card >
         </div >
