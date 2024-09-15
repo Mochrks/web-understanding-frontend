@@ -153,7 +153,7 @@ const homeData = [
         route: '/testing-app'
     },
     {
-        name: 'Dashboards Pages Layout',
+        name: 'Dashboards Pages layout',
         description: 'Dashboard Layout  for React applications.',
         route: '/dashboard-layout'
     },
@@ -180,7 +180,7 @@ const homeData = [
     {
         name: 'Notification And Message pages layout',
         description: 'Notification And Message pages  for React applications.',
-        route: '/motif-message-layout'
+        route: '/notif-message-layout'
     },
     {
         name: 'User Feedback and Rating pages layout',
@@ -191,6 +191,16 @@ const homeData = [
         name: 'Coding practice pages layout',
         description: 'Coding practice pages  for React applications.',
         route: '/coding-practice-layout'
+    },
+    {
+        name: 'Carousel images pages layout',
+        description: 'Carousel images page  for React applications.',
+        route: '/carousel-layout'
+    },
+    {
+        name: 'Hero bg animation pages layout',
+        description: 'Hero Bg animation pages  for React applications.',
+        route: '/hero-bg-layout'
     }
 ];
 

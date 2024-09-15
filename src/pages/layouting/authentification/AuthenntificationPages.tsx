@@ -15,9 +15,10 @@ import {
     InputOTPSlot,
 } from "@/components/ui/input-otp"
 import { Title } from '@/components/demo/Title'
+import { Link } from "react-router-dom"
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => (
-    <div className="min-h-screen flex items-center justify-center ">
+    <div className="min-h-screen flex pt-20 justify-center ">
         <div className="max-w-md w-full">
             {children}
         </div>
@@ -191,11 +192,13 @@ export default function AuthentificationPages() {
 
     return (
         <>
-            <div className='mt-20 w-full '>
+            <div className='flex flex-col mt-20 w-full text-center gap-5'>
                 <Title name="Screen Authentification Pages" />
+                <Link to="/authentification-layout-modern" className="ml-1 font-medium text-primary hover:underline">
+                    <Button>Layout modern for login, register</Button>
+                </Link>
             </div>
             <AuthLayout>
-
                 <Tabs value={currentPage} onValueChange={setCurrentPage} className="w-full">
                     <TabsList className="grid w-full grid-cols-2">
                         <TabsTrigger value="login">Login</TabsTrigger>

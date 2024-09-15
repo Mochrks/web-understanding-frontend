@@ -19,6 +19,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Title } from '@/components/demo/Title'
 
 const NotificationAndMessaging = () => {
     const [activeTab, setActiveTab] = useState('inbox')
@@ -227,6 +228,9 @@ const NotificationAndMessaging = () => {
 
     return (
         <div className="container mx-auto py-10">
+            <div className='flex flex-col w-full text-center gap-5 mb-20'>
+                <Title name="Screen Notification And Messaging" />
+            </div>
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                 <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="inbox" className="flex items-center">

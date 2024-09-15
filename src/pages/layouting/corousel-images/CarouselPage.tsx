@@ -1,0 +1,353 @@
+import React, { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Title } from '@/components/demo/Title'
+
+
+const images = [
+    'https://picsum.photos/id/1018/600/400',
+    'https://picsum.photos/id/1015/600/400',
+    'https://picsum.photos/id/1019/600/400',
+    'https://picsum.photos/id/1016/600/400',
+    'https://picsum.photos/id/1020/600/400',
+]
+
+// Basic Carousel
+const BasicCarousel: React.FC = () => {
+    const [currentIndex, setCurrentIndex] = useState(0)
+
+    const nextSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }
+
+    const prevSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
+    }
+
+    return (
+        <div className="relative w-full h-64 md:h-96 overflow-hidden rounded-lg">
+            <AnimatePresence initial={false} custom={currentIndex}>
+                <motion.img
+                    key={currentIndex}
+                    src={images[currentIndex]}
+                    alt={`Slide ${currentIndex + 1}`}
+                    className="absolute w-full h-full object-cover"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                />
+            </AnimatePresence>
+            <button
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={prevSlide}
+            >
+                &#10094;
+            </button>
+            <button
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={nextSlide}
+            >
+                &#10095;
+            </button>
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+                {images.map((_, index) => (
+                    <button
+                        key={index}
+                        className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-400'
+                            }`}
+                        onClick={() => setCurrentIndex(index)}
+                    />
+                ))}
+            </div>
+        </div>
+    )
+}
+
+// 3D Carousel
+const ThreeDCarousel: React.FC = () => {
+    const [currentIndex, setCurrentIndex] = useState(0)
+
+    const nextSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }
+
+    const prevSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
+    }
+
+    return (
+        <div className="relative w-full h-64 md:h-96 perspective-1000 overflow-hidden rounded-lg">
+            {images.map((image, index) => (
+                <motion.div
+                    key={index}
+                    className="absolute w-full h-full"
+                    initial={{ rotateY: 0, scale: 0.5, opacity: 0 }}
+                    animate={{
+                        rotateY: (index - currentIndex) * -60,
+                        scale: index === currentIndex ? 1 : 0.5,
+                        opacity: index === currentIndex ? 1 : 0.5,
+                        zIndex: index === currentIndex ? 1 : 0,
+                    }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <img src={image} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
+                </motion.div>
+            ))}
+            <button
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={prevSlide}
+            >
+                &#10094;
+            </button>
+            <button
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={nextSlide}
+            >
+                &#10095;
+            </button>
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+                {images.map((_, index) => (
+                    <button
+                        key={index}
+                        className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-400'
+                            }`}
+                        onClick={() => setCurrentIndex(index)}
+                    />
+                ))}
+            </div>
+        </div>
+    )
+}
+
+// Infinite Carousel
+const InfiniteCarousel: React.FC = () => {
+    const [currentIndex, setCurrentIndex] = useState(0)
+    const [direction, setDirection] = useState(0)
+
+    const nextSlide = () => {
+        setDirection(1)
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }
+
+    const prevSlide = () => {
+        setDirection(-1)
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
+    }
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            nextSlide()
+        }, 3000)
+        return () => clearInterval(timer)
+    }, [])
+
+    return (
+        <div className="relative w-full h-64 md:h-96 overflow-hidden rounded-lg">
+            <AnimatePresence initial={false} custom={direction}>
+                <motion.img
+                    key={currentIndex}
+                    src={images[currentIndex]}
+                    alt={`Slide ${currentIndex + 1}`}
+                    className="absolute w-full h-full object-cover"
+                    custom={direction}
+                    variants={{
+                        enter: (direction: number) => ({
+                            x: direction > 0 ? 1000 : -1000,
+                            opacity: 0,
+                        }),
+                        center: {
+                            zIndex: 1,
+                            x: 0,
+                            opacity: 1,
+                        },
+                        exit: (direction: number) => ({
+                            zIndex: 0,
+                            x: direction < 0 ? 1000 : -1000,
+                            opacity: 0,
+                        }),
+                    }}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{
+                        x: { type: 'spring', stiffness: 300, damping: 30 },
+                        opacity: { duration: 0.2 },
+                    }}
+                />
+            </AnimatePresence>
+            <button
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={prevSlide}
+            >
+                &#10094;
+            </button>
+            <button
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={nextSlide}
+            >
+                &#10095;
+            </button>
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+                {images.map((_, index) => (
+                    <button
+                        key={index}
+                        className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-400'
+                            }`}
+                        onClick={() => setCurrentIndex(index)}
+                    />
+                ))}
+            </div>
+        </div>
+    )
+}
+
+// Fade Carousel
+const FadeCarousel: React.FC = () => {
+    const [currentIndex, setCurrentIndex] = useState(0)
+
+    const nextSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }
+
+    const prevSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
+    }
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            nextSlide()
+        }, 4000)
+        return () => clearInterval(timer)
+    }, [])
+
+    return (
+        <div className="relative w-full h-64 md:h-96 overflow-hidden rounded-lg">
+            <AnimatePresence>
+                <motion.img
+                    key={currentIndex}
+                    src={images[currentIndex]}
+                    alt={`Slide ${currentIndex + 1}`}
+                    className="absolute w-full h-full object-cover"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1 }}
+                />
+            </AnimatePresence>
+            <button
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={prevSlide}
+            >
+                &#10094;
+            </button>
+            <button
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={nextSlide}
+            >
+                &#10095;
+            </button>
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+                {images.map((_, index) => (
+                    <button
+                        key={index}
+                        className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-400'
+                            }`}
+                        onClick={() => setCurrentIndex(index)}
+                    />
+                ))}
+            </div>
+        </div>
+    )
+}
+
+// Parallax Carousel
+const ParallaxCarousel: React.FC = () => {
+    const [currentIndex, setCurrentIndex] = useState(0)
+
+    const nextSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }
+
+    const prevSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
+    }
+
+    return (
+        <div className="relative w-full h-64 md:h-96 overflow-hidden rounded-lg">
+            {images.map((image, index) => (
+                <motion.div
+                    key={index}
+                    className="absolute w-full h-full"
+                    initial={{ scale: 1.2, opacity: index === 0 ? 1 : 0 }}
+                    animate={{
+                        scale: index === currentIndex ? 1 : 1.2,
+                        opacity: index === currentIndex ? 1 : 0,
+                    }}
+                    transition={{ duration: 0.8 }}
+                >
+                    <img src={image} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
+                </motion.div>
+            ))}
+            <button
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={prevSlide}
+            >
+                &#10094;
+            </button>
+            <button
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={nextSlide}
+            >
+                &#10095;
+            </button>
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+                {images.map((_, index) => (
+                    <button
+                        key={index}
+                        className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-400'
+                            }`}
+                        onClick={() => setCurrentIndex(index)}
+                    />
+                ))}
+            </div>
+        </div>
+    )
+}
+
+// Main App Component
+function CarouselPage() {
+    return (
+        <div className="container mx-auto px-4 py-8">
+            <div className="py-5">
+                <Title name="Screen Carousel Images " />
+            </div>
+
+            <section className="mb-12">
+                <h2 className="text-2xl font-semibold mb-4 text-gray-700">Basic Carousel</h2>
+                <BasicCarousel />
+            </section>
+
+            <section className="mb-12">
+                <h2 className="text-2xl font-semibold mb-4 text-gray-700">3D Carousel</h2>
+                <ThreeDCarousel />
+            </section>
+
+            <section className="mb-12">
+                <h2 className="text-2xl font-semibold mb-4 text-gray-700">Infinite Carousel</h2>
+                <InfiniteCarousel />
+            </section>
+
+            <section className="mb-12">
+                <h2 className="text-2xl font-semibold mb-4 text-gray-700">Fade Carousel</h2>
+                <FadeCarousel />
+            </section>
+
+            <section className="mb-12">
+                <h2 className="text-2xl font-semibold mb-4 text-gray-700">Parallax Carousel</h2>
+                <ParallaxCarousel />
+            </section>
+        </div>
+    )
+}
+
+export default CarouselPage

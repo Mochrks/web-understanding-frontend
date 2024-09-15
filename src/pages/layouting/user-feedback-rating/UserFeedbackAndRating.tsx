@@ -22,6 +22,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { Title } from '@/components/demo/Title'
 
 const UserFeedbackAndRating = () => {
     const [activeTab, setActiveTab] = useState('reviews')
@@ -228,7 +229,10 @@ const UserFeedbackAndRating = () => {
 
     return (
         <div className="container mx-auto py-10">
-            <h1 className="text-3xl font-bold mb-6">User Feedback and Ratings</h1>
+            <div className='flex flex-col w-full text-center gap-5 mb-20'>
+                <Title name="Screen User Feedback and Ratings" />
+            </div>
+
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                 <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="reviews">Reviews & Ratings</TabsTrigger>

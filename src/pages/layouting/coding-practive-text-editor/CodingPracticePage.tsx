@@ -12,6 +12,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { PlayIcon, CheckCircleIcon, XCircleIcon } from 'lucide-react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { Title } from '@/components/demo/Title'
 
 const CodingPracticePage = () => {
     const [selectedLanguage, setSelectedLanguage] = useState('javascript')
@@ -151,7 +152,9 @@ fizzBuzz();
 
     return (
         <div className="container mx-auto py-10">
-            <h1 className="text-3xl font-bold mb-6">Coding Practice</h1>
+            <div className='flex flex-col w-full text-center gap-5 mb-20'>
+                <Title name="Screen Coding Practice Text Editor" />
+            </div>
             <div className="grid grid-cols-2 gap-6">
                 <Card>
                     <CardHeader>

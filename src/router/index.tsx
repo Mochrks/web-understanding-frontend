@@ -21,6 +21,9 @@ import MultiStep from '@/pages/layouting/multi-step-forms/MultiStep';
 import NotificationAndMessaging from '@/pages/layouting/notification-messaging/NotificationAndMessaging';
 import CodingPracticePage from '@/pages/layouting/coding-practive-text-editor/CodingPracticePage';
 import UserFeedbackAndRating from '@/pages/layouting/user-feedback-rating/UserFeedbackAndRating';
+import AuthPagesLoginRegister from '@/pages/layouting/authentification/AuthPagesLoginRegister';
+import CarouselPage from '@/pages/layouting/corousel-images/CarouselPage';
+import HeroBGAnimation from '@/pages/layouting/hero-bg-animation/HeroBGAnimation';
 
 
 const AppRoutes: React.FC = () => {
@@ -39,12 +42,15 @@ const AppRoutes: React.FC = () => {
             <Route path="/file-upload-download" element={<UploadDownload />} />
             <Route path="/dashboard-layout" element={<Dashboard />} />
             <Route path="/authentification-layout" element={<AuthentificationPages />} />
+            <Route path="/authentification-layout-modern" element={<AuthPagesLoginRegister />} />
             <Route path="/user-profiles-layout" element={<UserProfilePages />} />
             <Route path="/e-commerce-layout" element={<EcommercePages />} />
             <Route path="/multi-step-layout" element={<MultiStep />} />
-            <Route path="/motif-message-layout" element={<NotificationAndMessaging />} />
+            <Route path="/notif-message-layout" element={<NotificationAndMessaging />} />
             <Route path="/feedback-rating-layout" element={<UserFeedbackAndRating />} />
             <Route path="/coding-practice-layout" element={<CodingPracticePage />} />
+            <Route path="/carousel-layout" element={<CarouselPage />} />
+            <Route path="/hero-bg-layout" element={<HeroBGAnimation />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
     );

@@ -648,7 +648,7 @@ export default function Dashboard() {
                                                 {[1, 2, 3, 4].map((id) => (
                                                     <img
                                                         key={id}
-                                                        src={`/placeholder.svg?height=100&width=100`}
+                                                        src='https://picsum.photos/id/1018/600/400'
                                                         alt={`Gallery photo ${id}`}
                                                         className="w-full h-auto rounded-md"
                                                     />
@@ -661,6 +661,7 @@ export default function Dashboard() {
                         </div>
                     </main>
                 </div>
+
 
                 {/* Change Password Dialog */}
                 <Dialog open={isChangePasswordOpen} onOpenChange={setIsChangePasswordOpen}>

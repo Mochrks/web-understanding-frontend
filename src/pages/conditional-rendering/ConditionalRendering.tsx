@@ -36,7 +36,7 @@ const ConditionalRendering = () => {
             <header className='pt-10'>
                 <Title name="Screen Conditional Rendering" />
             </header>
-            <main className="flex flex-col items-center min-h-screen bg-gray-50 p-6 mt-20">
+            <main className="flex flex-col items-center min-h-screen  p-6 mt-20">
 
                 <Card className="w-full max-w-md shadow-lg">
                     <CardHeader>

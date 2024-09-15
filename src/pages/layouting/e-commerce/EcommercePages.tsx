@@ -83,13 +83,14 @@ const EcommerceLayout = ({ children }: { children: React.ReactNode }) => (
 const ProductListingPage = () => {
     const [view, setView] = useState('grid')
     const products = [
-        { id: 1, name: "Modern Desk Lamp", price: 59.99, image: "/placeholder.svg?height=200&width=200", rating: 4.5 },
-        { id: 2, name: "Ergonomic Office Chair", price: 199.99, image: "/placeholder.svg?height=200&width=200", rating: 4.8 },
-        { id: 3, name: "Wireless Bluetooth Earbuds", price: 79.99, image: "/placeholder.svg?height=200&width=200", rating: 4.2 },
-        { id: 4, name: "Smart Home Security Camera", price: 129.99, image: "/placeholder.svg?height=200&width=200", rating: 4.6 },
-        { id: 5, name: "Portable Power Bank", price: 39.99, image: "/placeholder.svg?height=200&width=200", rating: 4.4 },
-        { id: 6, name: "Stainless Steel Water Bottle", price: 24.99, image: "/placeholder.svg?height=200&width=200", rating: 4.7 },
+        { id: 1, name: "Modern Desk Lamp", price: 59.99, image: "https://picsum.photos/id/1018/600/400", rating: 4.5 },
+        { id: 2, name: "Ergonomic Office Chair", price: 199.99, image: "https://picsum.photos/id/1018/600/400", rating: 4.8 },
+        { id: 3, name: "Wireless Bluetooth Earbuds", price: 79.99, image: "https://picsum.photos/id/1018/600/400", rating: 4.2 },
+        { id: 4, name: "Smart Home Security Camera", price: 129.99, image: "https://picsum.photos/id/1018/600/400", rating: 4.6 },
+        { id: 5, name: "Portable Power Bank", price: 39.99, image: "https://picsum.photos/id/1018/600/400", rating: 4.4 },
+        { id: 6, name: "Stainless Steel Water Bottle", price: 24.99, image: "https://picsum.photos/id/1018/600/400", rating: 4.7 },
     ]
+
 
     return (
         <div>
@@ -161,16 +162,16 @@ const ProductDetailPage = () => {
         <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
                 <div className="aspect-square relative">
-                    <img src="/placeholder.svg?height=400&width=400" alt="Product" className="object-cover rounded-lg" />
+                    <img src="https://picsum.photos/id/1018/600/400" alt="Product" className="object-cover rounded-lg" />
                     <Button variant="secondary" size="icon" className="absolute top-4 right-4">
                         <Heart className="h-4 w-4" />
                     </Button>
                 </div>
                 <div className="grid grid-cols-4 gap-4">
-                    <img src="/placeholder.svg?height=100&width=100" alt="Product thumbnail" className="object-cover rounded-lg" />
-                    <img src="/placeholder.svg?height=100&width=100" alt="Product thumbnail" className="object-cover rounded-lg" />
-                    <img src="/placeholder.svg?height=100&width=100" alt="Product thumbnail" className="object-cover rounded-lg" />
-                    <img src="/placeholder.svg?height=100&width=100" alt="Product thumbnail" className="object-cover rounded-lg" />
+                    <img src="https://picsum.photos/id/1018/600/400" alt="Product thumbnail" className="object-cover rounded-lg" />
+                    <img src="https://picsum.photos/id/1018/600/400" alt="Product thumbnail" className="object-cover rounded-lg" />
+                    <img src="https://picsum.photos/id/1018/600/400" alt="Product thumbnail" className="object-cover rounded-lg" />
+                    <img src="https://picsum.photos/id/1018/600/400" alt="Product thumbnail" className="object-cover rounded-lg" />
                 </div>
             </div>
             <div className="space-y-6">
@@ -236,8 +237,8 @@ const ProductDetailPage = () => {
 
 const CartPage = () => {
     const cartItems = [
-        { id: 1, name: "Modern Desk Lamp", price: 59.99, quantity: 1, image: "/placeholder.svg?height=100&width=100" },
-        { id: 2, name: "Ergonomic Office Chair", price: 199.99, quantity: 1, image: "/placeholder.svg?height=100&width=100" },
+        { id: 1, name: "Modern Desk Lamp", price: 59.99, quantity: 1, image: "https://picsum.photos/id/1018/600/400" },
+        { id: 2, name: "Ergonomic Office Chair", price: 199.99, quantity: 1, image: "https://picsum.photos/id/1018/600/400" },
     ]
 
     const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)

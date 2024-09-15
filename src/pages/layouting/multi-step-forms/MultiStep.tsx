@@ -18,6 +18,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
 import { ChevronLeft, ChevronRight, Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
+import { Title } from '@/components/demo/Title'
 
 const MultiStep = () => {
     const [currentStep, setCurrentStep] = useState(1)
@@ -450,6 +451,9 @@ const MultiStep = () => {
 
     return (
         <div className="container mx-auto py-10">
+            <div className='flex flex-col w-full text-center gap-5 mb-20'>
+                <Title name="Screen Multi Step Form " />
+            </div>
             <h1 className="text-3xl font-bold text-center mb-6">Job Application Form</h1>
             {renderProgressBar()}
             {renderStepContent()}
