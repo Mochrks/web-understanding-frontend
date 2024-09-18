@@ -24,6 +24,10 @@ import UserFeedbackAndRating from '@/pages/layouting/user-feedback-rating/UserFe
 import AuthPagesLoginRegister from '@/pages/layouting/authentification/AuthPagesLoginRegister';
 import CarouselPage from '@/pages/layouting/corousel-images/CarouselPage';
 import HeroBGAnimation from '@/pages/layouting/hero-bg-animation/HeroBGAnimation';
+import LoadingAnimations from '@/pages/layouting/loading-animation/LoadingAnimations';
+import AlertLayout from '@/pages/layouting/alert/AlertLayout';
+import EnhancedModalDialogLayout from '@/pages/layouting/dialog-popup/EnhancedModalDialogLayout';
+
 
 
 const AppRoutes: React.FC = () => {
@@ -51,6 +55,9 @@ const AppRoutes: React.FC = () => {
             <Route path="/coding-practice-layout" element={<CodingPracticePage />} />
             <Route path="/carousel-layout" element={<CarouselPage />} />
             <Route path="/hero-bg-layout" element={<HeroBGAnimation />} />
+            <Route path="/loading-animation-layout" element={<LoadingAnimations />} />
+            <Route path="/alert-layout" element={<AlertLayout />} />
+            <Route path="/modal-dialog-layout" element={<EnhancedModalDialogLayout />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
     );

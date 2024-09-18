@@ -201,6 +201,21 @@ const homeData = [
         name: 'Hero bg animation pages layout',
         description: 'Hero Bg animation pages  for React applications.',
         route: '/hero-bg-layout'
+    },
+    {
+        name: 'Loading Animations layout',
+        description: 'Loading Animations  for React applications.',
+        route: '/loading-animation-layout'
+    },
+    {
+        name: 'Alert Animations layout',
+        description: 'Alert Animations  for React applications.',
+        route: '/alert-layout'
+    },
+    {
+        name: 'Modal Dialog Pages Layout',
+        description: 'Modal dialog layout for React applications.',
+        route: '/modal-dialog-layout'
     }
 ];
 
