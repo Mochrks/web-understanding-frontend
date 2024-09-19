@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+import { Title } from '@/components/demo/Title'
 
 type ModalType =
     | 'default'
@@ -354,7 +355,9 @@ export default function EnhancedModalDialogLayout() {
 
     return (
         <div className="min-h-screen bg-gray-100 p-8">
-            <h1 className="text-4xl font-bold mb-8">Enhanced Modal Dialog Pages Layout</h1>
+            <div className="py-5">
+                <Title name="Screen Modal/PopUp Animations " />
+            </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {modalTypes.map((type) => (
                     <button

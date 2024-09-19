@@ -216,6 +216,16 @@ const homeData = [
         name: 'Modal Dialog Pages Layout',
         description: 'Modal dialog layout for React applications.',
         route: '/modal-dialog-layout'
+    },
+    {
+        name: 'Footer  Layout',
+        description: 'Footer layout for React applications.',
+        route: '/footer-layout'
+    },
+    {
+        name: 'Navbar  Layout',
+        description: 'Navbar layout for React applications.',
+        route: '/navbar-layout'
     }
 ];
 

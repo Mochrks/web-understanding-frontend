@@ -27,6 +27,8 @@ import HeroBGAnimation from '@/pages/layouting/hero-bg-animation/HeroBGAnimation
 import LoadingAnimations from '@/pages/layouting/loading-animation/LoadingAnimations';
 import AlertLayout from '@/pages/layouting/alert/AlertLayout';
 import EnhancedModalDialogLayout from '@/pages/layouting/dialog-popup/EnhancedModalDialogLayout';
+import FooterLayout from '@/pages/layouting/footer/FooterLayout';
+import NavbarLayout from '@/pages/layouting/navbar/NavbarLayout';
 
 
 
@@ -58,6 +60,8 @@ const AppRoutes: React.FC = () => {
             <Route path="/loading-animation-layout" element={<LoadingAnimations />} />
             <Route path="/alert-layout" element={<AlertLayout />} />
             <Route path="/modal-dialog-layout" element={<EnhancedModalDialogLayout />} />
+            <Route path="/footer-layout" element={<FooterLayout />} />
+            <Route path="/navbar-layout" element={<NavbarLayout />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
     );
