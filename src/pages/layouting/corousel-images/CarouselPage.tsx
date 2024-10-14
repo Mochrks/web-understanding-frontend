@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Title } from '@/components/demo/Title'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 
 const images = [
@@ -41,13 +42,13 @@ const BasicCarousel: React.FC = () => {
                 className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
                 onClick={prevSlide}
             >
-                &#10094;
+                <ChevronLeft size={24} />
             </button>
             <button
                 className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
                 onClick={nextSlide}
             >
-                &#10095;
+                <ChevronRight size={24} />
             </button>
             <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
                 {images.map((_, index) => (
@@ -63,8 +64,60 @@ const BasicCarousel: React.FC = () => {
     )
 }
 
-// 3D Carousel
-const ThreeDCarousel: React.FC = () => {
+// Zoom
+const ZoomCarousel: React.FC = () => {
+    const [currentIndex, setCurrentIndex] = useState(0)
+
+    const nextSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }
+
+    const prevSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
+    }
+
+    return (
+        <div className="relative w-full h-64 md:h-96 overflow-hidden rounded-lg">
+            <AnimatePresence initial={false}>
+                <motion.img
+                    key={currentIndex}
+                    src={images[currentIndex]}
+                    alt={`Slide ${currentIndex + 1}`}
+                    className="absolute w-full h-full object-cover"
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 1.5, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                />
+            </AnimatePresence>
+            <button
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={prevSlide}
+            >
+                <ChevronLeft size={24} />
+            </button>
+            <button
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={nextSlide}
+            >
+                <ChevronRight size={24} />
+            </button>
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+                {images.map((_, index) => (
+                    <button
+                        key={index}
+                        className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-400'
+                            }`}
+                        onClick={() => setCurrentIndex(index)}
+                    />
+                ))}
+            </div>
+        </div>
+    )
+}
+
+// Cube Carousel (New)
+const CubeCarousel: React.FC = () => {
     const [currentIndex, setCurrentIndex] = useState(0)
 
     const nextSlide = () => {
@@ -77,33 +130,28 @@ const ThreeDCarousel: React.FC = () => {
 
     return (
         <div className="relative w-full h-64 md:h-96 perspective-1000 overflow-hidden rounded-lg">
-            {images.map((image, index) => (
-                <motion.div
-                    key={index}
-                    className="absolute w-full h-full"
-                    initial={{ rotateY: 0, scale: 0.5, opacity: 0 }}
-                    animate={{
-                        rotateY: (index - currentIndex) * -60,
-                        scale: index === currentIndex ? 1 : 0.5,
-                        opacity: index === currentIndex ? 1 : 0.5,
-                        zIndex: index === currentIndex ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.5 }}
-                >
-                    <img src={image} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
-                </motion.div>
-            ))}
+            <div className="w-full h-full transform-style-3d transition-transform duration-500" style={{ transform: `rotateY(${currentIndex * -90}deg)` }}>
+                {images.map((image, index) => (
+                    <div
+                        key={index}
+                        className="absolute w-full h-full backface-hidden"
+                        style={{ transform: `rotateY(${index * 90}deg) translateZ(${Math.min(300, window.innerWidth / 2)}px)` }}
+                    >
+                        <img src={image} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
+                    </div>
+                ))}
+            </div>
             <button
                 className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
                 onClick={prevSlide}
             >
-                &#10094;
+                <ChevronLeft size={24} />
             </button>
             <button
                 className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
                 onClick={nextSlide}
             >
-                &#10095;
+                <ChevronRight size={24} />
             </button>
             <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
                 {images.map((_, index) => (
@@ -118,6 +166,7 @@ const ThreeDCarousel: React.FC = () => {
         </div>
     )
 }
+
 
 // Infinite Carousel
 const InfiniteCarousel: React.FC = () => {
@@ -175,28 +224,7 @@ const InfiniteCarousel: React.FC = () => {
                     }}
                 />
             </AnimatePresence>
-            <button
-                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
-                onClick={prevSlide}
-            >
-                &#10094;
-            </button>
-            <button
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
-                onClick={nextSlide}
-            >
-                &#10095;
-            </button>
-            <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
-                {images.map((_, index) => (
-                    <button
-                        key={index}
-                        className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-400'
-                            }`}
-                        onClick={() => setCurrentIndex(index)}
-                    />
-                ))}
-            </div>
+
         </div>
     )
 }
@@ -238,13 +266,13 @@ const FadeCarousel: React.FC = () => {
                 className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
                 onClick={prevSlide}
             >
-                &#10094;
+                <ChevronLeft size={24} />
             </button>
             <button
                 className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
                 onClick={nextSlide}
             >
-                &#10095;
+                <ChevronRight size={24} />
             </button>
             <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
                 {images.map((_, index) => (
@@ -292,13 +320,13 @@ const ParallaxCarousel: React.FC = () => {
                 className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
                 onClick={prevSlide}
             >
-                &#10094;
+                <ChevronLeft size={24} />
             </button>
             <button
                 className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
                 onClick={nextSlide}
             >
-                &#10095;
+                <ChevronRight size={24} />
             </button>
             <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
                 {images.map((_, index) => (
@@ -328,8 +356,14 @@ function CarouselPage() {
             </section>
 
             <section className="mb-12">
-                <h2 className="text-2xl font-semibold mb-4 text-gray-700">3D Carousel</h2>
-                <ThreeDCarousel />
+                <h2 className="text-2xl font-semibold mb-4 text-gray-700">Zoom Carousel</h2>
+                <ZoomCarousel />
+            </section>
+
+
+            <section className="mb-12">
+                <h2 className="text-2xl font-semibold mb-4 text-gray-700">Cube Carousel</h2>
+                <CubeCarousel />
             </section>
 
             <section className="mb-12">

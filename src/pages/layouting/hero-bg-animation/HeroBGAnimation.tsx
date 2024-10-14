@@ -97,131 +97,131 @@ const ParticleBackground: React.FC = () => {
     return <></>;
 };
 
-const FluidBackground: React.FC = () => {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+// const FluidBackground: React.FC = () => {
+//     const canvasRef = useRef<HTMLCanvasElement>(null);
+//     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
+//     useEffect(() => {
+//         const canvas = canvasRef.current;
+//         if (!canvas) return;
 
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
+//         const ctx = canvas.getContext('2d');
+//         if (!ctx) return;
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+//         canvas.width = window.innerWidth;
+//         canvas.height = window.innerHeight;
 
-        const particles: { x: number; y: number; radius: number; vx: number; vy: number }[] = [];
-        const particleCount = 100;
+//         const particles: { x: number; y: number; radius: number; vx: number; vy: number }[] = [];
+//         const particleCount = 100;
 
-        for (let i = 0; i < particleCount; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 2 + 1,
-                vx: Math.random() * 2 - 1,
-                vy: Math.random() * 2 - 1,
-            });
-        }
+//         for (let i = 0; i < particleCount; i++) {
+//             particles.push({
+//                 x: Math.random() * canvas.width,
+//                 y: Math.random() * canvas.height,
+//                 radius: Math.random() * 2 + 1,
+//                 vx: Math.random() * 2 - 1,
+//                 vy: Math.random() * 2 - 1,
+//             });
+//         }
 
-        const animate = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+//         const animate = () => {
+//             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            particles.forEach((particle) => {
-                particle.x += particle.vx + (mousePosition.x - canvas.width / 2) * 0.01;
-                particle.y += particle.vy + (mousePosition.y - canvas.height / 2) * 0.01;
+//             particles.forEach((particle) => {
+//                 particle.x += particle.vx + (mousePosition.x - canvas.width / 2) * 0.01;
+//                 particle.y += particle.vy + (mousePosition.y - canvas.height / 2) * 0.01;
 
-                if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-                if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+//                 if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+//                 if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
 
-                ctx.beginPath();
-                ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-                ctx.fill();
-            });
+//                 ctx.beginPath();
+//                 ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+//                 ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+//                 ctx.fill();
+//             });
 
-            requestAnimationFrame(animate);
-        };
+//             requestAnimationFrame(animate);
+//         };
 
-        animate();
+//         animate();
 
-        const handleResize = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
+//         const handleResize = () => {
+//             canvas.width = window.innerWidth;
+//             canvas.height = window.innerHeight;
+//         };
 
-        window.addEventListener('resize', handleResize);
+//         window.addEventListener('resize', handleResize);
 
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, [mousePosition]);
+//         return () => {
+//             window.removeEventListener('resize', handleResize);
+//         };
+//     }, [mousePosition]);
 
-    const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-        setMousePosition({ x: event.clientX, y: event.clientY });
-    };
+//     const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+//         setMousePosition({ x: event.clientX, y: event.clientY });
+//     };
 
-    return (
-        <div onMouseMove={handleMouseMove} style={{ width: '100%', height: '100%' }}>
-            <canvas ref={canvasRef} style={{ position: 'absolute', top: 0, left: 0 }} />
-        </div>
-    );
-};
+//     return (
+//         <div onMouseMove={handleMouseMove} style={{ width: '100%', height: '100%' }}>
+//             <canvas ref={canvasRef} style={{ position: 'absolute', top: 0, left: 0 }} />
+//         </div>
+//     );
+// };
 
-const GlowingOrbs: React.FC = () => {
-    const [orbs, setOrbs] = useState<{ x: number; y: number; size: number; color: string }[]>([]);
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+// const GlowingOrbs: React.FC = () => {
+//     const [orbs, setOrbs] = useState<{ x: number; y: number; size: number; color: string }[]>([]);
+//     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-    useEffect(() => {
-        const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
-        const newOrbs = Array(5).fill(null).map(() => ({
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            size: Math.random() * 100 + 50,
-            color: colors[Math.floor(Math.random() * colors.length)],
-        }));
-        setOrbs(newOrbs);
-    }, []);
+//     useEffect(() => {
+//         const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+//         const newOrbs = Array(5).fill(null).map(() => ({
+//             x: Math.random() * window.innerWidth,
+//             y: Math.random() * window.innerHeight,
+//             size: Math.random() * 100 + 50,
+//             color: colors[Math.floor(Math.random() * colors.length)],
+//         }));
+//         setOrbs(newOrbs);
+//     }, []);
 
-    useEffect(() => {
-        const updateOrbPositions = () => {
-            setOrbs(prevOrbs => prevOrbs.map(orb => ({
-                ...orb,
-                x: orb.x + (mousePosition.x - orb.x) * 0.05,
-                y: orb.y + (mousePosition.y - orb.y) * 0.05,
-            })));
-        };
+//     useEffect(() => {
+//         const updateOrbPositions = () => {
+//             setOrbs(prevOrbs => prevOrbs.map(orb => ({
+//                 ...orb,
+//                 x: orb.x + (mousePosition.x - orb.x) * 0.05,
+//                 y: orb.y + (mousePosition.y - orb.y) * 0.05,
+//             })));
+//         };
 
-        const intervalId = setInterval(updateOrbPositions, 16);
-        return () => clearInterval(intervalId);
-    }, [mousePosition]);
+//         const intervalId = setInterval(updateOrbPositions, 16);
+//         return () => clearInterval(intervalId);
+//     }, [mousePosition]);
 
-    const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-        setMousePosition({ x: event.clientX, y: event.clientY });
-    };
+//     const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+//         setMousePosition({ x: event.clientX, y: event.clientY });
+//     };
 
-    return (
-        <div onMouseMove={handleMouseMove} style={{ width: '100%', height: '100%', overflow: 'hidden', background: '#000' }}>
-            {orbs.map((orb, index) => (
-                <div
-                    key={index}
-                    style={{
-                        position: 'absolute',
-                        left: orb.x - orb.size / 2,
-                        top: orb.y - orb.size / 2,
-                        width: orb.size,
-                        height: orb.size,
-                        borderRadius: '50%',
-                        background: orb.color,
-                        filter: 'blur(50px)',
-                        opacity: 0.7,
-                        transition: 'all 0.1s ease-out',
-                    }}
-                />
-            ))}
-        </div>
-    );
-};
+//     return (
+//         <div onMouseMove={handleMouseMove} style={{ width: '100%', height: '100%', overflow: 'hidden', background: '#000' }}>
+//             {orbs.map((orb, index) => (
+//                 <div
+//                     key={index}
+//                     style={{
+//                         position: 'absolute',
+//                         left: orb.x - orb.size / 2,
+//                         top: orb.y - orb.size / 2,
+//                         width: orb.size,
+//                         height: orb.size,
+//                         borderRadius: '50%',
+//                         background: orb.color,
+//                         filter: 'blur(50px)',
+//                         opacity: 0.7,
+//                         transition: 'all 0.1s ease-out',
+//                     }}
+//                 />
+//             ))}
+//         </div>
+//     );
+// };
 
 const HeroBGAnimation: React.FC = () => {
     const [currentAnimation, setCurrentAnimation] = useState<number>(0);
@@ -264,7 +264,7 @@ const HeroBGAnimation: React.FC = () => {
                         borderRadius: '5px',
                     }}
                 >
-                    Next Animation
+                    Create Particle
                 </button>
             </div>
         </div>

@@ -74,7 +74,7 @@ const MultiStep = () => {
     }
 
     const handleSubmit = () => {
-        // In a real application, you would send the form data to a server here
+
         console.log('Form submitted:', formData)
         setCurrentStep(totalSteps)
     }
@@ -113,6 +113,7 @@ const MultiStep = () => {
                         <Input
                             id="firstName"
                             value={formData.personalInfo.firstName}
+                            placeholder='your first name'
                             onChange={(e) => updateFormData('personalInfo', 'firstName', e.target.value)}
                         />
                     </div>
@@ -121,6 +122,7 @@ const MultiStep = () => {
                         <Input
                             id="lastName"
                             value={formData.personalInfo.lastName}
+                            placeholder='your last name'
                             onChange={(e) => updateFormData('personalInfo', 'lastName', e.target.value)}
                         />
                     </div>
@@ -131,6 +133,7 @@ const MultiStep = () => {
                         id="email"
                         type="email"
                         value={formData.personalInfo.email}
+                        placeholder='youremail@example.com'
                         onChange={(e) => updateFormData('personalInfo', 'email', e.target.value)}
                     />
                 </div>
@@ -140,6 +143,7 @@ const MultiStep = () => {
                         id="phone"
                         type="tel"
                         value={formData.personalInfo.phone}
+                        placeholder='+628192391231'
                         onChange={(e) => updateFormData('personalInfo', 'phone', e.target.value)}
                     />
                 </div>
@@ -177,6 +181,7 @@ const MultiStep = () => {
                     <Input
                         id="fieldOfStudy"
                         value={formData.education.fieldOfStudy}
+                        placeholder='your study'
                         onChange={(e) => updateFormData('education', 'fieldOfStudy', e.target.value)}
                     />
                 </div>
@@ -185,6 +190,7 @@ const MultiStep = () => {
                     <Input
                         id="university"
                         value={formData.education.university}
+                        placeholder='your university or institution'
                         onChange={(e) => updateFormData('education', 'university', e.target.value)}
                     />
                 </div>
@@ -196,6 +202,7 @@ const MultiStep = () => {
                         min="1900"
                         max={new Date().getFullYear()}
                         value={formData.education.graduationYear}
+                        placeholder='your graduation years'
                         onChange={(e) => updateFormData('education', 'graduationYear', e.target.value)}
                     />
                 </div>
@@ -267,6 +274,7 @@ const MultiStep = () => {
                     <Input
                         id="desiredPosition"
                         value={formData.jobDetails.desiredPosition}
+                        placeholder='your position'
                         onChange={(e) => updateFormData('jobDetails', 'desiredPosition', e.target.value)}
                     />
                 </div>
@@ -278,6 +286,7 @@ const MultiStep = () => {
                         min="0"
                         step="1000"
                         value={formData.jobDetails.salaryExpectation}
+                        placeholder='your salary expectation'
                         onChange={(e) => updateFormData('jobDetails', 'salaryExpectation', e.target.value)}
                     />
                 </div>
@@ -328,6 +337,7 @@ const MultiStep = () => {
                         id="coverLetter"
                         rows={5}
                         value={formData.additionalInfo.coverLetter}
+                        placeholder='your cover latter ..'
                         onChange={(e) => updateFormData('additionalInfo', 'coverLetter', e.target.value)}
                     />
                 </div>
@@ -337,6 +347,7 @@ const MultiStep = () => {
                         id="portfolioUrl"
                         type="url"
                         value={formData.additionalInfo.portfolioUrl}
+                        placeholder='your link url portfolio'
                         onChange={(e) => updateFormData('additionalInfo', 'portfolioUrl', e.target.value)}
                     />
                 </div>

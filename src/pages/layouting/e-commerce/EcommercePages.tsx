@@ -21,7 +21,7 @@ import { Title } from '@/components/demo/Title'
 const EcommerceLayout = ({ children }: { children: React.ReactNode }) => (
     <div className="container mx-auto p-4">
         <header className="flex justify-between items-center mb-8 rounded-md bg-gray-200 p-10">
-            <h1 className="text-3xl font-bold">ModernShop</h1>
+            <h1 className="text-3xl font-bold">MochrksShop</h1>
             <nav className="flex space-x-4">
                 <Button variant="ghost">Home</Button>
                 <Button variant="ghost">Products</Button>
@@ -46,7 +46,7 @@ const EcommerceLayout = ({ children }: { children: React.ReactNode }) => (
             <div className="grid grid-cols-4 gap-8">
                 <div>
                     <h3 className="font-semibold mb-4">About Us</h3>
-                    <p className="text-sm text-gray-600">ModernShop is your one-stop destination for trendy and high-quality products.</p>
+                    <p className="text-sm text-gray-600">MochrksShop is your one-stop destination for trendy and high-quality products.</p>
                 </div>
                 <div>
                     <h3 className="font-semibold mb-4">Customer Service</h3>
@@ -74,7 +74,7 @@ const EcommerceLayout = ({ children }: { children: React.ReactNode }) => (
                 </div>
             </div>
             <div className="mt-8 text-center text-sm text-gray-600">
-                © 2023 ModernShop. All rights reserved.
+                © 2024 MochrksShop. All rights reserved.
             </div>
         </footer>
     </div>
@@ -161,7 +161,7 @@ const ProductDetailPage = () => {
     return (
         <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
-                <div className="aspect-square relative">
+                <div className=" relative bg-blue-200">
                     <img src="https://picsum.photos/id/1018/600/400" alt="Product" className="object-cover rounded-lg" />
                     <Button variant="secondary" size="icon" className="absolute top-4 right-4">
                         <Heart className="h-4 w-4" />
@@ -246,62 +246,64 @@ const CartPage = () => {
     const total = subtotal + shipping
 
     return (
-        <div className="grid md:grid-cols-3 gap-8">
-            <div className="md:col-span-2">
-                <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
-                <div className="space-y-4">
-                    {cartItems.map((item) => (
-                        <Card key={item.id}>
-                            <CardContent className="flex items-center space-x-4 p-4">
-                                <img src={item.image} alt={item.name} className="h-24 w-24 object-cover rounded-md" />
-                                <div className="flex-grow">
-                                    <h3 className="font-semibold">{item.name}</h3>
-                                    <p className="text-sm text-gray-600 mb-2">${item.price.toFixed(2)}</p>
-                                    <div className="flex items-center space-x-2">
-                                        <Button variant="outline" size="icon">
-                                            <Minus className="h-4 w-4" />
-                                        </Button>
-                                        <span>{item.quantity}</span>
-                                        <Button variant="outline" size="icon">
-                                            <Plus className="h-4 w-4" />
+        <>
+            <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+                <div className="md:col-span-2">
+                    <div className="space-y-4">
+                        {cartItems.map((item) => (
+                            <Card key={item.id}>
+                                <CardContent className="flex items-center space-x-4 p-4">
+                                    <img src={item.image} alt={item.name} className="h-24 w-24 object-cover rounded-md" />
+                                    <div className="flex-grow">
+                                        <h3 className="font-semibold">{item.name}</h3>
+                                        <p className="text-sm text-gray-600 mb-2">${item.price.toFixed(2)}</p>
+                                        <div className="flex items-center space-x-2">
+                                            <Button variant="outline" size="icon">
+                                                <Minus className="h-4 w-4" />
+                                            </Button>
+                                            <span>{item.quantity}</span>
+                                            <Button variant="outline" size="icon">
+                                                <Plus className="h-4 w-4" />
+                                            </Button>
+                                        </div>
+                                    </div>
+                                    <div className="text-right">
+                                        <p className="font-semibold">${(item.price * item.quantity).toFixed(2)}</p>
+                                        <Button variant="ghost" size="icon" className="text-red-500">
+                                            <Trash2 className="h-4 w-4" />
                                         </Button>
                                     </div>
-                                </div>
-                                <div className="text-right">
-                                    <p className="font-semibold">${(item.price * item.quantity).toFixed(2)}</p>
-                                    <Button variant="ghost" size="icon" className="text-red-500">
-                                        <Trash2 className="h-4 w-4" />
-                                    </Button>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    ))}
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </div>
+                </div>
+                <div>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Order Summary</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="flex justify-between">
+                                <span>Subtotal</span>
+                                <span>${subtotal.toFixed(2)}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span>Shipping</span>
+                                <span>${shipping.toFixed(2)}</span>
+                            </div>
+                            <Separator />
+                            <div className="flex justify-between font-semibold">
+                                <span>Total</span>
+                                <span>${total.toFixed(2)}</span>
+                            </div>
+                            <Button className="w-full">Proceed to Checkout</Button>
+                        </CardContent>
+                    </Card>
                 </div>
             </div>
-            <div>
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Order Summary</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                        <div className="flex justify-between">
-                            <span>Subtotal</span>
-                            <span>${subtotal.toFixed(2)}</span>
-                        </div>
-                        <div className="flex justify-between">
-                            <span>Shipping</span>
-                            <span>${shipping.toFixed(2)}</span>
-                        </div>
-                        <Separator />
-                        <div className="flex justify-between font-semibold">
-                            <span>Total</span>
-                            <span>${total.toFixed(2)}</span>
-                        </div>
-                        <Button className="w-full">Proceed to Checkout</Button>
-                    </CardContent>
-                </Card>
-            </div>
-        </div>
+        </>
     )
 }
 
@@ -462,8 +464,8 @@ const OrderConfirmationPage = () => {
                     </div>
                 </CardContent>
             </Card>
-            <div className="mt-8 space-y-4">
-                <Button>Track Order</Button>
+            <div className="mt-8 space-x-4 ">
+                <Button variant="default">Track Order</Button>
                 <Button variant="outline">Continue Shopping</Button>
             </div>
         </div>
@@ -491,7 +493,7 @@ const OrderHistoryPage = () => {
                             <div className="flex justify-between items-center">
                                 <div>
                                     <p className="font-semibold">${order.total.toFixed(2)}</p>
-                                    <Badge variant={order.status === 'Delivered' ? 'default' : order.status === 'Shipped' ? 'secondary' : 'outline'}>
+                                    <Badge variant={order.status === 'Delivered' ? 'default' : order.status === 'Shipped' ? 'outline' : 'destructive'}>
                                         {order.status}
                                     </Badge>
                                 </div>

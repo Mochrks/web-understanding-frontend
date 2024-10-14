@@ -79,7 +79,7 @@ const NotificationAndMessaging = () => {
                                 <p className="text-xs text-gray-500">{notification.time}</p>
                             </div>
                             {!notification.read && (
-                                <Badge variant="secondary">New</Badge>
+                                <Badge variant="secondary" className='bg-green-500 text-white'>New</Badge>
                             )}
                         </div>
                     ))}

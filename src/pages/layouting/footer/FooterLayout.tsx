@@ -95,7 +95,7 @@ function MinimalistFooter() {
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row justify-between items-center">
                     <div className="mb-4 md:mb-0">
-                        <img src="/logo.svg" alt="Company Logo" className="h-8 w-auto" />
+                        <img src="https://mochrks.github.io/assets/img-photo/favicon1.png" alt="Company Logo" className="h-8 w-auto" />
                     </div>
                     <nav className="flex space-x-4">
                         <a href="#" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
@@ -311,7 +311,7 @@ function DarkModeFooter() {
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row justify-between items-center mb-8">
                     <div className="mb-4 md:mb-0">
-                        <img src="/logo.svg" alt="Company Logo" className="h-8 w-auto" />
+                        <img src="https://mochrks.github.io/assets/img-photo/favicon1.png" alt="Company Logo" className="h-8 w-auto" />
                     </div>
                     <nav className="flex space-x-4">
                         <a
@@ -451,7 +451,7 @@ function SocialMediaFooter() {
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row justify-between items-center mb-8">
                     <div className="mb-4 md:mb-0">
-                        <img src="/logo-white.svg" alt="Company Logo" className="h-8 w-auto" />
+                        <img src="https://mochrks.github.io/assets/img-photo/favicon1.png" alt="Company Logo" className="h-8 w-auto" />
                     </div>
                     <div className="flex space-x-6">
                         <a href="#" className="text-white hover:text-gray-200 transition-colors duration-200">
@@ -798,7 +798,7 @@ function FloatingActionFooter() {
                     <div className="relative">
                         <Button
                             variant="outline"
-                            className="text-white border-white hover:bg-white hover:text-gray-900"
+                            className="text-black border-white hover:bg-white hover:text-gray-900"
                             onClick={() => setIsOpen(!isOpen)}
                         >
                             Quick Actions

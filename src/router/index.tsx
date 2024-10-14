@@ -30,11 +30,10 @@ import EnhancedModalDialogLayout from '@/pages/layouting/dialog-popup/EnhancedMo
 import FooterLayout from '@/pages/layouting/footer/FooterLayout';
 import NavbarLayout from '@/pages/layouting/navbar/NavbarLayout';
 
-
-
 const AppRoutes: React.FC = () => {
     return (
         <Routes>
+            {/* dev understanding fe */}
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
@@ -46,6 +45,9 @@ const AppRoutes: React.FC = () => {
             <Route path="/animation-gsap" element={<GsapAnimation />} />
             <Route path="/conditional-rendering" element={<ConditionalRendering />} />
             <Route path="/file-upload-download" element={<UploadDownload />} />
+            <Route path="*" element={<NotFound />} />
+
+            {/* layouting FE */}
             <Route path="/dashboard-layout" element={<Dashboard />} />
             <Route path="/authentification-layout" element={<AuthentificationPages />} />
             <Route path="/authentification-layout-modern" element={<AuthPagesLoginRegister />} />
@@ -62,7 +64,6 @@ const AppRoutes: React.FC = () => {
             <Route path="/modal-dialog-layout" element={<EnhancedModalDialogLayout />} />
             <Route path="/footer-layout" element={<FooterLayout />} />
             <Route path="/navbar-layout" element={<NavbarLayout />} />
-            <Route path="*" element={<NotFound />} />
         </Routes>
     );
 };

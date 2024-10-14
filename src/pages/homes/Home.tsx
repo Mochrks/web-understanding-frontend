@@ -5,8 +5,9 @@ import { Button } from '@/components/ui/button';
 import { useTheme } from '@/hooks/useTheme';
 import { MoonStar, SunMoon } from 'lucide-react';
 
-// Define your own data in a separate array
-const homeData = [
+
+const devData = [
+    // dev understanding fe
     {
         name: 'Form Validation Login',
         description: 'Learn how to implement form validation in a login page.',
@@ -152,6 +153,11 @@ const homeData = [
         description: 'Understand how to write unit and integration tests for React applications.',
         route: '/testing-app'
     },
+
+];
+
+const layoutData = [
+    // layouting FE
     {
         name: 'Dashboards Pages layout',
         description: 'Dashboard Layout  for React applications.',
@@ -163,52 +169,52 @@ const homeData = [
         route: '/authentification-layout'
     },
     {
-        name: 'User Profile pages layout',
+        name: 'User Profile Pages layout',
         description: 'User Profile pages  for React applications.',
         route: '/user-profiles-layout'
     },
     {
-        name: 'E-Commerce pages layout',
+        name: 'E-Commerce Pages layout',
         description: 'E-Commerce pages  for React applications.',
         route: '/e-commerce-layout'
     },
     {
-        name: 'Multi Step form pages layout',
+        name: 'Multi Step form Pages layout',
         description: 'Multi Step form pages  for React applications.',
         route: '/multi-step-layout'
     },
     {
-        name: 'Notification And Message pages layout',
+        name: 'Notification And Message Pages layout',
         description: 'Notification And Message pages  for React applications.',
         route: '/notif-message-layout'
     },
     {
-        name: 'User Feedback and Rating pages layout',
+        name: 'User Feedback & Rating Pages layout',
         description: 'User Feedback and Rating pages  for React applications.',
         route: '/feedback-rating-layout'
     },
     {
-        name: 'Coding practice pages layout',
+        name: 'Coding Practice Pages layout',
         description: 'Coding practice pages  for React applications.',
         route: '/coding-practice-layout'
     },
     {
-        name: 'Carousel images pages layout',
+        name: 'Carousel images Pages layout',
         description: 'Carousel images page  for React applications.',
         route: '/carousel-layout'
     },
     {
-        name: 'Hero bg animation pages layout',
+        name: 'Hero bg animation Pages layout',
         description: 'Hero Bg animation pages  for React applications.',
         route: '/hero-bg-layout'
     },
     {
-        name: 'Loading Animations layout',
+        name: 'Loading Animations Pages layout',
         description: 'Loading Animations  for React applications.',
         route: '/loading-animation-layout'
     },
     {
-        name: 'Alert Animations layout',
+        name: 'Alert Animations  Pages layout',
         description: 'Alert Animations  for React applications.',
         route: '/alert-layout'
     },
@@ -218,43 +224,55 @@ const homeData = [
         route: '/modal-dialog-layout'
     },
     {
-        name: 'Footer  Layout',
+        name: 'Footer  Pages Layout',
         description: 'Footer layout for React applications.',
         route: '/footer-layout'
     },
     {
-        name: 'Navbar  Layout',
+        name: 'Navbar  Pages Layout',
         description: 'Navbar layout for React applications.',
         route: '/navbar-layout'
     }
 ];
 
+
+
 export const Home = () => {
     const { theme, toggleTheme } = useTheme();
+
+    const renderCards = (data) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mx-auto">
+            {data.map((item) => (
+                <div key={item.route} className="bg-card p-5 border rounded-lg shadow-md w-full">
+                    <h3 className="text-lg font-bold text-card-foreground">{item.name}</h3>
+                    <p className="text-muted-foreground">{item.description}</p>
+                    <Link to={item.route} className="mt-2 inline-block">
+                        <Button>View Details</Button>
+                    </Link>
+                </div>
+            ))}
+        </div>
+    );
+
     return (
-        <div className='container h-full  py-10'>
-            <div className='flex py-5 mb-10 justify-between items-center '>
-                < Title name="Front-End Dev Understanding" />
-                {/* toogle dark mode */}
-                <Button variant="outline" onClick={toggleTheme} className='h-10'>
+        <div className="container h-full py-10">
+            <div className="flex py-5 mb-10 justify-between items-center">
+                <Title name="Front-End Developers" />
+                <Button variant="outline" onClick={toggleTheme} className="h-10">
                     {theme === 'dark' ? <MoonStar /> : <SunMoon />}
                 </Button>
-            </div >
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mx-auto ">
-                {homeData.map((item) => (
-                    <div key={item.route} className='bg-white p-5 border rounded-lg shadow-md w-4/4'>
-                        <h3 className='text-lg font-bold'>{item.name}</h3>
-                        <p className='text-gray-600'>{item.description}</p>
-
-                        {/* Link to the route defined in the data */}
-                        <Link to={item.route} className='text-blue-500 underline mt-2 inline-block py-2'>
-                            <Button>View Details</Button>
-                        </Link>
-                    </div>
-                ))}
             </div>
-        </div >
+
+            <section className="mb-10">
+                <h2 className="text-2xl font-bold py-10">Development Topics </h2>
+                {renderCards(devData)}
+            </section>
+
+            <section>
+                <h2 className="text-2xl font-bold py-10">Front-end Layout</h2>
+                {renderCards(layoutData)}
+            </section>
+        </div>
     );
 };
 

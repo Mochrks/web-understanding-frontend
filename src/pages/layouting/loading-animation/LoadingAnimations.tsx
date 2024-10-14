@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Title } from '@/components/demo/Title'
 
-// Helper function to create an array of n elements
+
 const range = (n: number) => Array.from(Array(n).keys())
 
 export const LoadingAnimations: React.FC = () => {
@@ -11,7 +11,7 @@ export const LoadingAnimations: React.FC = () => {
             <div className="py-5">
                 <Title name="Screen Loading Animations " />
             </div>
-            <div className="grid grid-cols-5 gap-4 p-4">
+            <div className="grid grid-cols-3 md:grid-cols-9 gap-5 p-5 mx-auto text-center ">
 
                 {range(50).map((i) => (
                     <div key={i} className="flex items-center justify-center h-24 w-24 bg-gray-100 rounded-lg">

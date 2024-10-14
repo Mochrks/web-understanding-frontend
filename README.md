@@ -1,50 +1,68 @@
-# React + TypeScript + Vite
+<h1 align="center">Project Understanding Frontend</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  <img src="https://img.shields.io/badge/React-18.0.0-blue" alt="React Version" />
+  <img src="https://img.shields.io/badge/Vite-4.0.0-orange" alt="Vite Version" />
+  <img src="https://img.shields.io/badge/TypeScript-4.0.0-blue" alt="TypeScript Version" />
+  <img src="https://img.shields.io/badge/TailwindCSS-Integrated-06B6D4" alt="TailwindCSS Integration" />
+  <img src="https://img.shields.io/badge/ShadCN-UI-ff69b4" alt="ShadCN UI Integration" />
+</p>
 
-Currently, two official plugins are available:
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=react,vite,typescript,tailwind" alt="Tech Stack Icons" />
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
 
-## Expanding the ESLint configuration
+This project is designed to help understand **frontend fundamentals** as a whole. It utilizes **React** and **Vite** as core technologies, along with **TypeScript**, **Tailwind CSS**, and **ShadCN UI** for building a modern, responsive interface. The project aims to provide a solid foundation in frontend development principles and practices.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+- Comprehensive understanding of frontend development principles
+- Responsive design using **Tailwind CSS**
+- Component-based architecture with **React**
+- Type safety and enhanced tooling with **TypeScript**
+- Stylish UI components with **ShadCN UI**
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Tech Stack
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **React 18.0.0**
+- **Vite 4.0.0** for fast development and build optimization
+- **TypeScript 4.0.0** for type safety
+- **Tailwind CSS** for utility-first styling
+- **ShadCN UI** for modern UI components
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Setup & Installation
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+---
+
+- **Clone the repository**
+
+    ```bash
+    git clone https://github.com/mochrks/project-understanding-frontend.git
+    cd project-understanding-frontend
+    ```
+
+- **Install dependencies**
+
+    ```bash
+    npm install
+    ```
+
+- **Run the development server**
+
+    ```bash
+    npm run dev
+    ```
+
+- The application will be running on [http://localhost:port](http://localhost:port).
+
+
+
+    ## Connect with me:
+[![GitHub](https://img.shields.io/badge/GitHub-333?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mochrks)
+[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/@Gdvisuel)
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/mochrks)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/mochrks)
+[![Behance](https://img.shields.io/badge/Behance-1769FF?style=for-the-badge&logo=behance&logoColor=white)](https://behance.net/mochrks)
+[![Dribbble](https://img.shields.io/badge/Dribbble-EA4C89?style=for-the-badge&logo=dribbble&logoColor=white)](https://dribbble.com/mochrks)

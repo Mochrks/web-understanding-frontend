@@ -36,7 +36,7 @@ const LoginPage = () => (
                 <div className="grid w-full items-center gap-4">
                     <div className="flex flex-col space-y-1.5">
                         <Label htmlFor="email">Email</Label>
-                        <Input id="email" placeholder="Enter your email" type="email" />
+                        <Input id="email" placeholder="youremail@example.com" type="email" />
                     </div>
                     <div className="flex flex-col space-y-1.5">
                         <Label htmlFor="password">Password</Label>
@@ -66,7 +66,7 @@ const RegisterPage = () => (
                     </div>
                     <div className="flex flex-col space-y-1.5">
                         <Label htmlFor="email">Email</Label>
-                        <Input id="email" placeholder="Enter your email" type="email" />
+                        <Input id="email" placeholder="youremail@example.com" type="email" />
                     </div>
                     <div className="flex flex-col space-y-1.5">
                         <Label htmlFor="password">Password</Label>
@@ -116,6 +116,10 @@ const ResetPasswordPage = () => (
         <CardContent>
             <form>
                 <div className="grid w-full items-center gap-4">
+                    <div className="flex flex-col space-y-1.5">
+                        <Label htmlFor="old-password">Old Password</Label>
+                        <Input id="old-password" placeholder="Enter old password" type="password" />
+                    </div>
                     <div className="flex flex-col space-y-1.5">
                         <Label htmlFor="new-password">New Password</Label>
                         <Input id="new-password" placeholder="Enter new password" type="password" />
@@ -194,9 +198,6 @@ export default function AuthentificationPages() {
         <>
             <div className='flex flex-col mt-20 w-full text-center gap-5'>
                 <Title name="Screen Authentification Pages" />
-                <Link to="/authentification-layout-modern" className="ml-1 font-medium text-primary hover:underline">
-                    <Button>Layout modern for login, register</Button>
-                </Link>
             </div>
             <AuthLayout>
                 <Tabs value={currentPage} onValueChange={setCurrentPage} className="w-full">
@@ -223,12 +224,12 @@ export default function AuthentificationPages() {
                         Verify Email
                     </Button>
                 </div>
-                <Alert className="mt-4">
-                    {/* <Icons.info className="h-4 w-4" /> */}
-                    <AlertTitle>Heads up!</AlertTitle>
-                    <AlertDescription>
-                        This is a demo authentication page. In a real application, you would implement proper authentication logic and security measures.
-                    </AlertDescription>
+                <Alert className="mt-4 mx-auto ">
+                    <div className='flex justify-center'>
+                        <Link to="/authentification-layout-modern">
+                            <Button className='p-10'>Layout Modern For Login & Register</Button>
+                        </Link>
+                    </div>
                 </Alert>
             </AuthLayout>
         </>

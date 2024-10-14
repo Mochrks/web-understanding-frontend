@@ -7,9 +7,11 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Checkbox } from "@/components/ui/checkbox"
-// import { Icons } from "@/components/icons"
-import { cn } from "@/lib/utils"
+import { FcGoogle } from "react-icons/fc";
+import { RiMicrosoftFill } from "react-icons/ri";
+import { IoLogoGithub } from "react-icons/io";
 import { Eye, EyeOff, ArrowRight } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const AuthPagesLoginRegister = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -41,14 +43,15 @@ const AuthPagesLoginRegister = () => {
                     >
                         <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
                     </svg>
-                    Acme Inc
+                    Mochrks Apps
                 </div>
                 <div className="relative z-20 mt-auto">
                     <blockquote className="space-y-2">
-                        <p className="text-lg">
+                        {/* other teks */}
+                        {/* <p className="text-lg">
                             &ldquo;This platform has revolutionized how we handle our daily operations. It's intuitive, powerful, and a joy to use.&rdquo;
-                        </p>
-                        <footer className="text-sm">Sofia Davis</footer>
+                        </p> */}
+                        <footer className="text-sm">Development</footer>
                     </blockquote>
                 </div>
             </div>
@@ -56,7 +59,7 @@ const AuthPagesLoginRegister = () => {
                 <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
                     <div className="flex flex-col space-y-2 text-center">
                         <h1 className="text-2xl font-semibold tracking-tight">
-                            Welcome to Acme Inc
+                            Welcome to Mochrks Apps
                         </h1>
                         <p className="text-sm text-muted-foreground">
                             Sign in to your account or create a new one
@@ -78,7 +81,7 @@ const AuthPagesLoginRegister = () => {
                                 <CardContent className="space-y-4">
                                     <div className="space-y-2">
                                         <Label htmlFor="email">Email</Label>
-                                        <Input id="email" type="email" placeholder="m@example.com" required />
+                                        <Input id="email" type="email" placeholder="youremail@example.com" required />
                                     </div>
                                     <div className="space-y-2">
                                         <Label htmlFor="password">Password</Label>
@@ -86,6 +89,7 @@ const AuthPagesLoginRegister = () => {
                                             <Input
                                                 id="password"
                                                 type={showPassword ? "text" : "password"}
+                                                placeholder="*********"
                                                 required
                                             />
                                             <button
@@ -110,10 +114,16 @@ const AuthPagesLoginRegister = () => {
                                 <CardFooter className="flex flex-col">
                                     <Button className="w-full" onClick={onSubmit} disabled={isLoading}>
                                         {isLoading && (
-                                            // <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-                                            <></>
+                                            <>
+                                                <motion.div
+                                                    className="w-3 h-3 border-2 mr-3 border-white rounded-full border-t-transparent"
+                                                    animate={{ rotate: 360 }}
+                                                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                                                />
+                                            </>
                                         )}
                                         Sign In
+                                        <ArrowRight className='ml-1 w-4 h-4' />
                                     </Button>
                                     <div className="relative my-4">
                                         <div className="absolute inset-0 flex items-center">
@@ -127,15 +137,15 @@ const AuthPagesLoginRegister = () => {
                                     </div>
                                     <div className="grid grid-cols-3 gap-2">
                                         <Button variant="outline" className="w-full">
-                                            {/* <Icons.google className="mr-2 h-4 w-4" /> */}
+                                            <FcGoogle className='w-4 h-4 mr-2' />
                                             Google
                                         </Button>
                                         <Button variant="outline" className="w-full">
-                                            {/* <Icons.gitHub className="mr-2 h-4 w-4" /> */}
+                                            <IoLogoGithub className='w-4 h-4 mr-2' />
                                             GitHub
                                         </Button>
                                         <Button variant="outline" className="w-full">
-                                            {/* <Icons.microsoft className="mr-2 h-4 w-4" /> */}
+                                            <RiMicrosoftFill className='w-4 h-4 mr-2' />
                                             Microsoft
                                         </Button>
                                     </div>
@@ -154,16 +164,16 @@ const AuthPagesLoginRegister = () => {
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className="space-y-2">
                                             <Label htmlFor="first-name">First name</Label>
-                                            <Input id="first-name" required />
+                                            <Input id="first-name" placeholder='your first name' required />
                                         </div>
                                         <div className="space-y-2">
                                             <Label htmlFor="last-name">Last name</Label>
-                                            <Input id="last-name" required />
+                                            <Input id="last-name" placeholder='your last name ' required />
                                         </div>
                                     </div>
                                     <div className="space-y-2">
                                         <Label htmlFor="email">Email</Label>
-                                        <Input id="email" type="email" placeholder="m@example.com" required />
+                                        <Input id="email" type="email" placeholder="youremail@example.com" required />
                                     </div>
                                     <div className="space-y-2">
                                         <Label htmlFor="password">Password</Label>
@@ -171,6 +181,7 @@ const AuthPagesLoginRegister = () => {
                                             <Input
                                                 id="password"
                                                 type={showPassword ? "text" : "password"}
+                                                placeholder='********'
                                                 required
                                             />
                                             <button
@@ -182,10 +193,7 @@ const AuthPagesLoginRegister = () => {
                                             </button>
                                         </div>
                                     </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="confirm-password">Confirm Password</Label>
-                                        <Input id="confirm-password" type="password" required />
-                                    </div>
+
                                     <div className="flex items-center space-x-2">
                                         <Checkbox id="terms" required />
                                         <label
@@ -202,8 +210,13 @@ const AuthPagesLoginRegister = () => {
                                 <CardFooter>
                                     <Button className="w-full" onClick={onSubmit} disabled={isLoading}>
                                         {isLoading && (
-                                            // <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-                                            <></>
+                                            <>
+                                                <motion.div
+                                                    className="w-3 h-3 border-2 mr-3 border-white rounded-full border-t-transparent"
+                                                    animate={{ rotate: 360 }}
+                                                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                                                />
+                                            </>
                                         )}
                                         Create Account
                                     </Button>

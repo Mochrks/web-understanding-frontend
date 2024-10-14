@@ -11,7 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Bell, CreditCard, LogOut, Settings, User } from 'lucide-react'
+import { CreditCard, LogOut, Settings, User } from 'lucide-react'
 import { Title } from '@/components/demo/Title'
 
 const UserProfileLayout = ({ children }: { children: React.ReactNode }) => (
@@ -22,21 +22,21 @@ const UserProfileLayout = ({ children }: { children: React.ReactNode }) => (
 )
 
 const UserProfilePage = () => (
-    <Card>
+    <Card className='mt-10'>
         <CardHeader>
             <CardTitle>Profile Information</CardTitle>
             <CardDescription>Update your personal information</CardDescription>
         </CardHeader>
         <CardContent>
             <form className="space-y-4">
-                <div className="flex items-center space-x-4">
+                <div className="flex flex-col items-center justify-center space-y-4">
                     <Avatar className="h-20 w-20">
-                        <AvatarImage src="/placeholder-avatar.jpg" alt="User" />
+                        <AvatarImage src="https://static.vecteezy.com/system/resources/thumbnails/019/900/306/small_2x/happy-young-cute-illustration-face-profile-png.png" alt="User" />
                         <AvatarFallback>UN</AvatarFallback>
                     </Avatar>
-                    <Button>Change Avatar</Button>
+                    <Button>Edit Profile</Button>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 py-10">
                     <div className="space-y-2">
                         <Label htmlFor="firstName">First Name</Label>
                         <Input id="firstName" placeholder="John" />
@@ -49,6 +49,26 @@ const UserProfilePage = () => (
                 <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
                     <Input id="email" type="email" placeholder="john.doe@example.com" />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="phone">Phone</Label>
+                    <Input id="phone" type="tel" placeholder="+628912381231231" />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="birthdate">Birthdate</Label>
+                    <Input id="birthdate" type="date" />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="gender">Gender</Label>
+                    <Select>
+                        <SelectTrigger id="gender">
+                            <SelectValue placeholder="Select gender" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="male">Male</SelectItem>
+                            <SelectItem value="female">Female</SelectItem>
+                        </SelectContent>
+                    </Select>
                 </div>
                 <div className="space-y-2">
                     <Label htmlFor="bio">Bio</Label>

@@ -25,7 +25,7 @@ const CustomAlert: React.FC<CustomAlertProps> = ({ type, title, description, ico
     const [isVisible, setIsVisible] = useState(true)
 
     useEffect(() => {
-        const timer = setTimeout(() => setIsVisible(false), 5000)
+        const timer = setTimeout(() => setIsVisible(false), 15000)
         return () => clearTimeout(timer)
     }, [])
 
@@ -284,7 +284,7 @@ const SlidingAlert: React.FC = () => {
     const [isVisible, setIsVisible] = useState(true)
 
     useEffect(() => {
-        const timer = setTimeout(() => setIsVisible(false), 5000)
+        const timer = setTimeout(() => setIsVisible(false), 15000)
         return () => clearTimeout(timer)
     }, [])
 
