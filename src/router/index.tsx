@@ -29,6 +29,11 @@ import AlertLayout from '@/pages/layouting/alert/AlertLayout';
 import EnhancedModalDialogLayout from '@/pages/layouting/dialog-popup/EnhancedModalDialogLayout';
 import FooterLayout from '@/pages/layouting/footer/FooterLayout';
 import NavbarLayout from '@/pages/layouting/navbar/NavbarLayout';
+import ModernFAQComponents from '@/pages/layouting/FAQ/ModernFAQLayout';
+import ModernPricingComponents from '@/pages/layouting/pricing/ModernPricingComponents';
+import ModernErrorComponents from '@/pages/layouting/404error/ModernErrorComponents';
+import ModernTestimonialComponents from '@/pages/layouting/testimonial/ModernTestimonialComponents';
+import ModernBlogComponents from '@/pages/layouting/blog-layout/ModernBlogComponents';
 
 const AppRoutes: React.FC = () => {
     return (
@@ -64,6 +69,11 @@ const AppRoutes: React.FC = () => {
             <Route path="/modal-dialog-layout" element={<EnhancedModalDialogLayout />} />
             <Route path="/footer-layout" element={<FooterLayout />} />
             <Route path="/navbar-layout" element={<NavbarLayout />} />
+            <Route path="/faq-pages-layout" element={<ModernFAQComponents />} />
+            <Route path="/pricing-pages-layout" element={<ModernPricingComponents />} />
+            <Route path="/404-error-layout" element={<ModernErrorComponents />} />
+            <Route path="/testimonial-pages-layout" element={<ModernTestimonialComponents />} />
+            <Route path="/blog-pages-layout" element={<ModernBlogComponents />} />
         </Routes>
     );
 };

@@ -232,7 +232,32 @@ const layoutData = [
         name: 'Navbar  Pages Layout',
         description: 'Navbar layout for React applications.',
         route: '/navbar-layout'
-    }
+    },
+    {
+        "name": "FAQ Pages Layout",
+        "description": "Frequently Asked Questions (FAQ) pages with collapsible sections.",
+        "route": "/faq-pages-layout"
+    },
+    {
+        "name": "Pricing Pages Layout",
+        "description": "Pricing pages for product or service offerings.",
+        "route": "/pricing-pages-layout"
+    },
+    {
+        "name": "404 Error Pages Layout",
+        "description": "Custom 404 error page with navigation options.",
+        "route": "/404-error-layout"
+    },
+    {
+        "name": "Testimonial Pages Layout",
+        "description": "Testimonial pages to showcase user or client feedback.",
+        "route": "/testimonial-pages-layout"
+    },
+    {
+        "name": "Blog Pages Layout",
+        "description": "Blog layout for displaying articles, posts, and comments.",
+        "route": "/blog-pages-layout"
+    },
 ];
 
 
