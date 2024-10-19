@@ -258,6 +258,36 @@ const layoutData = [
         "description": "Blog layout for displaying articles, posts, and comments.",
         "route": "/blog-pages-layout"
     },
+    {
+        "name": "Team Pages Layout",
+        "description": "Layout to showcase team members with photos, descriptions, and their roles in the company.",
+        "route": "/team-pages-layout"
+    },
+    {
+        "name": "Roadmap Pages Layout",
+        "description": "Layout to display a product or feature roadmap in an interactive timeline format.",
+        "route": "/roadmap-pages-layout"
+    },
+    {
+        "name": "Gallery Pages Layout",
+        "description": "Layout to display photo or video galleries, commonly used for photography or art exhibit websites.",
+        "route": "/gallery-pages-layout"
+    },
+    {
+        "name": "Event Pages Layout",
+        "description": "Layout for event pages, featuring event descriptions, schedules, and registration options.",
+        "route": "/event-pages-layout"
+    },
+    {
+        "name": "Help Center Pages Layout",
+        "description": "Layout for a help center, typically including help articles, FAQs, and contact forms.",
+        "route": "/help-center-layout"
+    },
+    {
+        "name": "Learning Management System (LMS) Pages Layout",
+        "description": " Layout for managing courses, lessons, quizzes, and student progress, used in e-learning platforms.",
+        "route": "/lms-layout"
+    },
 ];
 
 
