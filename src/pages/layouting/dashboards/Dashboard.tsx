@@ -192,7 +192,7 @@ export default function Dashboard() {
 
             <div className={`flex h-screen ${darkMode ? 'dark' : ''}`}>
                 {/* Sidebar */}
-                <div className={`bg-white dark:bg-gray-800 w-64 h-full flex-shrink-0 ${sidebarOpen ? '' : 'hidden'}`}>
+                <div className={`bg-white dark:bg-gray-800 dark:text-white w-64 h-full flex-shrink-0 ${sidebarOpen ? '' : 'hidden'}`}>
                     <div className="p-4">
                         <div className='flex justify-between text-center items-center  mb-10'>
                             <h2 className=" text-2xl font-semibold dark:text-white ">Dashboard</h2>
@@ -218,7 +218,7 @@ export default function Dashboard() {
                 <div className="flex-1 overflow-auto bg-gray-100 dark:bg-gray-900">
                     <header className="bg-white dark:bg-gray-800 shadow-sm">
                         <div className='flex flex-row '>
-                            <div className='flex  text-center items-center'>
+                            <div className='flex  text-center items-center dark:text-white'>
                                 <Button variant="ghost" onClick={() => setSidebarOpen(!sidebarOpen)} className="">
                                     <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />

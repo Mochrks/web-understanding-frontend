@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
-import { ChevronDown, ChevronUp, X } from 'lucide-react'
+import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Minus, Plus, Search, X } from 'lucide-react'
 import { Title } from '@/components/demo/Title'
 
 // FAQ data
@@ -165,6 +165,271 @@ const ModalFAQ = () => {
     )
 }
 
+
+
+// 1. Animated Sidebar FAQ
+const AnimatedSidebarFAQ = () => {
+    const [activeIndex, setActiveIndex] = useState<number | null>(null)
+
+    return (
+        <div className="flex bg-gray-100 rounded-lg overflow-hidden">
+            <div className="w-1/3 bg-primary p-6">
+                <h2 className="text-2xl font-bold text-primary-foreground mb-4">FAQ</h2>
+                <nav>
+                    {faqData.map((item, index) => (
+                        <button
+                            key={index}
+                            className={`w-full text-left py-2 px-4 rounded-lg mb-2 transition-colors ${activeIndex === index ? 'bg-primary-foreground text-primary' : 'text-primary-foreground hover:bg-primary-foreground/10'
+                                }`}
+                            onClick={() => setActiveIndex(index)}
+                        >
+                            {item.question}
+                        </button>
+                    ))}
+                </nav>
+            </div>
+            <div className="w-2/3 p-6">
+                <AnimatePresence mode="wait">
+                    {activeIndex !== null && (
+                        <motion.div
+                            key={activeIndex}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <h3 className="text-xl font-semibold mb-2">{faqData[activeIndex].question}</h3>
+                            <p>{faqData[activeIndex].answer}</p>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
+        </div>
+    )
+}
+
+// 2. Expandable Card FAQ
+const ExpandableCardFAQ = () => {
+    const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
+
+    return (
+        <div className="space-y-4">
+            {faqData.map((item, index) => (
+                <motion.div
+                    key={index}
+                    className="bg-white rounded-lg shadow-md overflow-hidden"
+                    initial={false}
+                    animate={{ height: expandedIndex === index ? 'auto' : '60px' }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                >
+                    <button
+                        className="w-full p-4 text-left flex justify-between items-center"
+                        onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                    >
+                        <span className="font-semibold">{item.question}</span>
+                        {expandedIndex === index ? <Minus size={20} /> : <Plus size={20} />}
+                    </button>
+                    <div className="px-4 pb-4">
+                        <AnimatePresence>
+                            {expandedIndex === index && (
+                                <motion.p
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    {item.answer}
+                                </motion.p>
+                            )}
+                        </AnimatePresence>
+                    </div>
+                </motion.div>
+            ))}
+        </div>
+    )
+}
+
+// 3. Searchable Grid FAQ
+const SearchableGridFAQ = () => {
+    const [searchTerm, setSearchTerm] = useState('')
+    const [selectedQuestion, setSelectedQuestion] = useState<number | null>(null)
+
+    const filteredFAQ = faqData.filter(item =>
+        item.question.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+
+    return (
+        <div>
+            <div className="mb-4 relative">
+                <input
+                    type="text"
+                    placeholder="Search FAQ..."
+                    className="w-full p-2 pl-10 border rounded-lg"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filteredFAQ.map((item, index) => (
+                    <motion.div
+                        key={index}
+                        className="bg-white p-4 rounded-lg shadow-md cursor-pointer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => setSelectedQuestion(index)}
+                    >
+                        <h3 className="font-semibold mb-2">{item.question}</h3>
+                        {selectedQuestion === index && (
+                            <motion.p
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                {item.answer}
+                            </motion.p>
+                        )}
+                    </motion.div>
+                ))}
+            </div>
+        </div>
+    )
+}
+
+// 4. Carousel FAQ
+const CarouselFAQ = () => {
+    const [[page, direction], setPage] = useState([0, 0])
+
+    const paginate = (newDirection: number) => {
+        setPage([page + newDirection, newDirection])
+    }
+
+    const variants = {
+        enter: (direction: number) => ({
+            x: direction > 0 ? 1000 : -1000,
+            opacity: 0,
+        }),
+        center: {
+            zIndex: 1,
+            x: 0,
+            opacity: 1,
+        },
+        exit: (direction: number) => ({
+            zIndex: 0,
+            x: direction < 0 ? 1000 : -1000,
+            opacity: 0,
+        }),
+    }
+
+    const swipeConfidenceThreshold = 10000
+    const swipePower = (offset: number, velocity: number) => {
+        return Math.abs(offset) * velocity
+    }
+
+    return (
+        <div className="relative h-64 w-full overflow-hidden bg-gray-100 rounded-lg">
+            <AnimatePresence initial={false} custom={direction}>
+                <motion.div
+                    key={page}
+                    custom={direction}
+                    variants={variants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{
+                        x: { type: 'spring', stiffness: 300, damping: 30 },
+                        opacity: { duration: 0.2 },
+                    }}
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={1}
+                    onDragEnd={(e, { offset, velocity }) => {
+                        const swipe = swipePower(offset.x, velocity.x)
+
+                        if (swipe < -swipeConfidenceThreshold) {
+                            paginate(1)
+                        } else if (swipe > swipeConfidenceThreshold) {
+                            paginate(-1)
+                        }
+                    }}
+                    className="absolute w-full h-full flex items-center justify-center p-8"
+                >
+                    <div className="text-center">
+                        <h3 className="text-xl font-semibold mb-4">{faqData[Math.abs(page) % faqData.length].question}</h3>
+                        <p>{faqData[Math.abs(page) % faqData.length].answer}</p>
+                    </div>
+                </motion.div>
+            </AnimatePresence>
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+                {faqData.map((_, index) => (
+                    <motion.div
+                        key={index}
+                        className={`w-2 h-2 rounded-full ${index === Math.abs(page) % faqData.length ? 'bg-primary' : 'bg-gray-300'}`}
+                        whileHover={{ scale: 1.2 }}
+                    />
+                ))}
+            </div>
+            <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
+                <button onClick={() => paginate(-1)} className="p-2 rounded-full bg-white shadow-md">
+                    <ChevronLeft size={24} />
+                </button>
+            </div>
+            <div className="absolute top-1/2 right-4 transform -translate-y-1/2">
+                <button onClick={() => paginate(1)} className="p-2 rounded-full bg-white shadow-md">
+                    <ChevronRight size={24} />
+                </button>
+            </div>
+        </div>
+    )
+}
+
+// 5. Interactive Timeline FAQ
+const InteractiveTimelineFAQ = () => {
+    const [activeIndex, setActiveIndex] = useState<number | null>(null)
+
+    return (
+        <div className="relative">
+            <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 transform -translate-x-1/2" />
+            {faqData.map((item, index) => (
+                <motion.div
+                    key={index}
+                    className="relative mb-8"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                >
+                    <div className="flex items-center mb-2">
+                        <div className="w-1/2 text-right pr-4">
+                            <button
+                                className="font-semibold text-primary hover:underline"
+                                onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+                            >
+                                {item.question}
+                            </button>
+                        </div>
+                        <div className="w-3 h-3 bg-primary rounded-full z-10" />
+                        <div className="w-1/2 pl-4">
+                            <AnimatePresence>
+                                {activeIndex === index && (
+                                    <motion.p
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: 'auto' }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        {item.answer}
+                                    </motion.p>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    </div>
+                </motion.div>
+            ))}
+        </div>
+    )
+}
+
+
 // Main component to showcase all FAQ components
 export default function ModernFAQComponents() {
     return (
@@ -196,6 +461,31 @@ export default function ModernFAQComponents() {
                 <section>
                     <h2 className="text-2xl font-bold mb-4">5. Modal Popup FAQ</h2>
                     <ModalFAQ />
+                </section>
+
+                <section>
+                    <h2 className="text-3xl font-bold mb-6">6. Animated Sidebar FAQ</h2>
+                    <AnimatedSidebarFAQ />
+                </section>
+
+                <section>
+                    <h2 className="text-3xl font-bold mb-6">7. Expandable Card FAQ</h2>
+                    <ExpandableCardFAQ />
+                </section>
+
+                <section>
+                    <h2 className="text-3xl font-bold mb-6">8. Searchable Grid FAQ</h2>
+                    <SearchableGridFAQ />
+                </section>
+
+                <section>
+                    <h2 className="text-3xl font-bold mb-6">9. Carousel FAQ</h2>
+                    <CarouselFAQ />
+                </section>
+
+                <section>
+                    <h2 className="text-3xl font-bold mb-6">10. Interactive Timeline FAQ</h2>
+                    <InteractiveTimelineFAQ />
                 </section>
             </div>
         </>

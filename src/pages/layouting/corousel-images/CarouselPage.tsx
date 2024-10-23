@@ -342,6 +342,188 @@ const ParallaxCarousel: React.FC = () => {
     )
 }
 
+
+
+const ElasticCarousel: React.FC = () => {
+    const [currentIndex, setCurrentIndex] = useState(0)
+
+    const nextSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }
+
+    const prevSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
+    }
+
+    return (
+        <div className="relative w-full h-64 md:h-96 overflow-hidden rounded-lg">
+            <AnimatePresence initial={false}>
+                <motion.img
+                    key={currentIndex}
+                    src={images[currentIndex]}
+                    alt={`Slide ${currentIndex + 1}`}
+                    className="absolute w-full h-full object-cover"
+                    initial={{ x: 300, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: -300, opacity: 0 }}
+                    transition={{
+                        x: { type: "spring", stiffness: 300, damping: 30 },
+                        opacity: { duration: 0.2 },
+                    }}
+                />
+            </AnimatePresence>
+            <button
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={prevSlide}
+            >
+                <ChevronLeft size={24} />
+            </button>
+            <button
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={nextSlide}
+            >
+                <ChevronRight size={24} />
+            </button>
+        </div>
+    )
+}
+
+// 2. Perspective Carousel
+const PerspectiveCarousel: React.FC = () => {
+    const [currentIndex, setCurrentIndex] = useState(0)
+
+    const nextSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }
+
+    const prevSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
+    }
+
+    return (
+        <div className="relative w-full h-64 md:h-96 overflow-hidden rounded-lg perspective-1000">
+            <AnimatePresence initial={false}>
+                <motion.img
+                    key={currentIndex}
+                    src={images[currentIndex]}
+                    alt={`Slide ${currentIndex + 1}`}
+                    className="absolute w-full h-full object-cover"
+                    initial={{ rotateY: 90, opacity: 0 }}
+                    animate={{ rotateY: 0, opacity: 1 }}
+                    exit={{ rotateY: -90, opacity: 0 }}
+                    transition={{ duration: 0.6 }}
+                />
+            </AnimatePresence>
+            <button
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={prevSlide}
+            >
+                <ChevronLeft size={24} />
+            </button>
+            <button
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={nextSlide}
+            >
+                <ChevronRight size={24} />
+            </button>
+        </div>
+    )
+}
+
+// 3. Circular Carousel
+const CircularCarousel: React.FC = () => {
+    const [currentIndex, setCurrentIndex] = useState(0)
+
+    const nextSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }
+
+    const prevSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
+    }
+
+    return (
+        <div className="relative w-full h-64 md:h-96 overflow-hidden rounded-lg">
+            <div className="absolute w-full h-full flex items-center justify-center">
+                {images.map((image, index) => (
+                    <motion.div
+                        key={index}
+                        className="absolute w-40 h-40 rounded-full overflow-hidden"
+                        animate={{
+                            x: Math.cos(((index - currentIndex) / images.length) * Math.PI * 2) * 120,
+                            y: Math.sin(((index - currentIndex) / images.length) * Math.PI * 2) * 120,
+                            scale: index === currentIndex ? 1.2 : 1,
+                            zIndex: index === currentIndex ? 1 : 0,
+                        }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <img src={image} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
+                    </motion.div>
+                ))}
+            </div>
+            <button
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={prevSlide}
+            >
+                <ChevronLeft size={24} />
+            </button>
+            <button
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={nextSlide}
+            >
+                <ChevronRight size={24} />
+            </button>
+        </div>
+    )
+}
+
+// 4. Stacked Carousel
+const StackedCarousel: React.FC = () => {
+    const [currentIndex, setCurrentIndex] = useState(0)
+
+    const nextSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }
+
+    const prevSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
+    }
+
+    return (
+        <div className="relative w-full h-64 md:h-96 overflow-hidden rounded-lg">
+            {images.map((image, index) => (
+                <motion.div
+                    key={index}
+                    className="absolute w-full h-full"
+                    initial={{ scale: 0.8, y: 100, opacity: 0 }}
+                    animate={{
+                        scale: index === currentIndex ? 1 : 0.8,
+                        y: (index - currentIndex) * 30,
+                        opacity: index === currentIndex ? 1 : 0.5,
+                        zIndex: images.length - Math.abs(index - currentIndex),
+                    }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <img src={image} alt={`Slide ${index + 1}`} className="w-full h-full object-cover rounded-lg shadow-lg" />
+                </motion.div>
+            ))}
+            <button
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={prevSlide}
+            >
+                <ChevronLeft size={24} />
+            </button>
+            <button
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                onClick={nextSlide}
+            >
+                <ChevronRight size={24} />
+            </button>
+        </div>
+    )
+}
+
+
 // Main App Component
 function CarouselPage() {
     return (
@@ -379,6 +561,26 @@ function CarouselPage() {
             <section className="mb-12">
                 <h2 className="text-2xl font-semibold mb-4 text-gray-700">Parallax Carousel</h2>
                 <ParallaxCarousel />
+            </section>
+
+            <section className="mb-12">
+                <h2 className="text-2xl font-semibold mb-4 text-gray-700">Elastic Carousel</h2>
+                <ElasticCarousel />
+            </section>
+
+            <section className="mb-12">
+                <h2 className="text-2xl font-semibold mb-4 text-gray-700">Perspective Carousel</h2>
+                <PerspectiveCarousel />
+            </section>
+
+            <section className="mb-12">
+                <h2 className="text-2xl font-semibold mb-4 text-gray-700">Circular Carousel</h2>
+                <CircularCarousel />
+            </section>
+
+            <section className="mb-12">
+                <h2 className="text-2xl font-semibold mb-4 text-gray-700">Stacked Carousel</h2>
+                <StackedCarousel />
             </section>
         </div>
     )

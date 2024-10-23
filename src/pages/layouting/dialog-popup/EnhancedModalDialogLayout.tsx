@@ -388,6 +388,279 @@ const MultiStepModal = ({ isOpen, onClose }) => {
     )
 }
 
+
+// 1. Neumorphic Modal
+const NeumorphicModal = ({ isOpen, onClose }) => (
+    <AnimatePresence>
+        {isOpen && (
+            <Backdrop onClick={onClose}>
+                <motion.div
+                    className="bg-gray-100 rounded-2xl p-8 w-full max-w-md shadow-[inset_-12px_-12px_20px_#ffffff,inset_12px_12px_20px_rgba(0,0,0,0.1)]"
+                    onClick={(e) => e.stopPropagation()}
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.9, opacity: 0 }}
+                >
+                    <h2 className="text-2xl font-bold mb-4 text-gray-800">Neumorphic Design</h2>
+                    <p className="mb-6 text-gray-600">This modal features a soft, embossed look typical of neumorphic design.</p>
+                    <button
+                        className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition-colors duration-300 shadow-lg"
+                        onClick={onClose}
+                    >
+                        Close
+                    </button>
+                </motion.div>
+            </Backdrop>
+        )}
+    </AnimatePresence>
+)
+
+// 2. Glassmorphism Modal
+const GlassmorphismModal = ({ isOpen, onClose }) => (
+    <AnimatePresence>
+        {isOpen && (
+            <Backdrop onClick={onClose}>
+                <motion.div
+                    className="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg rounded-3xl p-8 w-full max-w-md border border-white border-opacity-30 shadow-xl"
+                    onClick={(e) => e.stopPropagation()}
+                    initial={{ y: 50, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: 50, opacity: 0 }}
+                >
+                    <h2 className="text-2xl font-bold mb-4 text-white">Glassmorphism</h2>
+                    <p className="mb-6 text-white text-opacity-80">Experience the modern glassmorphism effect in this modal design.</p>
+                    <button
+                        className="bg-white bg-opacity-30 text-white px-6 py-2 rounded-full hover:bg-opacity-40 transition-colors duration-300"
+                        onClick={onClose}
+                    >
+                        Close
+                    </button>
+                </motion.div>
+            </Backdrop>
+        )}
+    </AnimatePresence>
+)
+
+// 3. Minimalist Card Modal
+const MinimalistCardModal = ({ isOpen, onClose }) => (
+    <AnimatePresence>
+        {isOpen && (
+            <Backdrop onClick={onClose}>
+                <motion.div
+                    className="bg-white rounded-lg p-8 w-full max-w-md shadow-2xl"
+                    onClick={(e) => e.stopPropagation()}
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.8, opacity: 0 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                >
+                    <h2 className="text-3xl font-light mb-4 text-gray-800">Minimalist Design</h2>
+                    <p className="mb-6 text-gray-600">Clean lines and simple aesthetics define this minimalist card modal.</p>
+                    <button
+                        className="bg-black text-white px-6 py-2 rounded-sm hover:bg-gray-800 transition-colors duration-300"
+                        onClick={onClose}
+                    >
+                        Close
+                    </button>
+                </motion.div>
+            </Backdrop>
+        )}
+    </AnimatePresence>
+)
+
+// 4. Gradient Border Modal
+const GradientBorderModal = ({ isOpen, onClose }) => (
+    <AnimatePresence>
+        {isOpen && (
+            <Backdrop onClick={onClose}>
+                <motion.div
+                    className="bg-white rounded-xl p-8 w-full max-w-md shadow-2xl"
+                    style={{
+                        background: 'linear-gradient(white, white) padding-box, linear-gradient(to right, #00c6ff, #0072ff) border-box',
+                        border: '4px solid transparent',
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                    initial={{ rotate: -5, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 5, opacity: 0 }}
+                >
+                    <h2 className="text-2xl font-bold mb-4 text-gray-800">Gradient Border</h2>
+                    <p className="mb-6 text-gray-600">This modal features an eye-catching gradient border design.</p>
+                    <button
+                        className="bg-gradient-to-r from-blue-500 to-blue-700 text-white px-6 py-2 rounded-full hover:from-blue-600 hover:to-blue-800 transition-colors duration-300"
+                        onClick={onClose}
+                    >
+                        Close
+                    </button>
+                </motion.div>
+            </Backdrop>
+        )}
+    </AnimatePresence>
+)
+
+// 5. Neon Glow Modal
+const NeonGlowModal = ({ isOpen, onClose }) => (
+    <AnimatePresence>
+        {isOpen && (
+            <Backdrop onClick={onClose}>
+                <motion.div
+                    className="bg-gray-900 rounded-lg p-8 w-full max-w-md shadow-[0_0_15px_rgba(0,255,255,0.5),0_0_30px_rgba(0,255,255,0.3)]"
+                    onClick={(e) => e.stopPropagation()}
+                    initial={{ scale: 1.2, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.8, opacity: 0 }}
+                >
+                    <h2 className="text-2xl font-bold mb-4 text-cyan-300">Neon Glow</h2>
+                    <p className="mb-6 text-cyan-100">Experience the vibrant neon aesthetic in this glowing modal design.</p>
+                    <button
+                        className="bg-cyan-500 text-white px-6 py-2 rounded-md hover:bg-cyan-600 transition-colors duration-300 shadow-[0_0_10px_rgba(0,255,255,0.7)]"
+                        onClick={onClose}
+                    >
+                        Close
+                    </button>
+                </motion.div>
+            </Backdrop>
+        )}
+    </AnimatePresence>
+)
+
+// 6. Morphing Shape Modal
+const MorphingShapeModal = ({ isOpen, onClose }) => (
+    <AnimatePresence>
+        {isOpen && (
+            <Backdrop onClick={onClose}>
+                <motion.div
+                    className="bg-white rounded-[30px] p-8 w-full max-w-md shadow-2xl overflow-hidden relative"
+                    onClick={(e) => e.stopPropagation()}
+                    initial={{ borderRadius: '30px' }}
+                    animate={{ borderRadius: ['30px', '50px', '20px', '40px', '30px'] }}
+                    exit={{ borderRadius: '50px', opacity: 0 }}
+                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                >
+                    <h2 className="text-2xl font-bold mb-4 text-gray-800">Morphing Shape</h2>
+                    <p className="mb-6 text-gray-600">Watch as this modal continuously transforms its shape.</p>
+                    <button
+                        className="bg-purple-500 text-white px-6 py-2 rounded-full hover:bg-purple-600 transition-colors duration-300"
+                        onClick={onClose}
+                    >
+                        Close
+                    </button>
+                </motion.div>
+            </Backdrop>
+        )}
+    </AnimatePresence>
+)
+
+// 7. Split Content Modal
+const SplitContentModal = ({ isOpen, onClose }) => (
+    <AnimatePresence>
+        {isOpen && (
+            <Backdrop onClick={onClose}>
+                <motion.div
+                    className="bg-white rounded-lg overflow-hidden w-full max-w-4xl shadow-2xl flex"
+                    onClick={(e) => e.stopPropagation()}
+                    initial={{ x: '-100%', opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: '100%', opacity: 0 }}
+                >
+                    <div className="w-1/2 bg-gradient-to-br from-blue-500 to-purple-600 p-8 text-white">
+                        <h2 className="text-3xl font-bold mb-4">Welcome</h2>
+                        <p>This side features a vibrant gradient background.</p>
+                    </div>
+                    <div className="w-1/2 p-8">
+                        <h2 className="text-2xl font-bold mb-4 text-gray-800">Split Content</h2>
+                        <p className="mb-6 text-gray-600">This modal design splits content into two distinct sections.</p>
+                        <button
+                            className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 transition-colors duration-300"
+                            onClick={onClose}
+                        >
+                            Close
+                        </button>
+                    </div>
+                </motion.div>
+            </Backdrop>
+        )}
+    </AnimatePresence>
+)
+
+// 8. Floating Elements Modal
+const FloatingElementsModal = ({ isOpen, onClose }) => (
+    <AnimatePresence>
+        {isOpen && (
+            <Backdrop onClick={onClose}>
+                <motion.div
+                    className="bg-white rounded-lg p-8 w-full max-w-md shadow-2xl relative overflow-hidden"
+                    onClick={(e) => e.stopPropagation()}
+                    initial={{ y: 50, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: 50, opacity: 0 }}
+                >
+                    <motion.div
+                        className="absolute top-4 left-4 w-12 h-12 bg-blue-500 rounded-full"
+                        animate={{ y: [0, -20, 0], opacity: [1, 0.5, 1] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                    />
+                    <motion.div
+                        className="absolute bottom-4 right-4 w-8 h-8 bg-green-500 rounded-full"
+                        animate={{ y: [0, 15, 0], opacity: [1, 0.7, 1] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+                    />
+                    <motion.div
+                        className="absolute top-1/2 right-8 w-6 h-6 bg-yellow-500 rounded-full"
+                        animate={{ x: [0, 10, 0], opacity: [1, 0.6, 1] }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+                    />
+                    <h2 className="text-2xl font-bold mb-4 text-gray-800 relative z-10">Floating Elements</h2>
+                    <p className="mb-6 text-gray-600 relative z-10">This modal features playful floating elements in the background.</p>
+                    <button
+                        className="bg-indigo-500 text-white px-6 py-2 rounded-full hover:bg-indigo-600 transition-colors duration-300 relative z-10"
+                        onClick={onClose}
+                    >
+                        Close
+                    </button>
+                </motion.div>
+            </Backdrop>
+        )}
+    </AnimatePresence>
+)
+
+
+
+// 9. Animated Icon Modal
+const AnimatedIconModal = ({ isOpen, onClose }) => (
+    <AnimatePresence>
+        {isOpen && (
+            <Backdrop onClick={onClose}>
+                <motion.div
+                    className="bg-white rounded-lg p-8 w-full max-w-md shadow-2xl"
+                    onClick={(e) => e.stopPropagation()}
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.8, opacity: 0 }}
+                >
+                    <motion.div
+                        className="w-20 h-20 mx-auto mb-6 text-green-500 "
+                        initial={{ scale: 0 }}
+
+                        animate={{ scale: 1, rotate: 360 }}
+                        transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+                    >
+                        <CheckCircle size={65} className='mr-5' />
+                    </motion.div>
+                    <h2 className="text-2xl font-bold mb-4 text-gray-800 text-center">Success!</h2>
+                    <p className="mb-6 text-gray-600 text-center">Your action was completed successfully.</p>
+                    <button
+                        className="w-full bg-green-500 text-white px-6 py-2 rounded-md hover:bg-green-600 transition-colors duration-300"
+                        onClick={onClose}
+                    >
+                        Close
+                    </button>
+                </motion.div>
+            </Backdrop>
+        )}
+    </AnimatePresence>
+)
+
 // Main component to showcase all modals
 export default function EnhancedModalDialogLayout() {
     const [openModal, setOpenModal] = useState(null)
@@ -403,6 +676,15 @@ export default function EnhancedModalDialogLayout() {
         { name: 'Elastic Modal', component: ElasticModal },
         { name: 'Swipe-to-dismiss Modal', component: SwipeToDismissModal },
         { name: 'Multi-step Modal', component: MultiStepModal },
+        { name: 'Neumorphic Modal', component: NeumorphicModal },
+        { name: 'Glassmorphism Modal', component: GlassmorphismModal },
+        { name: 'Minimalist Card Modal', component: MinimalistCardModal },
+        { name: 'Gradient Border Modal', component: GradientBorderModal },
+        { name: 'Neon Glow Modal', component: NeonGlowModal },
+        { name: 'Morphing Shape Modal', component: MorphingShapeModal },
+        { name: 'Split Content Modal', component: SplitContentModal },
+        { name: 'Floating Elements Modal', component: FloatingElementsModal },
+        { name: 'Animated Icon Modal', component: AnimatedIconModal },
     ]
 
     return (

@@ -61,7 +61,6 @@ const AppRoutes: React.FC = () => {
             {/* layouting FE */}
             <Route path="/dashboard-layout" element={<Dashboard />} />
             <Route path="/authentification-layout" element={<AuthentificationPages />} />
-            <Route path="/authentification-layout-modern" element={<AuthPagesLoginRegister />} />
             <Route path="/user-profiles-layout" element={<UserProfilePages />} />
             <Route path="/e-commerce-layout" element={<EcommercePages />} />
             <Route path="/multi-step-layout" element={<MultiStep />} />

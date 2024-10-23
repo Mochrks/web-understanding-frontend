@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/input-otp"
 import { Title } from '@/components/demo/Title'
 import { Link } from "react-router-dom"
+import AuthPagesLoginRegister from './AuthPagesLoginRegister'
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => (
     <div className="min-h-screen flex pt-20 justify-center ">
@@ -175,24 +176,6 @@ const VerifyEmailPage = () => (
 )
 
 export default function AuthentificationPages() {
-    const [currentPage, setCurrentPage] = useState('login')
-
-    const renderPage = () => {
-        switch (currentPage) {
-            case 'login':
-                return <LoginPage />
-            case 'register':
-                return <RegisterPage />
-            case 'forgot-password':
-                return <ForgotPasswordPage />
-            case 'reset-password':
-                return <ResetPasswordPage />
-            case 'verify-email':
-                return <VerifyEmailPage />
-            default:
-                return <LoginPage />
-        }
-    }
 
     return (
         <>
@@ -200,38 +183,44 @@ export default function AuthentificationPages() {
                 <Title name="Screen Authentification Pages" />
             </div>
             <AuthLayout>
-                <Tabs value={currentPage} onValueChange={setCurrentPage} className="w-full">
-                    <TabsList className="grid w-full grid-cols-2">
-                        <TabsTrigger value="login">Login</TabsTrigger>
-                        <TabsTrigger value="register">Register</TabsTrigger>
-                    </TabsList>
-                    <TabsContent value={currentPage}>
-                        {renderPage()}
-                    </TabsContent>
-                </Tabs>
-                <div className="mt-4">
-                    <Button variant="link" className="w-full" onClick={() => setCurrentPage('forgot-password')}>
-                        Forgot Password
-                    </Button>
+
+                <div className='p-5'>
+                    <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+                        Login
+                    </h2>
+                    <LoginPage />
                 </div>
-                <div className="mt-4">
-                    <Button variant="link" className="w-full" onClick={() => setCurrentPage('reset-password')}>
+                <div className='p-5'>
+                    <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+                        Register
+                    </h2>
+                    <RegisterPage />
+                </div>
+                <div className='p-5'>
+                    <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+                        Verification Email
+                    </h2>
+                    <VerifyEmailPage />
+                </div>
+                <div className='p-5'>
+                    <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
                         Reset Password
-                    </Button>
+                    </h2>
+                    <ResetPasswordPage />
                 </div>
-                <div className="mt-4">
-                    <Button variant="link" className="w-full" onClick={() => setCurrentPage('verify-email')}>
-                        Verify Email
-                    </Button>
+                <div className='p-5'>
+                    <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+                        Forgot password
+                    </h2>
+                    <ForgotPasswordPage />
                 </div>
-                <Alert className="mt-4 mx-auto ">
-                    <div className='flex justify-center'>
-                        <Link to="/authentification-layout-modern">
-                            <Button className='p-10'>Layout Modern For Login & Register</Button>
-                        </Link>
-                    </div>
-                </Alert>
             </AuthLayout>
+            <div className='pt-20'>
+                <div className='py-5'>
+
+                    <AuthPagesLoginRegister />
+                </div>
+            </div>
         </>
     )
 }
