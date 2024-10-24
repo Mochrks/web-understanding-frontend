@@ -13,6 +13,102 @@ const courses = [
     { id: 5, title: 'Machine Learning Basics', progress: 10, instructor: 'Eva Brown', duration: '5 weeks' },
 ]
 
+
+const StudentProgressLayout = () => {
+    const studentProgress = [
+        { id: 1, course: 'Introduction to React', completed: 15, total: 20 },
+        { id: 2, course: 'Advanced JavaScript Concepts', completed: 8, total: 25 },
+        { id: 3, course: 'UI/UX Design Fundamentals', completed: 12, total: 15 },
+        { id: 4, course: 'Data Structures and Algorithms', completed: 20, total: 40 },
+        { id: 5, course: 'Machine Learning Basics', completed: 5, total: 30 },
+    ]
+
+    return (
+        <div className=" bg-gray-100">
+            {/* <h1 className="text-4xl font-bold mb-8">Your Learning Progress</h1> */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-white rounded-lg shadow-md p-6">
+                    <h2 className="text-2xl font-semibold mb-4">Course Completion</h2>
+                    {studentProgress.map((course) => (
+                        <div key={course.id} className="mb-4">
+                            <div className="flex justify-between items-center mb-2">
+                                <span className="font-semibold">{course.course}</span>
+                                <span>
+                                    {course.completed}/{course.total} lessons
+                                </span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2.5">
+                                <motion.div
+                                    className="bg-blue-600 h-2.5 rounded-full"
+                                    initial={{ width: 0 }}
+                                    animate={{ width: `${(course.completed / course.total) * 100}%` }}
+                                    transition={{ duration: 1 }}
+                                ></motion.div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div className="bg-white rounded-lg shadow-md p-6">
+                    <h2 className="text-2xl font-semibold mb-4">Learning Statistics</h2>
+                    <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                            <span>Total Courses Enrolled</span>
+                            <span className="font-bold">{studentProgress.length}</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                            <span>Average Completion Rate</span>
+                            <span className="font-bold">
+                                {Math.round(
+                                    (studentProgress.reduce(
+                                        (acc, course) => acc + course.completed / course.total,
+                                        0
+                                    ) /
+                                        studentProgress.length) *
+                                    100
+                                )}
+                                %
+                            </span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                            <span>Total Learning Time</span>
+                            <span className="font-bold">37 hours</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="mt-8 bg-white rounded-lg shadow-md p-6">
+                <h2 className="text-2xl font-semibold mb-4">Recent Achievements</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <motion.div
+                        className="bg-yellow-100 rounded-lg p-4 flex items-center"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ type: 'spring', stiffness: 300 }}
+                    >
+                        <Star className="text-yellow-500 mr-2" />
+                        <span>Completed 5 courses</span>
+                    </motion.div>
+                    <motion.div
+                        className="bg-green-100 rounded-lg p-4 flex items-center"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ type: 'spring', stiffness: 300 }}
+                    >
+                        <CheckCircle className="text-green-500 mr-2" />
+                        <span>100% quiz score</span>
+                    </motion.div>
+                    <motion.div
+                        className="bg-blue-100 rounded-lg p-4 flex items-center"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ type: 'spring', stiffness: 300 }}
+                    >
+                        <BarChart className="text-blue-500 mr-2" />
+                        <span>30-day streak</span>
+                    </motion.div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 // 1. Dashboard Layout
 const DashboardLayout = () => {
     return (
@@ -73,6 +169,9 @@ const DashboardLayout = () => {
                     </ul>
                 </motion.div>
             </div>
+            <div className='w-full py-10'>
+                <StudentProgressLayout />
+            </div>
             <h2 className="text-2xl font-semibold mt-12 mb-6">Your Courses</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {courses.map((course) => (
@@ -124,6 +223,14 @@ const CourseDetailLayout = ({ activeModule, setActiveModule }) => {
                 <h1 className="text-4xl font-bold mb-4">{course.title}</h1>
                 <p className="text-xl text-gray-600 mb-8">{course.description}</p>
                 <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <div className="relative aspect-video mb-4">
+                        <img
+                            src="//"
+                            alt="Video thumbnail"
+                            className="w-full h-full object-cover rounded-md"
+                        />
+
+                    </div>
                     <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center">
                             <User className="mr-2 text-blue-500" />
@@ -136,7 +243,7 @@ const CourseDetailLayout = ({ activeModule, setActiveModule }) => {
                     </div>
                     <motion.button
                         className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300"
-                        whileHover={{ scale: 1.05 }}
+                        whileHover={{ scale: 1.01 }}
                         whileTap={{ scale: 0.95 }}
                     >
                         Start Learning
@@ -293,103 +400,9 @@ const QuizLayout = ({ currentQuestion, setCurrentQuestion, selectedAnswer, setSe
     )
 }
 
-// 4. Student Progress Layout
-const StudentProgressLayout = () => {
-    const studentProgress = [
-        { id: 1, course: 'Introduction to React', completed: 15, total: 20 },
-        { id: 2, course: 'Advanced JavaScript Concepts', completed: 8, total: 25 },
-        { id: 3, course: 'UI/UX Design Fundamentals', completed: 12, total: 15 },
-        { id: 4, course: 'Data Structures and Algorithms', completed: 20, total: 40 },
-        { id: 5, course: 'Machine Learning Basics', completed: 5, total: 30 },
-    ]
 
-    return (
-        <div className="min-h-screen bg-gray-100 p-8">
-            <h1 className="text-4xl font-bold mb-8">Your Learning Progress</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="bg-white rounded-lg shadow-md p-6">
-                    <h2 className="text-2xl font-semibold mb-4">Course Completion</h2>
-                    {studentProgress.map((course) => (
-                        <div key={course.id} className="mb-4">
-                            <div className="flex justify-between items-center mb-2">
-                                <span className="font-semibold">{course.course}</span>
-                                <span>
-                                    {course.completed}/{course.total} lessons
-                                </span>
-                            </div>
-                            <div className="w-full bg-gray-200 rounded-full h-2.5">
-                                <motion.div
-                                    className="bg-blue-600 h-2.5 rounded-full"
-                                    initial={{ width: 0 }}
-                                    animate={{ width: `${(course.completed / course.total) * 100}%` }}
-                                    transition={{ duration: 1 }}
-                                ></motion.div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-                <div className="bg-white rounded-lg shadow-md p-6">
-                    <h2 className="text-2xl font-semibold mb-4">Learning Statistics</h2>
-                    <div className="space-y-4">
-                        <div className="flex items-center justify-between">
-                            <span>Total Courses Enrolled</span>
-                            <span className="font-bold">{studentProgress.length}</span>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <span>Average Completion Rate</span>
-                            <span className="font-bold">
-                                {Math.round(
-                                    (studentProgress.reduce(
-                                        (acc, course) => acc + course.completed / course.total,
-                                        0
-                                    ) /
-                                        studentProgress.length) *
-                                    100
-                                )}
-                                %
-                            </span>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <span>Total Learning Time</span>
-                            <span className="font-bold">37 hours</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="mt-8 bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-2xl font-semibold mb-4">Recent Achievements</h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <motion.div
-                        className="bg-yellow-100 rounded-lg p-4 flex items-center"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ type: 'spring', stiffness: 300 }}
-                    >
-                        <Star className="text-yellow-500 mr-2" />
-                        <span>Completed 5 courses</span>
-                    </motion.div>
-                    <motion.div
-                        className="bg-green-100 rounded-lg p-4 flex items-center"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ type: 'spring', stiffness: 300 }}
-                    >
-                        <CheckCircle className="text-green-500 mr-2" />
-                        <span>100% quiz score</span>
-                    </motion.div>
-                    <motion.div
-                        className="bg-blue-100 rounded-lg p-4 flex items-center"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ type: 'spring', stiffness: 300 }}
-                    >
-                        <BarChart className="text-blue-500 mr-2" />
-                        <span>30-day streak</span>
-                    </motion.div>
-                </div>
-            </div>
-        </div>
-    )
-}
 
-// 5. Video Lesson Layout
+// 4. Video Lesson Layout
 const VideoLessonLayout = ({ isPlaying, setIsPlaying }) => {
     const lesson = {
         title: 'Understanding React Hooks',
@@ -418,7 +431,7 @@ const VideoLessonLayout = ({ isPlaying, setIsPlaying }) => {
                         <motion.button
                             className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white"
                             onClick={togglePlay}
-                            whileHover={{ scale: 1.1 }}
+                            whileHover={{ scale: 1 }}
                             whileTap={{ scale: 0.9 }}
                         >
                             {isPlaying ? (
@@ -474,7 +487,6 @@ export default function LMSLayouts() {
         { name: 'Dashboard', component: DashboardLayout },
         { name: 'Course Detail', component: CourseDetailLayout },
         { name: 'Quiz', component: QuizLayout },
-        { name: 'Student Progress', component: StudentProgressLayout },
         { name: 'Video Lesson', component: VideoLessonLayout },
     ]
 
