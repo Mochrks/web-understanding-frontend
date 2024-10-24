@@ -8,7 +8,7 @@ import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { Switch } from "@/components/ui/switch"
-import { Loader2, AlertCircle, CheckCircle2, XCircle, InfoIcon, BellRing, AlertTriangle, Zap, Coffee, Heart, Star, Sun, Moon, Cloud, Umbrella, ThumbsUp, Gift, Sparkles, Flame } from 'lucide-react'
+import { Loader2, AlertCircle, CheckCircle2, XCircle, InfoIcon, BellRing, AlertTriangle, Zap, Coffee, Heart, Star, Sun, Moon, Cloud, Umbrella, ThumbsUp, Gift, Sparkles, Flame, X, CheckCircle } from 'lucide-react'
 import { Title } from '@/components/demo/Title'
 
 type AlertType = 'info' | 'success' | 'warning' | 'error' | 'neutral'
@@ -447,6 +447,86 @@ const UmbrellaAlert: React.FC<{ chanceOfRain: number }> = ({ chanceOfRain }) => 
     </Alert>
 )
 
+
+
+// toastNotif
+const ToastNotif: React.FC = () => {
+    const [isVisible, setIsVisible] = useState(true)
+    const [duration, setDuration] = useState(13000)
+
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsVisible(false)
+        }, duration)
+
+        return () => clearTimeout(timer)
+    }, [duration])
+
+    if (!isVisible) return null
+
+    return (
+        <div className="fixed top-4 left-4 bg-primary text-primary-foreground p-4 rounded-lg shadow-lg flex items-center justify-between max-w-sm animate-in slide-in-from-right">
+            <p>On this notification buttom</p>
+            <button onClick={() => setIsVisible(false)} className="ml-4 text-primary-foreground/70 hover:text-primary-foreground">
+                <X className="h-4 w-4" />
+            </button>
+        </div>
+    )
+}
+
+
+// progress alert
+const ProgressComp: React.FC = ({ duration = 15000 }) => {
+    const [progress, setProgress] = useState(0)
+    const [status, setStatus] = useState('progress')
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setProgress((oldProgress) => {
+                if (oldProgress === 100) {
+                    clearInterval(interval)
+                    setStatus('success')
+                    return 100
+                }
+                return Math.min(oldProgress + 1, 100)
+            })
+        }, duration / 100)
+
+        return () => clearInterval(interval)
+    }, [duration])
+
+    const getStatusIcon = () => {
+        switch (status) {
+            case 'success':
+                return <CheckCircle className="h-5 w-5 text-green-500" />
+            case 'error':
+                return <XCircle className="h-5 w-5 text-red-500" />
+            default:
+                return <Loader2 className="h-5 w-5 text-primary animate-spin" />
+        }
+    }
+
+    return (
+        <div className="fixed bottom-4 left-4 w-80 bg-background border border-border rounded-lg shadow-lg overflow-hidden">
+            <div className="p-4">
+                <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-medium">Uploading file...</span>
+                    {getStatusIcon()}
+                </div>
+                <div className="w-full bg-secondary rounded-full h-2.5">
+                    <div
+                        className="bg-primary h-2.5 rounded-full transition-all duration-300 ease-in-out"
+                        style={{ width: `${progress}%` }}
+                    ></div>
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">{progress}% complete</p>
+            </div>
+        </div>
+    )
+}
+
+
 export default function AlertLayout() {
     const [progress, setProgress] = useState(0)
 
@@ -493,6 +573,8 @@ export default function AlertLayout() {
                     description="This is a neutral alert for general messages."
                     icon={<AlertCircle />}
                 />
+                <ProgressComp duration={115000} />
+                <ToastNotif />
                 <ProgressAlert progress={progress} />
                 <InteractiveAlert />
                 <FloatingAlert />

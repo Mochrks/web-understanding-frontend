@@ -21,7 +21,6 @@ import MultiStep from '@/pages/layouting/multi-step-forms/MultiStep';
 import NotificationAndMessaging from '@/pages/layouting/notification-messaging/NotificationAndMessaging';
 import CodingPracticePage from '@/pages/layouting/coding-practive-text-editor/CodingPracticePage';
 import UserFeedbackAndRating from '@/pages/layouting/user-feedback-rating/UserFeedbackAndRating';
-import AuthPagesLoginRegister from '@/pages/layouting/authentification/AuthPagesLoginRegister';
 import CarouselPage from '@/pages/layouting/corousel-images/CarouselPage';
 import HeroBGAnimation from '@/pages/layouting/hero-bg-animation/HeroBGAnimation';
 import LoadingAnimations from '@/pages/layouting/loading-animation/LoadingAnimations';
@@ -34,12 +33,12 @@ import ModernPricingComponents from '@/pages/layouting/pricing/ModernPricingComp
 import ModernErrorComponents from '@/pages/layouting/404error/ModernErrorComponents';
 import ModernTestimonialComponents from '@/pages/layouting/testimonial/ModernTestimonialComponents';
 import ModernBlogComponents from '@/pages/layouting/blog-layout/ModernBlogComponents';
-import TeamLayouts from '@/pages/layouting/team-page/TeamLayouts';
 import RoadmapLayouts from '@/pages/layouting/roadmap/RoadmapLayouts';
 import GalleryLayouts from '@/pages/layouting/gallery/GalleryLayouts';
 import EventLayouts from '@/pages/layouting/event-page/EventLayouts';
 import HelpCenterLayouts from '@/pages/layouting/help-center/HelpCenterLayouts';
 import LMSLayouts from '@/pages/layouting/lms/LMSLayouts';
+import ModernTeamLayouts from '@/pages/layouting/team-page/TeamLayouts';
 
 const AppRoutes: React.FC = () => {
     return (
@@ -79,7 +78,7 @@ const AppRoutes: React.FC = () => {
             <Route path="/404-error-layout" element={<ModernErrorComponents />} />
             <Route path="/testimonial-pages-layout" element={<ModernTestimonialComponents />} />
             <Route path="/blog-pages-layout" element={<ModernBlogComponents />} />
-            <Route path="/team-pages-layout" element={<TeamLayouts />} />
+            <Route path="/team-pages-layout" element={<ModernTeamLayouts />} />
             <Route path="/roadmap-pages-layout" element={<RoadmapLayouts />} />
             <Route path="/gallery-pages-layout" element={<GalleryLayouts />} />
             <Route path="/event-pages-layout" element={<EventLayouts />} />
