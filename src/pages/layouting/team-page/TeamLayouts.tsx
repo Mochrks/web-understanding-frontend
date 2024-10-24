@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, ChevronRight, Shuffle } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Plus } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+import { Badge } from '@/components/ui/badge'
 
 // Dummy data for team members
 const teamMembers = [
@@ -190,39 +191,55 @@ const HorizontalScrollLayout = () => {
 }
 
 const StackedLayout = () => {
-    const [activeIndex, setActiveIndex] = useState(0)
+    const [hoveredIndex, setHoveredIndex] = useState(null)
 
     return (
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="relative h-[500px]"
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
         >
             {teamMembers.map((member, index) => (
                 <motion.div
                     key={member.id}
-                    className="absolute top-0 left-0 w-full"
-                    initial={{ scale: 0.8, y: index * 40 }}
-                    animate={{
-                        scale: index === activeIndex ? 1 : 0.8,
-                        y: index * 40 - (index === activeIndex ? 40 : 0),
-                        zIndex: teamMembers.length - index
-                    }}
-                    transition={{ duration: 0.5 }}
-                    onClick={() => setActiveIndex(index)}
+                    className="relative group"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    onHoverStart={() => setHoveredIndex(index)}
+                    onHoverEnd={() => setHoveredIndex(null)}
                 >
-                    <Card className="overflow-hidden cursor-pointer">
-                        <motion.img
+                    <motion.div
+                        className="relative overflow-hidden rounded-lg shadow-lg"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        <img
                             src={member.image}
                             alt={member.name}
                             className="w-full h-64 object-cover"
                         />
-                        <div className="p-6">
-                            <h3 className="text-xl font-semibold">{member.name}</h3>
-                            <p className="text-muted-foreground">{member.role}</p>
-                        </div>
-                    </Card>
+                        <motion.div
+                            className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-4"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <h3 className="text-xl font-semibold text-white">{member.name}</h3>
+                            <Badge variant="secondary" className="mt-2 w-fit">
+                                {member.role}
+                            </Badge>
+                        </motion.div>
+                    </motion.div>
+                    <motion.div
+                        className="absolute -top-2 -right-2 bg-primary rounded-full p-2 shadow-lg"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: hoveredIndex === index ? 1 : 0 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        <Plus className="w-4 h-4 text-primary-foreground" />
+                    </motion.div>
                 </motion.div>
             ))}
         </motion.div>
@@ -302,61 +319,62 @@ const TimelineLayout = () => {
 }
 
 const OrbitLayout = () => {
+    const [activeIndex, setActiveIndex] = useState(0)
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActiveIndex((prevIndex) => (prevIndex + 1) % teamMembers.length)
+        }, 3000)
+        return () => clearInterval(interval)
+    }, [])
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="relative h-[600px]"
+            className="relative h-[600px] overflow-hidden"
         >
-            <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-32 h-32 bg-primary rounded-full flex items-center justify-center">
-                    <Shuffle className="w-16 h-16 text-primary-foreground" />
-                </div>
-            </div>
             {teamMembers.map((member, index) => (
                 <motion.div
                     key={member.id}
-                    className="absolute"
-                    style={{
-                        width: '120px',
-                        height: '120px',
-                        left: 'calc(50% - 60px)',
-                        top: 'calc(50% - 60px)',
-                    }}
-                    initial={{ rotate: index * 45 }}
+                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                    initial={{ scale: 0, rotate: 0 }}
                     animate={{
-                        rotate: [index * 45, 360 + index * 45],
-                        transition: {
-                            repeat: Infinity,
-                            duration: 20,
-                            ease: "linear"
-                        }
+                        scale: index === activeIndex ? 1 : 0.6,
+                        rotate: index === activeIndex ? 0 : (index - activeIndex) * 45,
+                        x: index === activeIndex ? 0 : (index - activeIndex) * 100,
+                        y: index === activeIndex ? 0 : Math.sin((index - activeIndex) * 45 * Math.PI / 180) * 100,
+                        zIndex: index === activeIndex ? 10 : 0,
                     }}
+                    transition={{ duration: 0.5 }}
                 >
-                    <motion.div
-                        className="absolute"
-                        style={{
-                            width: '120px',
-                            height: '120px',
-                            transformOrigin: '60px 60px',
-                        }}
-                        animate={{
-                            rotate: [0, -360],
-                            transition: {
-                                repeat: Infinity,
-                                duration: 20,
-                                ease: "linear"
-                            }
-                        }}
-                    >
-                        <Avatar className="w-full  h-full">
-                            <AvatarImage src={member.image} alt={member.name} />
-                            <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                        </Avatar>
-                    </motion.div>
+                    <Card className="w-64 overflow-hidden shadow-lg bg-gradient-to-br from-primary/10 to-secondary/10">
+                        <img
+                            src={member.image}
+                            alt={member.name}
+                            className="w-full h-48 object-cover"
+                        />
+                        <div className="p-4">
+                            <h3 className="text-lg font-semibold">{member.name}</h3>
+                            <Badge variant="outline" className="mt-2">
+                                {member.role}
+                            </Badge>
+                        </div>
+                    </Card>
                 </motion.div>
             ))}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                {teamMembers.map((_, index) => (
+                    <motion.div
+                        key={index}
+                        className="w-3 h-3 rounded-full bg-primary/30 cursor-pointer"
+                        whileHover={{ scale: 1.2 }}
+                        animate={{ scale: index === activeIndex ? 1.2 : 1 }}
+                        onClick={() => setActiveIndex(index)}
+                    />
+                ))}
+            </div>
         </motion.div>
     )
 }
