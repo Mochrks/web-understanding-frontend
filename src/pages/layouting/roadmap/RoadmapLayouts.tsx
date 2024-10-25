@@ -2,7 +2,11 @@
 
 import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowRight, Check, ChevronLeft, ChevronRight, Clock } from 'lucide-react'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Progress } from '@/components/ui/progress'
 
 // Dummy data for roadmap items
 const roadmapItems = [
@@ -264,6 +268,268 @@ const PerspectiveRoadmap = () => {
     )
 }
 
+// 1. Animated Tree Roadmap
+const AnimatedTreeRoadmap = () => {
+    return (
+        <div className="container mx-auto px-4 py-16">
+            <h2 className="text-3xl font-bold text-center mb-12">Product Growth Roadmap</h2>
+            <div className="relative">
+                <motion.div
+                    className="absolute left-1/2 top-0 bottom-0 w-1 bg-gray-200 transform -translate-x-1/2"
+                    initial={{ height: 0 }}
+                    animate={{ height: '100%' }}
+                    transition={{ duration: 2, ease: "easeInOut" }}
+                />
+                {roadmapItems.map((item, index) => (
+                    <motion.div
+                        key={item.id}
+                        className={`flex items-center mb-12 ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}
+                        initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.2 }}
+                    >
+                        <Card className={`w-[calc(40%-20px)] ${index % 2 === 0 ? 'mr-10' : 'mr-10'}`}>
+                            <CardHeader>
+                                <CardTitle>{item.title}</CardTitle>
+                                <CardDescription>{item.date}</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <p>{item.description}</p>
+                            </CardContent>
+                            <CardFooter>
+                                <Button variant={item.status === 'completed' ? 'default' : 'outline'}>
+                                    {item.status === 'completed' ? <Check className="mr-2 h-4 w-4" /> : <Clock className="mr-2 h-4 w-4" />}
+                                    {item.status === 'completed' ? 'Completed' : 'In Progress'}
+                                </Button>
+                            </CardFooter>
+                        </Card>
+                        <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center z-10">
+                            <ChevronRight className="text-primary-foreground" />
+                        </div>
+                    </motion.div>
+                ))}
+            </div>
+        </div>
+    )
+}
+
+// 2. Radial Progress Roadmap
+const RadialProgressRoadmap = () => {
+    const [activeIndex, setActiveIndex] = useState(0)
+
+    return (
+        <div className="container mx-auto px-4 py-16">
+            <h2 className="text-3xl font-bold text-center mb-12">Radial Progress Roadmap</h2>
+            <div className="relative w-[600px] h-[600px] mx-auto">
+                <svg className="w-full h-full" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#e2e8f0" strokeWidth="10" />
+                    <motion.circle
+                        cx="50"
+                        cy="50"
+                        r="45"
+                        fill="none"
+                        stroke="#3b82f6"
+                        strokeWidth="10"
+                        strokeLinecap="round"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: (activeIndex + 1) / roadmapItems.length }}
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                        style={{ rotate: -90, transformOrigin: "center" }}
+                    />
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center">
+                        <h3 className="text-2xl font-bold mb-2">{roadmapItems[activeIndex].title}</h3>
+                        <p className="text-gray-600 mb-4">{roadmapItems[activeIndex].date}</p>
+                        <p className="mb-4">{roadmapItems[activeIndex].description}</p>
+                        <Button onClick={() => setActiveIndex((prev) => (prev + 1) % roadmapItems.length)}>
+                            Next Phase
+                        </Button>
+                    </div>
+                </div>
+                {roadmapItems.map((item, index) => (
+                    <motion.div
+                        key={item.id}
+                        className="absolute w-4 h-4 bg-blue-500 rounded-full cursor-pointer"
+                        style={{
+                            top: `${50 + 45 * Math.sin((index / roadmapItems.length) * Math.PI * 2)}%`,
+                            left: `${50 + 45 * Math.cos((index / roadmapItems.length) * Math.PI * 2)}%`,
+                        }}
+                        animate={{ scale: activeIndex === index ? 1.5 : 1 }}
+                        onClick={() => setActiveIndex(index)}
+                    />
+                ))}
+            </div>
+        </div>
+    )
+}
+
+// 3. Kanban-style Roadmap
+const KanbanRoadmap = () => {
+    const [items, setItems] = useState(roadmapItems)
+
+    const onDragStart = (e, id) => {
+        e.dataTransfer.setData('id', id)
+    }
+
+    const onDragOver = (e) => {
+        e.preventDefault()
+    }
+
+    const onDrop = (e, status) => {
+        const id = e.dataTransfer.getData('id')
+        const newItems = items.map(item =>
+            item.id.toString() === id ? { ...item, status } : item
+        )
+        setItems(newItems)
+    }
+
+    return (
+        <div className="container mx-auto px-4 py-16">
+            <h2 className="text-3xl font-bold text-center mb-12">Kanban Roadmap</h2>
+            <div className="flex space-x-4">
+                {['upcoming', 'in-progress', 'completed'].map((status) => (
+                    <div
+                        key={status}
+                        className="flex-1 bg-gray-100 p-4 rounded-lg"
+                        onDragOver={onDragOver}
+                        onDrop={(e) => onDrop(e, status)}
+                    >
+                        <h3 className="text-xl font-semibold mb-4 capitalize">{status.replace('-', ' ')}</h3>
+                        {items.filter(item => item.status === status).map(item => (
+                            <Card
+                                key={item.id}
+                                className="mb-4 cursor-move"
+                                draggable
+                                onDragStart={(e) => onDragStart(e, item.id)}
+                            >
+                                <CardHeader>
+                                    <CardTitle>{item.title}</CardTitle>
+                                    <CardDescription>{item.date}</CardDescription>
+                                </CardHeader>
+                                <CardContent>
+                                    <p>{item.description}</p>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </div>
+                ))}
+            </div>
+        </div>
+    )
+}
+
+// 4. Interactive Gantt Chart Roadmap
+const GanttChartRoadmap = () => {
+    const [selectedItem, setSelectedItem] = useState(null)
+
+    const startDate = new Date('2024-01-01')
+    const endDate = new Date('2025-12-31')
+    const totalDays = (endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)
+
+    const getItemPosition = (date) => {
+        const itemDate = new Date(date)
+        return ((itemDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)) / totalDays * 100
+    }
+
+    return (
+        <div className="container mx-auto px-4 py-16">
+            <h2 className="text-3xl font-bold text-center mb-12">Interactive Gantt Chart Roadmap</h2>
+            <div className="relative h-[400px] bg-gray-100 rounded-lg p-4">
+                {roadmapItems.map((item, index) => (
+                    <motion.div
+                        key={item.id}
+                        className="absolute h-8 bg-blue-500 rounded cursor-pointer"
+                        style={{
+                            top: `${index * 40 + 20}px`,
+                            left: `${getItemPosition(item.date.split(' ')[1])}%`,
+                            width: '20%',
+                        }}
+                        whileHover={{ scale: 1.05 }}
+                        onClick={() => setSelectedItem(item)}
+                    >
+                        <span className="text-white text-xs font-semibold px-2">{item.title}</span>
+                    </motion.div>
+                ))}
+                <div className="absolute bottom-0 left-0 right-0 flex justify-between px-4 py-2">
+                    <span>2024</span>
+                    <span>2025</span>
+                </div>
+            </div>
+            {selectedItem && (
+                <Card className="mt-8">
+                    <CardHeader>
+                        <CardTitle>{selectedItem.title}</CardTitle>
+                        <CardDescription>{selectedItem.date}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <p>{selectedItem.description}</p>
+                    </CardContent>
+                    <CardFooter>
+                        <Button variant="outline" onClick={() => setSelectedItem(null)}>Close</Button>
+                    </CardFooter>
+                </Card>
+            )}
+        </div>
+    )
+}
+
+// 5. Milestone-based Roadmap with Progress Tracking
+const MilestoneRoadmap = () => {
+    const [currentMilestone, setCurrentMilestone] = useState(0)
+
+    const milestones = [
+        { title: 'Project Kickoff', tasks: ['Define scope', 'Assemble team', 'Set up infrastructure'] },
+        { title: 'Design Phase', tasks: ['Create wireframes', 'Design UI/UX', 'Conduct user research'] },
+        { title: 'Development', tasks: ['Implement core features', 'Integrate APIs', 'Perform unit testing'] },
+        { title: 'Testing', tasks: ['Conduct QA testing', 'Fix bugs', 'Perform user acceptance testing'] },
+        { title: 'Launch', tasks: ['Finalize documentation', 'Deploy to production', 'Monitor performance'] },
+    ]
+
+    return (
+        <div className="container mx-auto px-4 py-16">
+            <h2 className="text-3xl font-bold text-center mb-12">Milestone-based Roadmap</h2>
+            <Tabs value={currentMilestone.toString()} onValueChange={(value) => setCurrentMilestone(parseInt(value))}>
+                <TabsList className="grid w-full grid-cols-5 mb-8">
+                    {milestones.map((milestone, index) => (
+                        <TabsTrigger key={index} value={index.toString()} disabled={index > currentMilestone}>
+                            {milestone.title}
+                        </TabsTrigger>
+                    ))}
+                </TabsList>
+                {milestones.map((milestone, index) => (
+                    <TabsContent key={index} value={index.toString()}>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>{milestone.title}</CardTitle>
+                                <CardDescription>Progress: {((index + 1) / milestones.length * 100).toFixed(0)}%</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <Progress value={(index + 1) / milestones.length * 100} className="mb-4" />
+                                <ul className="space-y-2">
+                                    {milestone.tasks.map((task, taskIndex) => (
+                                        <li key={taskIndex} className="flex items-center">
+                                            <Check className="mr-2 h-4 w-4 text-green-500" />
+                                            {task}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </CardContent>
+                            <CardFooter>
+                                {index < milestones.length - 1 && (
+                                    <Button onClick={() => setCurrentMilestone(index + 1)}>
+                                        Next Milestone <ArrowRight className="ml-2 h-4 w-4" />
+                                    </Button>
+                                )}
+                            </CardFooter>
+                        </Card>
+                    </TabsContent>
+                ))}
+            </Tabs>
+        </div>
+    )
+}
+
 export default function RoadmapLayouts() {
     return (
         <div className="bg-gray-100 min-h-screen">
@@ -272,6 +538,11 @@ export default function RoadmapLayouts() {
             <CircularRoadmap />
             <GridRoadmap />
             <PerspectiveRoadmap />
+            <AnimatedTreeRoadmap />
+            <RadialProgressRoadmap />
+            <KanbanRoadmap />
+            <GanttChartRoadmap />
+            <MilestoneRoadmap />
         </div>
     )
 }

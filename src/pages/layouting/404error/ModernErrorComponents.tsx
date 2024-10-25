@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { motion, useAnimation, useMotionValue, useTransform } from 'framer-motion'
+import { AnimatePresence, motion, useAnimation, useMotionValue, useTransform } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Title } from '@/components/demo/Title'
+import { Home, Loader2, RefreshCw, Search } from 'lucide-react'
 
 // 1. Glitch Text Animation
 const GlitchText = () => {
@@ -46,23 +47,64 @@ const GlitchText = () => {
 }
 
 // 2. Interactive Illustration with Particles
-const InteractiveIllustration = () => {
-
-
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-
-        }
-        window.addEventListener('mousemove', handleMouseMove)
-        return () => window.removeEventListener('mousemove', handleMouseMove)
-    }, [])
-
+const Cosmic404 = () => {
     return (
-        <div className="h-screen flex flex-col items-center justify-center bg-gray-100 overflow-hidden">
-            <motion.h1 className="text-8xl font-bold mb-4 relative z-10">404</motion.h1>
-            <motion.p className="text-2xl mb-8 relative z-10">Page not found</motion.p>
-            <Button className="relative z-10">Return Home</Button>
-
+        <div className="h-screen flex flex-col items-center justify-center bg-gray-900 overflow-hidden">
+            <div className="relative">
+                <motion.div
+                    className="absolute inset-0 flex items-center justify-center"
+                    animate={{
+                        scale: [1, 1.2, 1],
+                        rotate: [0, 360, 0],
+                    }}
+                    transition={{
+                        duration: 20,
+                        repeat: Infinity,
+                        ease: "linear",
+                    }}
+                >
+                    {[...Array(100)].map((_, i) => (
+                        <motion.div
+                            key={i}
+                            className="absolute w-1 h-1 bg-white rounded-full"
+                            animate={{
+                                x: Math.random() * 400 - 200,
+                                y: Math.random() * 400 - 200,
+                                scale: Math.random() * 1.5 + 0.5,
+                                opacity: Math.random(),
+                            }}
+                            transition={{
+                                duration: Math.random() * 5 + 5,
+                                repeat: Infinity,
+                                repeatType: "reverse",
+                            }}
+                        />
+                    ))}
+                </motion.div>
+                <motion.h1
+                    className="text-9xl font-bold text-white mb-8 relative z-10"
+                    initial={{ opacity: 0, y: -50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1 }}
+                >
+                    404
+                </motion.h1>
+            </div>
+            <motion.p
+                className="text-2xl text-white mb-8 relative z-10"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5, duration: 1 }}
+            >
+                Lost in the cosmic void
+            </motion.p>
+            <Button
+                variant="outline"
+                className="relative z-10"
+                onClick={() => { }}
+            >
+                <Home className="mr-2 h-4 w-4" /> Return to Earth
+            </Button>
         </div>
     )
 }
@@ -216,93 +258,234 @@ const TypewriterEffect = () => {
 
 
 
-// 7. 3D Flip Card
-const FlipCard = () => {
-    const [isFlipped, setIsFlipped] = useState(false)
+// 7. HolographicError
+const HolographicError = () => {
+    const [isHovering, setIsHovering] = useState(false)
 
     return (
-        <div className="h-screen flex items-center justify-center bg-gray-100">
-            <div className="w-64 h-96 [perspective:1000px]" onClick={() => setIsFlipped(!isFlipped)}>
+        <div className="h-screen flex items-center justify-center bg-gray-900">
+            <div
+                className="relative"
+                onMouseEnter={() => setIsHovering(true)}
+                onMouseLeave={() => setIsHovering(false)}
+            >
                 <motion.div
-                    className="w-full h-full [transform-style:preserve-3d] cursor-pointer"
-                    animate={{ rotateY: isFlipped ? 180 : 0 }}
-                    transition={{ duration: 0.6 }}
+                    className="text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600"
+                    style={{
+                        WebkitTextStroke: '2px rgba(255,255,255,0.1)',
+                    }}
+                    animate={{
+                        filter: isHovering ? [
+                            'hue-rotate(0deg)',
+                            'hue-rotate(360deg)',
+                        ] : 'hue-rotate(0deg)',
+                    }}
+                    transition={{
+                        duration: isHovering ? 2 : 0,
+                        repeat: isHovering ? Infinity : 0,
+                        ease: 'linear',
+                    }}
                 >
-                    <div className="absolute w-full h-full bg-blue-500 text-white flex flex-col items-center justify-center rounded-lg [backface-visibility:hidden]">
-                        <h1 className="text-6xl font-bold mb-4">404</h1>
-                        <p className="text-xl">Page Not Found</p>
-                    </div>
-                    <div className="absolute w-full h-full bg-white text-gray-800 flex flex-col items-center justify-center rounded-lg [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                        <h2 className="text-2xl font-bold mb-4">Oops!</h2>
-                        <p className="text-center mb-4">The page you're looking for doesn't exist.</p>
-                        <Button>Go Home</Button>
-                    </div>
+                    404
                 </motion.div>
+                <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 blur-xl"
+                    animate={{
+                        opacity: isHovering ? [0.5, 0.8, 0.5] : 0.5,
+                    }}
+                    transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatType: 'reverse',
+                    }}
+                />
+            </div>
+            <div className="absolute bottom-20 text-center">
+                <p className="text-white text-2xl mb-4">Reality glitch detected</p>
+                <Button
+                    variant="outline"
+                    className="text-white border-white hover:bg-white hover:text-gray-900"
+                >
+                    Recalibrate
+                </Button>
             </div>
         </div>
     )
 }
 
-// 8. Interactive Search
-const InteractiveSearch = () => {
+// 8. AI-Powered Search (Updated)
+const AIPoweredSearch = () => {
     const [searchTerm, setSearchTerm] = useState("")
     const [isSearching, setIsSearching] = useState(false)
+    const [suggestion, setSuggestion] = useState("")
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault()
         setIsSearching(true)
-        setTimeout(() => setIsSearching(false), 2000)
+        setTimeout(() => {
+            setIsSearching(false)
+            setSuggestion("How about trying our homepage?")
+        }, 2000)
     }
 
     return (
-        <div className="h-screen flex flex-col items-center justify-center bg-gray-100">
-            <Card className="w-96">
+        <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800">
+            <Card className="w-96 bg-white/10 backdrop-blur-lg border-0">
                 <CardContent className="pt-6">
-                    <h1 className="text-4xl font-bold mb-4 text-center">404: Not Found</h1>
-                    <p className="text-center mb-6">Let's find what you're looking for</p>
+                    <h1 className="text-4xl font-bold mb-4 text-center text-white">404: Not Found</h1>
+                    <p className="text-center mb-6 text-gray-300">Let our AI help you find what you're looking for</p>
                     <form onSubmit={handleSearch} className="space-y-4">
                         <div className="space-y-2">
-                            <Label htmlFor="search">Search</Label>
-                            <Input
-                                id="search"
-                                type="text"
-                                placeholder="Enter your search"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                            />
+                            <Label htmlFor="search" className="text-white">Search</Label>
+                            <div className="relative">
+                                <Input
+                                    id="search"
+                                    type="text"
+                                    placeholder="What are you looking for?"
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    className="bg-white/20 border-0 text-white placeholder-gray-400"
+                                />
+                                <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                            </div>
                         </div>
-                        <Button type="submit" className="w-full" disabled={isSearching}>
-                            {isSearching ? "Searching..." : "Search"}
+                        <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700" disabled={isSearching}>
+                            {isSearching ? (
+                                <>
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    Searching...
+                                </>
+                            ) : (
+                                "Search"
+                            )}
                         </Button>
                     </form>
-                    {isSearching && (
-                        <motion.div
-                            className="mt-4 text-center text-blue-600"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                        >
-                            Searching for "{searchTerm}"...
-                        </motion.div>
-                    )}
+                    <AnimatePresence>
+                        {suggestion && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                className="mt-4 text-center text-white"
+                            >
+                                <p>{suggestion}</p>
+                                <Button variant="link" className="mt-2 text-blue-400 hover:text-blue-300">
+                                    Go to Homepage
+                                </Button>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </CardContent>
             </Card>
         </div>
     )
 }
 
+// 9. Broken Link (New)
+const BrokenLink = () => {
+    return (
+        <div className="h-screen flex flex-col items-center justify-center bg-gray-100">
+            <svg width="200" height="200" viewBox="0 0 200 200">
+                <motion.path
+                    d="M50,100 C50,72 72,50 100,50 C128,50 150,72 150,100"
+                    fill="none"
+                    stroke="#2563eb"
+                    strokeWidth="10"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+                />
+                <motion.path
+                    d="M50,100 C50,128 72,150 100,150 C128,150 150,128 150,100"
+                    fill="none"
+                    stroke="#dc2626"
+                    strokeWidth="10"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 2, delay: 1, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+                />
+            </svg>
+            <h1 className="text-4xl font-bold mt-8 mb-4">Broken Link</h1>
+            <p className="text-xl mb-8 text-gray-600">The page you're looking for has a broken connection</p>
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                <RefreshCw className="mr-2 h-4 w-4" />
+                Reconnect
+            </Button>
+        </div>
+    )
+}
+
+// 10. Error Portal (New)
+const ErrorPortal = () => {
+    const [isEntering, setIsEntering] = useState(false)
+
+    return (
+        <div className="h-screen flex items-center justify-center bg-gray-900 overflow-hidden">
+            <div className="relative">
+                <motion.div
+                    className="w-64 h-64 rounded-full bg-gradient-to-br from-purple-600 to-pink-500"
+                    animate={{
+                        scale: isEntering ? 20 : 1,
+                        opacity: isEntering ? 0 : 1,
+                    }}
+                    transition={{ duration: 1.5 }}
+                />
+                <motion.div
+                    className="absolute inset-0 flex items-center justify-center"
+                    animate={{ opacity: isEntering ? 0 : 1 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <div className="text-center">
+                        <h1 className="text-6xl font-bold text-white mb-4">404</h1>
+                        <p className="text-xl text-gray-300 mb-8">You've discovered an error portal</p>
+                        <Button
+                            className="bg-white text-gray-900 hover:bg-gray-200"
+                            onClick={() => setIsEntering(true)}
+                        >
+                            Enter Portal
+                        </Button>
+                    </div>
+                </motion.div>
+            </div>
+            {isEntering && (
+                <motion.div
+                    className="absolute inset-0 bg-white flex items-center justify-center"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1, duration: 1 }}
+                >
+                    <div className="text-center">
+                        <h2 className="text-4xl font-bold text-gray-900 mb-4">Welcome Back</h2>
+                        <p className="text-xl text-gray-600 mb-8">You've successfully escaped the error</p>
+                        <Button className="bg-gray-900 text-white hover:bg-gray-800">
+                            <Home className="mr-2 h-4 w-4" />
+                            Go to Homepage
+                        </Button>
+                    </div>
+                </motion.div>
+            )}
+        </div>
+    )
+}
+
+
+
 // Main component to showcase all 404 Error components
 export default function ModernErrorComponents() {
     const [currentComponent, setCurrentComponent] = useState(0)
     const components = [
         GlitchText,
-        InteractiveIllustration,
+        Cosmic404,
         SVGPathAnimation,
         ParallaxEffect,
         AnimatedMaze,
         TypewriterEffect,
-        FlipCard,
-        InteractiveSearch,
+        HolographicError,
+        AIPoweredSearch,
+        BrokenLink,
+        ErrorPortal,
     ]
 
     return (

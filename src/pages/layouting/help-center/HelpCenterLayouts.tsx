@@ -1,430 +1,515 @@
-'use client'
-
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, ChevronDown, ChevronRight, Mail, Phone, MessageCircle, Book, HelpCircle, ArrowRight } from 'lucide-react'
+import { Search, ChevronDown, ChevronRight, Mail, Phone, MessageCircle, Book, HelpCircle, ArrowRight, User, Star, ThumbsUp, ThumbsDown, Send, Paperclip, Video, Calendar, Clock, ExternalLink, Play } from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
+import { Progress } from "@/components/ui/progress"
 
-// Dummy data for help articles
+// Dummy data for help articles and FAQs
 const helpArticles = [
-    { id: 1, title: 'Getting Started Guide', category: 'Basics' },
-    { id: 2, title: 'How to Reset Your Password', category: 'Account' },
-    { id: 3, title: 'Troubleshooting Common Issues', category: 'Support' },
-    { id: 4, title: 'Billing and Subscription FAQ', category: 'Billing' },
-    { id: 5, title: 'Advanced Features Tutorial', category: 'Features' },
-    { id: 6, title: 'Security Best Practices', category: 'Security' },
-    { id: 7, title: 'API Documentation', category: 'Developers' },
-    { id: 8, title: 'Mobile App User Guide', category: 'Mobile' },
+    { id: 1, title: 'Getting Started Guide', category: 'Basics', content: 'This guide will help you get started with our platform...' },
+    { id: 2, title: 'How to Reset Your Password', category: 'Account', content: 'If you forgot your password, follow these steps...' },
+    { id: 3, title: 'Troubleshooting Common Issues', category: 'Support', content: 'Here are solutions to common problems you might encounter...' },
+    { id: 4, title: 'Billing and Subscription FAQ', category: 'Billing', content: 'Find answers to frequently asked questions about billing...' },
+    { id: 5, title: 'Advanced Features Tutorial', category: 'Features', content: 'Learn how to use our advanced features...' },
 ]
 
-// 1. Modern Grid Layout
-const ModernGridLayout = () => {
-    const [searchTerm, setSearchTerm] = useState('')
+const faqItems = [
+    { id: 1, question: 'How do I create an account?', answer: 'To create an account, click on the "Sign Up" button in the top right corner of our homepage...' },
+    { id: 2, question: 'What payment methods do you accept?', answer: 'We accept various payment methods including credit/debit cards (Visa, MasterCard, American Express), PayPal, and bank transfers...' },
+    { id: 3, question: 'How can I reset my password?', answer: 'To reset your password, click on the "Forgot Password" link on the login page...' },
+    { id: 4, question: 'What is your refund policy?', answer: 'We offer a 30-day money-back guarantee on all our products...' },
+    { id: 5, question: 'How do I contact customer support?', answer: 'You can contact our customer support team via email at support@example.com or by phone at +1 (800) 123-4567...' },
+]
 
-    const filteredArticles = helpArticles.filter(article =>
-        article.title.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+// 1. AI-Powered Chatbot
+const AIPoweredChatbot = () => {
+    const [messages, setMessages] = useState([
+        { id: 1, text: "Hello! How can I assist you today?", sender: "bot" },
+    ])
+    const [input, setInput] = useState("")
+
+    const handleSend = () => {
+        if (input.trim()) {
+            setMessages([...messages, { id: messages.length + 1, text: input, sender: "user" }])
+            setInput("")
+            // Simulate AI response
+            setTimeout(() => {
+                setMessages(prev => [...prev, { id: prev.length + 1, text: "I'm processing your request. How else can I help you?", sender: "bot" }])
+            }, 1000)
+        }
+    }
 
     return (
-        <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
-                <h1 className="text-4xl font-bold text-center mb-8">How can we help you?</h1>
-                <div className="relative mb-8">
-                    <input
-                        type="text"
-                        placeholder="Search for help..."
-                        className="w-full p-4 pr-12 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                    <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredArticles.map((article) => (
-                        <motion.div
-                            key={article.id}
-                            className="bg-white rounded-lg shadow-md p-6 cursor-pointer"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            <h2 className="text-xl font-semibold mb-2">{article.title}</h2>
-                            <p className="text-gray-600 mb-4">Category: {article.category}</p>
-                            <motion.button
-                                className="text-blue-500 flex items-center"
-                                whileHover={{ x: 5 }}
-                            >
-                                Read more <ChevronRight className="ml-2" />
-                            </motion.button>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-        </div>
+        <Card className="w-full max-w-xl mx-auto">
+            <CardHeader>
+                <CardTitle>AI Assistant</CardTitle>
+                <CardDescription>Get instant help from our AI chatbot</CardDescription>
+            </CardHeader>
+            <CardContent className="h-[400px] overflow-y-auto">
+                {messages.map((message) => (
+                    <div key={message.id} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} mb-4`}>
+                        <div className={`max-w-[70%] p-3 rounded-lg ${message.sender === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>
+                            {message.text}
+                        </div>
+                    </div>
+                ))}
+            </CardContent>
+            <CardFooter className="flex gap-2">
+                <Input
+                    placeholder="Type your message..."
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                />
+                <Button onClick={handleSend}><Send className="w-4 h-4" /></Button>
+            </CardFooter>
+        </Card>
     )
 }
 
-// 2. Sidebar Navigation Layout
-const SidebarNavigationLayout = () => {
-    const [activeCategory, setActiveCategory] = useState('All')
-    const categories = ['All', ...new Set(helpArticles.map(article => article.category))]
+// 2. Interactive Troubleshooter
+const InteractiveTroubleshooter = () => {
+    const [currentStep, setCurrentStep] = useState(0)
+    const [resolved, setResolved] = useState(false)
 
-    const filteredArticles = activeCategory === 'All'
-        ? helpArticles
-        : helpArticles.filter(article => article.category === activeCategory)
+    const steps = [
+        { question: "Is your device turned on?", yes: 1, no: "Make sure your device is powered on." },
+        { question: "Is the Wi-Fi connected?", yes: 2, no: "Connect to a Wi-Fi network and try again." },
+        { question: "Have you tried restarting the app?", yes: 3, no: "Restart the app and see if the issue persists." },
+        { question: "Is your app updated to the latest version?", yes: "Contact support", no: "Update your app and try again." },
+    ]
+
+    const handleAnswer = (answer) => {
+        if (answer === 'yes') {
+            if (typeof steps[currentStep].yes === 'number') {
+                setCurrentStep(steps[currentStep].yes)
+            } else {
+                setResolved(true)
+            }
+        } else {
+            setResolved(true)
+        }
+    }
 
     return (
-        <div className="min-h-screen bg-gray-100 flex">
-            <motion.div
-                className="w-64 bg-white shadow-md p-6"
-                initial={{ x: -300 }}
-                animate={{ x: 0 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            >
-                <h2 className="text-2xl font-bold mb-6">Categories</h2>
-                <nav>
-                    {categories.map((category) => (
-                        <motion.button
-                            key={category}
-                            className={`block w-full text-left py-2 px-4 rounded-md mb-2 ${activeCategory === category ? 'bg-blue-500 text-white' : 'hover:bg-gray-100'
-                                }`}
-                            onClick={() => setActiveCategory(category)}
-                            whileHover={{ x: 5 }}
-                        >
-                            {category}
-                        </motion.button>
-                    ))}
-                </nav>
-            </motion.div>
-            <div className="flex-1 p-8">
-                <h1 className="text-4xl font-bold mb-8">Help Center</h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {filteredArticles.map((article) => (
-                        <motion.div
-                            key={article.id}
-                            className="bg-white rounded-lg shadow-md p-6"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <h2 className="text-xl font-semibold mb-2">{article.title}</h2>
-                            <p className="text-gray-600 mb-4">Category: {article.category}</p>
-                            <motion.button
-                                className="text-blue-500 flex items-center"
-                                whileHover={{ x: 5 }}
-                            >
-                                Read more <ChevronRight className="ml-2" />
-                            </motion.button>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-        </div>
+        <Card className="w-full max-w-md mx-auto">
+            <CardHeader>
+                <CardTitle>Interactive Troubleshooter</CardTitle>
+                <CardDescription>Let's solve your problem step by step</CardDescription>
+            </CardHeader>
+            <CardContent>
+                {!resolved ? (
+                    <div className="space-y-4">
+                        <p className="text-lg font-medium">{steps[currentStep].question}</p>
+                        <div className="flex gap-4">
+                            <Button onClick={() => handleAnswer('yes')}>Yes</Button>
+                            <Button variant="outline" onClick={() => handleAnswer('no')}>No</Button>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="text-center">
+                        <p className="text-lg font-medium mb-4">
+                            {typeof steps[currentStep].yes === 'string' ? steps[currentStep].yes : steps[currentStep].no}
+                        </p>
+                        <Button onClick={() => { setCurrentStep(0); setResolved(false); }}>Start Over</Button>
+                    </div>
+                )}
+            </CardContent>
+            <CardFooter>
+                <Progress value={(currentStep / (steps.length - 1)) * 100} className="w-full" />
+            </CardFooter>
+        </Card>
     )
 }
 
-// 3. FAQ Accordion Layout
-const FAQAccordionLayout = () => {
-    const [openItem, setOpenItem] = useState(null)
-
-    const faqItems = [
-        { id: 1, question: 'How do I create an account?', answer: 'To create an account, click on the "Sign Up" button in the top right corner of our homepage. Fill in your details and follow the prompts to complete the registration process.' },
-        { id: 2, question: 'What payment methods do you accept?', answer: 'We accept various payment methods including credit/debit cards (Visa, MasterCard, American Express), PayPal, and bank transfers. You can view all available options during the checkout process.' },
-        {
-            id: 3, question: 'How can I reset my password?', answer: 'To reset your password, click on the "Forgot Password" link on the login page. Enter your email address, and well send you instructions to reset your password.'
-        },
-        {
-            id: 4, question: 'What is your refund policy?', answer: 'We offer a 30-day money-back guarantee on all our products. If youre not satisfied with your purchase, you can request a full refund within 30 days of the purchase date.'
-        },
-        { id: 5, question: 'How do I contact customer support?', answer: 'You can contact our customer support team via email at support@example.com or by phone at +1 (800) 123-4567. Our support hours are Monday to Friday, 9 AM to 5 PM EST.' },
+// 3. Video Tutorial Library
+const VideoTutorialLibrary = () => {
+    const tutorials = [
+        { id: 1, title: "Getting Started", duration: "5:30", thumbnail: "/placeholder.svg?height=120&width=200" },
+        { id: 2, title: "Advanced Features", duration: "10:15", thumbnail: "/placeholder.svg?height=120&width=200" },
+        { id: 3, title: "Troubleshooting Guide", duration: "7:45", thumbnail: "/placeholder.svg?height=120&width=200" },
+        { id: 4, title: "Tips and Tricks", duration: "8:20", thumbnail: "/placeholder.svg?height=120&width=200" },
     ]
 
     return (
-        <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto">
-                <h1 className="text-4xl font-bold text-center mb-12">Frequently Asked Questions</h1>
-                <div className="space-y-4">
-                    {faqItems.map((item) => (
-                        <motion.div
-                            key={item.id}
-                            className="bg-white rounded-lg shadow-md overflow-hidden"
-                            initial={false}
-                            animate={{ height: openItem === item.id ? 'auto' : '64px' }}
-                            transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        >
-                            <button
-                                className="w-full p-4 text-left flex justify-between items-center focus:outline-none"
-                                onClick={() => setOpenItem(openItem === item.id ? null : item.id)}
-                            >
-                                <span className="text-lg font-semibold">{item.question}</span>
-                                <motion.span
-                                    animate={{ rotate: openItem === item.id ? 180 : 0 }}
-                                    transition={{ duration: 0.3 }}
-                                >
-                                    <ChevronDown />
-                                </motion.span>
-                            </button>
-                            <AnimatePresence>
-                                {openItem === item.id && (
-                                    <motion.div
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        exit={{ opacity: 0 }}
-                                        transition={{ duration: 0.3 }}
-                                        className="p-4 bg-gray-50"
-                                    >
-                                        <p>{item.answer}</p>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </motion.div>
+        <Card className="w-full max-w-3xl mx-auto">
+            <CardHeader>
+                <CardTitle>Video Tutorial Library</CardTitle>
+                <CardDescription>Learn through our comprehensive video guides</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {tutorials.map((tutorial) => (
+                        <div key={tutorial.id} className="group relative">
+                            <img src={tutorial.thumbnail} alt={tutorial.title} className="w-full rounded-lg" />
+                            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                <Button variant="secondary">
+                                    <Play className="w-6 h-6 mr-2" />
+                                    Watch Now
+                                </Button>
+                            </div>
+                            <h3 className="mt-2 font-semibold">{tutorial.title}</h3>
+                            <p className="text-sm text-gray-500">{tutorial.duration}</p>
+                        </div>
                     ))}
                 </div>
-            </div>
-        </div>
+            </CardContent>
+        </Card>
     )
 }
 
-// 4. Contact Form Layout
-const ContactFormLayout = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-    })
+// 4. Knowledge Base Search
+const KnowledgeBaseSearch = () => {
+    const [searchTerm, setSearchTerm] = useState("")
+    const [searchResults, setSearchResults] = useState([])
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value })
+    const handleSearch = () => {
+        const results = helpArticles.filter(article =>
+            article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            article.content.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        setSearchResults(results)
     }
+
+    return (
+        <Card className="w-full max-w-3xl mx-auto">
+            <CardHeader>
+                <CardTitle>Knowledge Base</CardTitle>
+                <CardDescription>Search our extensive knowledge base for answers</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <div className="flex gap-2 mb-4">
+                    <Input
+                        placeholder="Search for help..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+                    />
+                    <Button onClick={handleSearch}>Search</Button>
+                </div>
+                <div className="space-y-4">
+                    {searchResults.map((article) => (
+                        <Card key={article.id}>
+                            <CardHeader>
+                                <CardTitle>{article.title}</CardTitle>
+                                <Badge>{article.category}</Badge>
+                            </CardHeader>
+                            <CardContent>
+                                <p>{article.content.substring(0, 150)}...</p>
+                            </CardContent>
+                            <CardFooter>
+                                <Button variant="outline">Read More</Button>
+                            </CardFooter>
+                        </Card>
+                    ))}
+                </div>
+            </CardContent>
+        </Card>
+    )
+}
+
+// 5. Community Forum
+const CommunityForum = () => {
+    const forumPosts = [
+        { id: 1, title: "How to integrate API?", author: "JohnDoe", replies: 5, views: 120 },
+        { id: 2, title: "Best practices for data security", author: "JaneSmith", replies: 8, views: 200 },
+        { id: 3, title: "Troubleshooting login issues", author: "TechGuru", replies: 3, views: 80 },
+    ]
+
+    return (
+        <Card className="w-full max-w-3xl mx-auto">
+            <CardHeader>
+                <CardTitle>Community Forum</CardTitle>
+                <CardDescription>Connect with other users and share knowledge</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <div className="space-y-4">
+                    {forumPosts.map((post) => (
+                        <Card key={post.id}>
+                            <CardHeader>
+                                <CardTitle>{post.title}</CardTitle>
+                                <CardDescription>Posted by {post.author}</CardDescription>
+                            </CardHeader>
+                            <CardFooter className="flex justify-between">
+                                <div className="flex items-center gap-4">
+                                    <span>{post.replies} replies</span>
+                                    <span>{post.views} views</span>
+                                </div>
+                                <Button variant="outline">View Thread</Button>
+                            </CardFooter>
+                        </Card>
+                    ))}
+                </div>
+            </CardContent>
+            <CardFooter>
+                <Button className="w-full">Start a New Discussion</Button>
+            </CardFooter>
+        </Card>
+    )
+}
+
+// 6. Feedback and Suggestions
+const FeedbackAndSuggestions = () => {
+    const [feedback, setFeedback] = useState("")
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // Handle form submission here
-        console.log('Form submitted:', formData)
+        // Handle feedback submission
+        console.log("Feedback submitted:", feedback)
+        setFeedback("")
     }
 
     return (
-        <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto">
-                <h1 className="text-4xl font-bold text-center mb-12">Contact Us</h1>
-                <div className="bg-white rounded-lg shadow-md p-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div>
-                            <h2 className="text-2xl font-semibold mb-4">Get in Touch</h2>
-                            <p className="mb-4">We're here to help! Fill out the form, and we'll be in touch as soon as possible.</p>
-                            <div className="space-y-4">
-                                <div className="flex items-center">
-                                    <Mail className="w-6 h-6 mr-2 text-blue-500" />
-                                    <span>support@example.com</span>
-                                </div>
-                                <div className="flex items-center">
-                                    <Phone className="w-6 h-6 mr-2 text-blue-500" />
-                                    <span>+1 (800) 123-4567</span>
-                                </div>
-                                <div className="flex items-center">
-                                    <MessageCircle className="w-6 h-6 mr-2 text-blue-500" />
-                                    <span>Live chat available 24/7</span>
-                                </div>
-                            </div>
-                        </div>
-                        <form onSubmit={handleSubmit}>
-                            <div className="space-y-4">
-                                <div>
-                                    <label htmlFor="name" className="block mb-1 font-medium">Name</label>
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        name="name"
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                        className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <label htmlFor="email" className="block mb-1 font-medium">Email</label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <label htmlFor="subject" className="block mb-1 font-medium">Subject</label>
-                                    <input
-                                        type="text"
-                                        id="subject"
-                                        name="subject"
-                                        value={formData.subject}
-                                        onChange={handleChange}
-                                        className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <label htmlFor="message" className="block mb-1 font-medium">Message</label>
-                                    <textarea
-                                        id="message"
-                                        name="message"
-                                        value={formData.message}
-                                        onChange={handleChange}
-                                        rows={4}
-                                        className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                        required
-                                    ></textarea>
-                                </div>
-                                <motion.button
-                                    type="submit"
-                                    className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    Send Message
-                                </motion.button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <Card className="w-full max-w-md mx-auto">
+            <CardHeader>
+                <CardTitle>Feedback and Suggestions</CardTitle>
+                <CardDescription>Help us improve our product</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <form onSubmit={handleSubmit}>
+                    <Textarea
+                        placeholder="Share your thoughts, ideas, or report issues..."
+                        value={feedback}
+                        onChange={(e) => setFeedback(e.target.value)}
+                        className="mb-4"
+                    />
+                    <Button type="submit" className="w-full">Submit Feedback</Button>
+                </form>
+            </CardContent>
+        </Card>
     )
 }
 
-// 5. Interactive Guide Layout
-// const InteractiveGuideLayout = () => {
-//     const [currentStep, setCurrentStep] = useState(0)
+// 7. Interactive Product Tour
+const InteractiveProductTour = () => {
+    const [currentStep, setCurrentStep] = useState(0)
 
-//     const steps = [
-//         { title: 'Getting Started', icon: Book },
-//         { title: 'Account Setup', icon: Book },
-//         { title: 'Key Features', icon: Book },
-//         { title: 'Advanced Tips', icon: Book },
-//         { title: 'Troubleshooting', icon: HelpCircle },
-//     ]
-
-//     const nextStep = () => {
-//         if (currentStep < steps.length - 1) {
-//             setCurrentStep(currentStep + 1)
-//         }
-//     }
-
-//     const prevStep = () => {
-//         if (currentStep > 0) {
-//             setCurrentStep(currentStep - 1)
-//         }
-//     }
-
-//     return (
-//         <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-//             <div className="max-w-4xl mx-auto">
-//                 <h1 className="text-4xl font-bold text-center mb-12">Interactive User  Guide</h1>
-//                 <div className="bg-white rounded-lg shadow-md p-8">
-//                     <div className="flex justify-between items-center mb-8">
-//                         {steps.map((step, index) => {
-//                             const Icon = step.icon
-//                             return (
-//                                 <motion.div
-//                                     key={index}
-//                                     className={`flex flex-col items-center ${index === currentStep ? 'text-blue-500' : 'text-gray-400'
-//                                         }`}
-//                                     animate={{ scale: index === currentStep ? 1.1 : 1 }}
-//                                 >
-//                                     <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center mb-2">
-//                                         <Icon className="w-6 h-6" />
-//                                     </div>
-//                                     <span className="text-sm text-center">{step.title}</span>
-//                                 </motion.div>
-//                             )
-//                         })}
-//                     </div>
-//                     <motion.div
-//                         key={currentStep}
-//                         initial={{ opacity: 0, x: 20 }}
-//                         animate={{ opacity: 1, x: 0 }}
-//                         exit={{ opacity: 0, x: -20 }}
-//                         transition={{ duration: 0.3 }}
-//                     >
-//                         <h2 className="text-2xl font-semibold mb-4">{steps[currentStep].title}</h2>
-//                         <p className="mb-6">
-//                             This is where you would put the content for the {steps[currentStep].title.toLowerCase()} step.
-//                             Include detailed instructions, images, or videos to guide the user through this part of your product or service.
-//                         </p>
-//                     </motion.div>
-//                     <div className="flex justify-between mt-8">
-//                         <motion.button
-//                             className="bg-gray-200 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-300 transition duration-300"
-//                             onClick={prevStep}
-//                             disabled={currentStep === 0}
-//                             whileHover={{ scale: 1.05 }}
-//                             whileTap={{ scale: 0.95 }}
-//                         >
-//                             Previous
-//                         </motion.button>
-//                         <motion.button
-//                             className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
-//                             onClick={nextStep}
-//                             disabled={currentStep === steps.length - 1}
-//                             whileHover={{ scale: 1.05 }}
-//                             whileTap={{ scale: 0.95 }}
-//                         >
-//                             {currentStep === steps.length - 1 ? 'Finish' : 'Next'}
-//                         </motion.button>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     )
-// }
-
-// Main component to showcase all layouts
-export default function HelpCenterLayouts() {
-    const [activeLayout, setActiveLayout] = useState(0)
-
-    const layouts = [
-        { name: 'Modern Grid', component: ModernGridLayout },
-        { name: 'Sidebar Navigation', component: SidebarNavigationLayout },
-        { name: 'FAQ Accordion', component: FAQAccordionLayout },
-        { name: 'Contact Form', component: ContactFormLayout },
-        // { name: 'Interactive Guide', component: InteractiveGuideLayout },
+    const steps = [
+        { title: "Welcome", content: "Welcome to our product tour! Let's explore the key features." },
+        { title: "Dashboard", content: "This is your dashboard. Here you can see an overview of your account." },
+        { title: "Projects", content: "Create and manage your projects in this section." },
+        { title: "Reports", content: "Generate detailed reports and analytics here." },
+        { title: "Settings", content: "Customize your account settings in this area." },
     ]
 
     return (
-        <div className="min-h-screen bg-gray-100">
-            <div className="bg-white shadow-md">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between items-center py-4">
-                        <h1 className="text-2xl font-bold">Help Center Layouts</h1>
-                        <div className="flex space-x-4">
-                            {layouts.map((layout, index) => (
-                                <motion.button
-                                    key={index}
-                                    className={`px-4 py-2 rounded-md ${activeLayout === index ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'
-                                        }`}
-                                    onClick={() => setActiveLayout(index)}
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    {layout.name}
-                                </motion.button>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <AnimatePresence mode="wait">
-                <motion.div
-                    key={activeLayout}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.3 }}
+        <Card className="w-full max-w-2xl mx-auto">
+            <CardHeader>
+                <CardTitle>Interactive Product Tour</CardTitle>
+                <CardDescription>Step {currentStep + 1} of {steps.length}</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <h3 className="text-xl font-semibold mb-2">{steps[currentStep].title}</h3>
+                <p>{steps[currentStep].content}</p>
+            </CardContent>
+            <CardFooter className="flex justify-between">
+
+                <Button
+                    variant="outline"
+                    onClick={() => setCurrentStep(prev => Math.max(0, prev - 1))}
+                    disabled={currentStep === 0}
                 >
-                    {layouts[activeLayout].component()}
-                </motion.div>
-            </AnimatePresence>
+                    Previous
+                </Button>
+                <Button
+                    onClick={() => setCurrentStep(prev => Math.min(steps.length - 1, prev + 1))}
+                    disabled={currentStep === steps.length - 1}
+                >
+                    {currentStep === steps.length - 1 ? "Finish" : "Next"}
+                </Button>
+            </CardFooter>
+        </Card>
+    )
+}
+
+// 8. Live Support Queue
+const LiveSupportQueue = () => {
+    const [inQueue, setInQueue] = useState(false)
+    const [queuePosition, setQueuePosition] = useState(0)
+
+    const joinQueue = () => {
+        setInQueue(true)
+        setQueuePosition(Math.floor(Math.random() * 10) + 1) // Simulate random queue position
+    }
+
+    return (
+        <Card className="w-full max-w-md mx-auto">
+            <CardHeader>
+                <CardTitle>Live Support</CardTitle>
+                <CardDescription>Get help from our support team in real-time</CardDescription>
+            </CardHeader>
+            <CardContent>
+                {inQueue ? (
+                    <div className="text-center">
+                        <p className="text-2xl font-bold mb-2">Your position in queue:</p>
+                        <p className="text-4xl font-bold text-blue-500 mb-4">{queuePosition}</p>
+                        <p>Estimated wait time: {queuePosition * 2} minutes</p>
+                    </div>
+                ) : (
+                    <p className="text-center mb-4">Click below to join the live support queue</p>
+                )}
+            </CardContent>
+            <CardFooter>
+                <Button className="w-full" onClick={joinQueue} disabled={inQueue}>
+                    {inQueue ? "In Queue" : "Join Live Support Queue"}
+                </Button>
+            </CardFooter>
+        </Card>
+    )
+}
+
+// 9. Help Center Dashboard
+const HelpCenterDashboard = () => {
+    return (
+        <Card className="w-full max-w-4xl mx-auto">
+            <CardHeader>
+                <CardTitle>Help Center Dashboard</CardTitle>
+                <CardDescription>Quick access to all support resources</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Knowledge Base</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p>Search our extensive library of help articles</p>
+                        </CardContent>
+                        <CardFooter>
+                            <Button variant="outline" className="w-full">Explore</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Video Tutorials</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p>Watch step-by-step guide videos</p>
+                        </CardContent>
+                        <CardFooter>
+                            <Button variant="outline" className="w-full">Watch</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Community Forum</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p>Connect with other users and share knowledge</p>
+                        </CardContent>
+                        <CardFooter>
+                            <Button variant="outline" className="w-full">Join</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Live Chat</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p>Get real-time assistance from our support team</p>
+                        </CardContent>
+                        <CardFooter>
+                            <Button variant="outline" className="w-full">Chat Now</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>FAQs</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p>Find quick answers to common questions</p>
+                        </CardContent>
+                        <CardFooter>
+                            <Button variant="outline" className="w-full">View FAQs</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Contact Us</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p>Reach out to our support team directly</p>
+                        </CardContent>
+                        <CardFooter>
+                            <Button variant="outline" className="w-full">Contact</Button>
+                        </CardFooter>
+                    </Card>
+                </div>
+            </CardContent>
+        </Card>
+    )
+}
+
+// 10. Contextual Help Overlay
+const ContextualHelpOverlay = () => {
+    const [activeHelp, setActiveHelp] = useState(null)
+
+    const helpItems = [
+        { id: 'dashboard', title: 'Dashboard Overview', content: 'This is your main dashboard. Here you can see an overview of your account activity and quick links to main features.' },
+        { id: 'projects', title: 'Projects Section', content: 'Manage all your projects here. You can create new projects, view project status, and access project details.' },
+        { id: 'reports', title: 'Reports Generator', content: 'Generate various reports about your account activity, project progress, and team performance.' },
+    ]
+
+    return (
+        <Card className="w-full max-w-4xl mx-auto">
+            <CardHeader>
+                <CardTitle>Contextual Help Overlay</CardTitle>
+                <CardDescription>Get help for specific areas of the application</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <div className="space-y-4">
+                    {helpItems.map((item) => (
+                        <div key={item.id} className="relative p-4 border rounded-lg">
+                            <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+                            <p className="text-gray-600">Simulated content area</p>
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                className="absolute top-2 right-2"
+                                onClick={() => setActiveHelp(item.id)}
+                            >
+                                <HelpCircle className="w-4 h-4" />
+                            </Button>
+                            {activeHelp === item.id && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -10 }}
+                                    className="absolute top-full left-0 right-0 mt-2 p-4 bg-white border rounded-lg shadow-lg z-10"
+                                >
+                                    <h4 className="font-semibold mb-2">{item.title} Help</h4>
+                                    <p>{item.content}</p>
+                                    <Button size="sm" className="mt-2" onClick={() => setActiveHelp(null)}>Close</Button>
+                                </motion.div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </CardContent>
+        </Card>
+    )
+}
+
+export default function HelpCenterLayouts() {
+    return (
+        <div className="space-y-12 p-8">
+            <h1 className="text-3xl font-bold text-center mb-8">Modern Help Center Components</h1>
+            <AIPoweredChatbot />
+            <InteractiveTroubleshooter />
+            <VideoTutorialLibrary />
+            <KnowledgeBaseSearch />
+            <CommunityForum />
+            <FeedbackAndSuggestions />
+            <InteractiveProductTour />
+            <LiveSupportQueue />
+            <HelpCenterDashboard />
+            <ContextualHelpOverlay />
         </div>
     )
 }

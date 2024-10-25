@@ -13,7 +13,7 @@ const pricingData = [
     { name: "Basic", monthlyPrice: 9, yearlyPrice: 90, features: ["1 User", "10 Projects", "5GB Storage", "Basic Support"] },
     { name: "Pro", monthlyPrice: 19, yearlyPrice: 190, features: ["5 Users", "50 Projects", "50GB Storage", "Priority Support", "Advanced Analytics"] },
     { name: "Enterprise", monthlyPrice: 49, yearlyPrice: 490, features: ["Unlimited Users", "Unlimited Projects", "1TB Storage", "24/7 Support", "Custom Integration", "Dedicated Account Manager"] },
-    { name: "Starter", monthlyPrice: 9, yearlyPrice: 90, features: ["1 User", "10 Projects", "5GB Storage", "Basic Support"] },
+
 
 ]
 

@@ -10,14 +10,14 @@ import { Badge } from '@/components/ui/badge'
 
 // Dummy data for team members
 const teamMembers = [
-    { id: 1, name: 'John Doe', role: 'CEO', image: 'https://mm.feb.uncen.ac.id/wp-content/uploads/2016/01/tutor-8.jpg' },
-    { id: 2, name: 'Jane Smith', role: 'CTO', image: 'https://mm.feb.uncen.ac.id/wp-content/uploads/2016/01/tutor-8.jpg' },
-    { id: 3, name: 'Mike Johnson', role: 'Designer', image: 'https://mm.feb.uncen.ac.id/wp-content/uploads/2016/01/tutor-8.jpg' },
-    { id: 4, name: 'Emily Brown', role: 'Developer', image: 'https://mm.feb.uncen.ac.id/wp-content/uploads/2016/01/tutor-8.jpg' },
-    { id: 5, name: 'Alex Lee', role: 'Marketing', image: 'https://mm.feb.uncen.ac.id/wp-content/uploads/2016/01/tutor-8.jpg' },
-    { id: 6, name: 'Sarah Wilson', role: 'HR Manager', image: 'https://mm.feb.uncen.ac.id/wp-content/uploads/2016/01/tutor-8.jpg' },
-    { id: 7, name: 'Tom Harris', role: 'Product Manager', image: 'https://mm.feb.uncen.ac.id/wp-content/uploads/2016/01/tutor-8.jpg' },
-    { id: 8, name: 'Lisa Chen', role: 'UX Researcher', image: 'https://mm.feb.uncen.ac.id/wp-content/uploads/2016/01/tutor-8.jpg' },
+    { id: 1, name: 'John Doe', role: 'CEO', image: 'https://static.vecteezy.com/ti/gratis-vektor/p1/4607791-man-face-emotive-icon-smiling-male-character-in-blue-shirt-flat-vector-illustration-isolated-on-white-happy-human-psychological-portrait-positive-emotions-user-avatar-for-app-webdesign-vektor.jpg' },
+    { id: 2, name: 'Jane Smith', role: 'CTO', image: 'https://static.vecteezy.com/ti/gratis-vektor/p1/4607791-man-face-emotive-icon-smiling-male-character-in-blue-shirt-flat-vector-illustration-isolated-on-white-happy-human-psychological-portrait-positive-emotions-user-avatar-for-app-webdesign-vektor.jpg' },
+    { id: 3, name: 'Mike Johnson', role: 'Designer', image: 'https://static.vecteezy.com/ti/gratis-vektor/p1/4607791-man-face-emotive-icon-smiling-male-character-in-blue-shirt-flat-vector-illustration-isolated-on-white-happy-human-psychological-portrait-positive-emotions-user-avatar-for-app-webdesign-vektor.jpg' },
+    { id: 4, name: 'Emily Brown', role: 'Developer', image: 'https://static.vecteezy.com/ti/gratis-vektor/p1/4607791-man-face-emotive-icon-smiling-male-character-in-blue-shirt-flat-vector-illustration-isolated-on-white-happy-human-psychological-portrait-positive-emotions-user-avatar-for-app-webdesign-vektor.jpg' },
+    { id: 5, name: 'Alex Lee', role: 'Marketing', image: 'https://static.vecteezy.com/ti/gratis-vektor/p1/4607791-man-face-emotive-icon-smiling-male-character-in-blue-shirt-flat-vector-illustration-isolated-on-white-happy-human-psychological-portrait-positive-emotions-user-avatar-for-app-webdesign-vektor.jpg' },
+    { id: 6, name: 'Sarah Wilson', role: 'HR Manager', image: 'https://static.vecteezy.com/ti/gratis-vektor/p1/4607791-man-face-emotive-icon-smiling-male-character-in-blue-shirt-flat-vector-illustration-isolated-on-white-happy-human-psychological-portrait-positive-emotions-user-avatar-for-app-webdesign-vektor.jpg' },
+    { id: 7, name: 'Tom Harris', role: 'Product Manager', image: 'https://static.vecteezy.com/ti/gratis-vektor/p1/4607791-man-face-emotive-icon-smiling-male-character-in-blue-shirt-flat-vector-illustration-isolated-on-white-happy-human-psychological-portrait-positive-emotions-user-avatar-for-app-webdesign-vektor.jpg' },
+    { id: 8, name: 'Lisa Chen', role: 'UX Researcher', image: 'https://static.vecteezy.com/ti/gratis-vektor/p1/4607791-man-face-emotive-icon-smiling-male-character-in-blue-shirt-flat-vector-illustration-isolated-on-white-happy-human-psychological-portrait-positive-emotions-user-avatar-for-app-webdesign-vektor.jpg' },
 ]
 
 const LayoutSelector = ({ currentLayout, setCurrentLayout }) => {

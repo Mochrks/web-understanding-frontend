@@ -6,16 +6,16 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 // Dummy data for gallery items
 const galleryItems = [
-    { id: 1, src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOiyxpdZmSQEY0hrTegdTNxnoJZHad8oikNQ&s', category: 'nature', title: 'Serene Landscape' },
-    { id: 2, src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6_4WaU4YO81vxfKv9yShJw6M2JEkvtmwJBfh_dzdeZ1prpOQwJjW17gwppn6aY62WB0Y&usqp=CAU', category: 'portrait', title: 'Urban Portrait' },
-    { id: 3, src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOiyxpdZmSQEY0hrTegdTNxnoJZHad8oikNQ&s', category: 'architecture', title: 'Modern Building' },
-    { id: 4, src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6_4WaU4YO81vxfKv9yShJw6M2JEkvtmwJBfh_dzdeZ1prpOQwJjW17gwppn6aY62WB0Y&usqp=CAU', category: 'nature', title: 'Mountain Vista' },
-    { id: 5, src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOiyxpdZmSQEY0hrTegdTNxnoJZHad8oikNQ&s', category: 'portrait', title: 'Candid Moment' },
+    { id: 1, src: 'https://e0.pxfuel.com/wallpapers/391/969/desktop-wallpaper-switzerland-best-country-in-the-world.jpg', category: 'nature', title: 'Serene Landscape' },
+    { id: 2, src: 'https://plus.unsplash.com/premium_photo-1661962627529-73e5d332d04a?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c3dpdHplcmxhbmR8ZW58MHx8MHx8fDA%3D', category: 'portrait', title: 'Urban Portrait' },
+    { id: 3, src: 'https://e0.pxfuel.com/wallpapers/391/969/desktop-wallpaper-switzerland-best-country-in-the-world.jpg', category: 'architecture', title: 'Modern Building' },
+    { id: 4, src: 'https://plus.unsplash.com/premium_photo-1661962627529-73e5d332d04a?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c3dpdHplcmxhbmR8ZW58MHx8MHx8fDA%3D', category: 'nature', title: 'Mountain Vista' },
+    { id: 5, src: 'https://thumbs.dreamstime.com/b/exciting-autumn-view-suburb-stansstad-city-mountaines-fog-poppular-travel-destination-swiss-alps-location-canton-290064733.jpg', category: 'portrait', title: 'Candid Moment' },
     { id: 6, src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6_4WaU4YO81vxfKv9yShJw6M2JEkvtmwJBfh_dzdeZ1prpOQwJjW17gwppn6aY62WB0Y&usqp=CAU', category: 'architecture', title: 'Historic Facade' },
-    { id: 7, src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOiyxpdZmSQEY0hrTegdTNxnoJZHad8oikNQ&s', category: 'nature', title: 'Coastal Sunset' },
-    { id: 8, src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6_4WaU4YO81vxfKv9yShJw6M2JEkvtmwJBfh_dzdeZ1prpOQwJjW17gwppn6aY62WB0Y&usqp=CAU', category: 'portrait', title: 'Artistic Silhouette' },
-    { id: 9, src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOiyxpdZmSQEY0hrTegdTNxnoJZHad8oikNQ&s', category: 'architecture', title: 'Futuristic Design' },
-    { id: 10, src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6_4WaU4YO81vxfKv9yShJw6M2JEkvtmwJBfh_dzdeZ1prpOQwJjW17gwppn6aY62WB0Y&usqp=CAU', category: 'nature', title: 'Forest Mist' },
+    { id: 7, src: 'https://thumbs.dreamstime.com/b/exciting-autumn-view-suburb-stansstad-city-mountaines-fog-poppular-travel-destination-swiss-alps-location-canton-290064733.jpg', category: 'nature', title: 'Coastal Sunset' },
+    { id: 8, src: 'https://media.istockphoto.com/id/1855074892/photo/lauterbrunnen-switzerland-during-autumn.jpg?s=612x612&w=0&k=20&c=d27-9xXCuR7YApjXqMoDxsaMI309o55bjHkxCVnF4o4=', category: 'portrait', title: 'Artistic Silhouette' },
+    { id: 9, src: 'https://thumbs.dreamstime.com/b/exciting-autumn-view-suburb-stansstad-city-mountaines-fog-poppular-travel-destination-swiss-alps-location-canton-290064733.jpg', category: 'architecture', title: 'Futuristic Design' },
+    { id: 10, src: 'https://media.istockphoto.com/id/1855074892/photo/lauterbrunnen-switzerland-during-autumn.jpg?s=612x612&w=0&k=20&c=d27-9xXCuR7YApjXqMoDxsaMI309o55bjHkxCVnF4o4=', category: 'nature', title: 'Forest Mist' },
 ]
 
 // Component 1: Masonry Grid Gallery with Lightbox
@@ -29,7 +29,7 @@ const MasonryGallery = () => {
                 {galleryItems.map((item) => (
                     <motion.div
                         key={item.id}
-                        className="mb-4 cursor-pointer"
+                        className="mb-4 h-[200px] w-[250px] cursor-pointer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => setSelectedImage(item)}
@@ -100,14 +100,7 @@ const FullscreenSlideshow = () => {
                 >
                     <img src={item.src} alt={item.title} className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-black bg-opacity-30" />
-                    <motion.h3
-                        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white text-3xl font-bold"
-                        initial={{ y: 50, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                    >
-                        {item.title}
-                    </motion.h3>
+
                 </motion.div>
             ))}
             <button

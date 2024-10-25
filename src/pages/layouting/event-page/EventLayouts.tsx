@@ -3,6 +3,11 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Calendar, Clock, MapPin, Users, ChevronDown, ChevronUp } from 'lucide-react'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Input } from '@/components/ui/input'
 
 // Dummy data for event items
 const eventItems = [
@@ -63,7 +68,7 @@ const eventItems = [
 // Component 1: Modern Card Layout
 const ModernCardLayout = () => {
     return (
-        <div className="bg-gradient-to-br from-purple-100 to-indigo-100 min-h-screen py-12">
+        <div className="bg-gradient-to-br from-purple-100 to-indigo-100  py-12">
             <div className="container mx-auto px-4">
                 <h1 className="text-4xl font-bold text-center mb-12">Upcoming Events</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -107,7 +112,7 @@ const ModernCardLayout = () => {
 // Component 2: Timeline Layout
 const TimelineLayout = () => {
     return (
-        <div className="bg-gray-100 min-h-screen py-12">
+        <div className="bg-gray-100  py-12">
             <div className="container mx-auto px-4">
                 <h1 className="text-4xl font-bold text-center mb-12">Event Timeline</h1>
                 <div className="relative">
@@ -147,7 +152,7 @@ const InteractiveScheduleLayout = () => {
     }
 
     return (
-        <div className="bg-gradient-to-r from-blue-100 to-teal-100 min-h-screen py-12">
+        <div className="bg-gradient-to-r from-blue-100 to-blue-200 min-h-screen py-12">
             <div className="container mx-auto px-4">
                 <h1 className="text-4xl font-bold text-center mb-12">Event Schedule</h1>
                 <div className="flex flex-col lg:flex-row gap-8">
@@ -260,7 +265,7 @@ const ImmersiveHeroLayout = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-white py-16">
+            <div className="bg-slate-300 py-16">
                 <div className="container mx-auto px-4">
                     <div className="flex justify-center mb-8">
                         <button
@@ -329,9 +334,9 @@ const MultiEventDashboard = () => {
     const [selectedEvent, setSelectedEvent] = useState(null)
 
     return (
-        <div className="bg-gray-100 min-h-screen py-12">
+        <div className="bg-blue-500  py-12">
             <div className="container mx-auto px-4">
-                <h1 className="text-4xl font-bold text-center mb-12">Event Dashboard</h1>
+                <h1 className="text-4xl font-bold text-center mb-12 text-white">Event Dashboard</h1>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div className="md:col-span-1">
                         <div className="bg-white rounded-lg shadow-lg p-6">
@@ -403,6 +408,393 @@ const MultiEventDashboard = () => {
     )
 }
 
+
+// new component
+
+const events = [
+    {
+        id: 1,
+        title: "AI & Machine Learning Summit",
+        date: "2024-08-15",
+        time: "09:00 AM - 06:00 PM",
+        location: "Tech Hub, Silicon Valley",
+        description: "Explore the latest advancements in AI and machine learning with industry experts.",
+        image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        category: "Technology",
+        attendees: 500,
+        speakers: [
+            { name: "Dr. Jane Smith", role: "AI Research Lead", avatar: "https://i.pravatar.cc/150?img=1" },
+            { name: "John Doe", role: "ML Engineer", avatar: "https://i.pravatar.cc/150?img=2" },
+        ],
+        sessions: [
+            { title: "Opening Keynote", time: "09:00 AM", speaker: "Dr. Jane Smith" },
+            { title: "Future of Natural Language Processing", time: "10:30 AM", speaker: "John Doe" },
+            { title: "AI Ethics Panel", time: "02:00 PM", speaker: "Panel Discussion" },
+        ]
+    },
+    {
+        id: 2,
+        title: "Sustainable Energy Conference",
+        date: "2024-09-22",
+        time: "10:00 AM - 05:00 PM",
+        location: "Green Convention Center, Berlin",
+        description: "Join leaders in sustainable energy to discuss innovative solutions for a greener future.",
+        image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        category: "Environment",
+        attendees: 350,
+        speakers: [
+            { name: "Emma Green", role: "Renewable Energy Expert", avatar: "https://i.pravatar.cc/150?img=3" },
+            { name: "Michael Brown", role: "Climate Scientist", avatar: "https://i.pravatar.cc/150?img=4" },
+        ],
+        sessions: [
+            { title: "The Future of Solar Energy", time: "10:00 AM", speaker: "Emma Green" },
+            { title: "Innovations in Wind Power", time: "01:30 PM", speaker: "Michael Brown" },
+            { title: "Panel: Policy and Sustainable Energy", time: "03:30 PM", speaker: "Panel Discussion" },
+        ]
+    },
+    {
+        id: 3,
+        title: "Global Finance Forum",
+        date: "2024-10-05",
+        time: "08:30 AM - 04:30 PM",
+        location: "World Trade Center, New York",
+        description: "Discuss the future of global finance, cryptocurrencies, and economic trends.",
+        image: "https://images.unsplash.com/photo-1491156855053-9cdff72c7f85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        category: "Finance",
+        attendees: 600,
+        speakers: [
+            { name: "Sarah Johnson", role: "Fintech Innovator", avatar: "https://i.pravatar.cc/150?img=5" },
+            { name: "Robert Chang", role: "Cryptocurrency Expert", avatar: "https://i.pravatar.cc/150?img=6" },
+        ],
+        sessions: [
+            { title: "The Rise of Decentralized Finance", time: "09:00 AM", speaker: "Sarah Johnson" },
+            { title: "Global Economic Outlook", time: "11:00 AM", speaker: "Robert Chang" },
+            { title: "Blockchain in Banking", time: "02:00 PM", speaker: "Panel Discussion" },
+        ]
+    },
+]
+
+// Component 1: Interactive Event Map
+const InteractiveEventMap = () => {
+    const [selectedEvent, setSelectedEvent] = useState(null)
+
+    return (
+        <div className="bg-gradient-to-br from-purple-900 to-indigo-100  py-12">
+            <div className="container mx-auto px-4">
+                <h1 className="text-4xl font-bold text-center mb-12 text-white">Event Map</h1>
+                <div className="flex flex-col lg:flex-row gap-8">
+                    <div className="lg:w-2/3">
+                        <div className="bg-white rounded-lg shadow-lg p-6 h-[600px] relative">
+                            <img src="/placeholder.svg?height=600&width=800" alt="Event Map" className="w-full h-full object-cover rounded-lg" />
+                            {events.map((event, index) => (
+                                <motion.div
+                                    key={event.id}
+                                    className="absolute cursor-pointer"
+                                    style={{ top: `${20 + index * 30}%`, left: `${20 + index * 30}%` }}
+                                    whileHover={{ scale: 1.1 }}
+                                    onClick={() => setSelectedEvent(event)}
+                                >
+                                    <div className="bg-white rounded-full p-2 shadow-lg">
+                                        <MapPin className="w-6 h-6 text-indigo-500" />
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="lg:w-1/3">
+                        <AnimatePresence mode="wait">
+                            {selectedEvent ? (
+                                <motion.div
+                                    key={selectedEvent.id}
+                                    className="bg-white rounded-lg shadow-lg p-6"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -20 }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    <h2 className="text-2xl font-semibold mb-4">{selectedEvent.title}</h2>
+                                    <div className="flex items-center text-gray-600 mb-2">
+                                        <Calendar className="w-4 h-4 mr-2" />
+                                        <span>{selectedEvent.date}</span>
+                                    </div>
+                                    <div className="flex items-center text-gray-600 mb-2">
+                                        <Clock className="w-4 h-4 mr-2" />
+                                        <span>{selectedEvent.time}</span>
+                                    </div>
+                                    <div className="flex items-center text-gray-600 mb-4">
+                                        <MapPin className="w-4 h-4 mr-2" />
+                                        <span>{selectedEvent.location}</span>
+                                    </div>
+                                    <p className="text-gray-700 mb-4">{selectedEvent.description}</p>
+                                    <Button className="w-full">Register Now</Button>
+                                </motion.div>
+                            ) : (
+                                <motion.div
+                                    className="bg-white rounded-lg shadow-lg p-6 flex items-center justify-center h-full"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                >
+                                    <p className="text-xl text-gray-500">Select an event on the map</p>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+// Component 2: Event Countdown Timer
+const EventCountdownTimer = () => {
+    const [timeLeft, setTimeLeft] = useState({ days: 30, hours: 12, minutes: 45, seconds: 0 })
+
+    // In a real application, you'd use useEffect to update the timer
+    // For this example, we'll just use static data
+
+    return (
+        <div className="bg-gradient-to-r from-pink-100 to-purple-100 py-12">
+            <div className="container mx-auto px-4">
+                <h1 className="text-4xl font-bold text-center mb-12">Next Big Event</h1>
+                <Card className="max-w-2xl mx-auto">
+                    <CardHeader>
+                        <CardTitle>{events[0].title}</CardTitle>
+                        <CardDescription>{events[0].description}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="flex justify-between items-center">
+                            {Object.entries(timeLeft).map(([unit, value]) => (
+                                <div key={unit} className="text-center">
+                                    <div className="text-4xl font-bold">{value}</div>
+                                    <div className="text-sm text-gray-500">{unit}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </CardContent>
+                    <CardFooter className="flex justify-between">
+                        <Button variant="outline">Learn More</Button>
+                        <Button>Register Now</Button>
+                    </CardFooter>
+                </Card>
+            </div>
+        </div>
+    )
+}
+
+// Component 3: Event Search and Filter
+const EventSearchAndFilter = () => {
+    const [searchTerm, setSearchTerm] = useState("")
+    const [selectedCategory, setSelectedCategory] = useState("All")
+
+    const categories = ["All", "Technology", "Environment", "Finance"]
+
+    const filteredEvents = events.filter(event =>
+        (selectedCategory === "All" || event.category === selectedCategory) &&
+        event.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+
+    return (
+        <div className="bg-gradient-to-br from-green-100 to-blue-100  py-12">
+            <div className="container mx-auto px-4">
+                <h1 className="text-4xl font-bold text-center mb-12">Find Your Next Event</h1>
+                <div className="flex flex-col md:flex-row gap-4 mb-8">
+                    <div className="flex-grow">
+                        <Input
+                            type="text"
+                            placeholder="Search events..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="w-full"
+                        />
+                    </div>
+                    <div className="flex gap-2">
+                        {categories.map(category => (
+                            <Button
+                                key={category}
+                                variant={selectedCategory === category ? "default" : "outline"}
+                                onClick={() => setSelectedCategory(category)}
+                            >
+                                {category}
+                            </Button>
+                        ))}
+                    </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {filteredEvents.map(event => (
+                        <Card key={event.id}>
+                            <CardHeader>
+                                <img src={event.image} alt={event.title} className="w-full h-48 object-cover rounded-t-lg" />
+                            </CardHeader>
+                            <CardContent>
+                                <CardTitle>{event.title}</CardTitle>
+                                <CardDescription>{event.description}</CardDescription>
+                                <div className="flex items-center mt-4">
+                                    <Calendar className="w-4 h-4 mr-2" />
+                                    <span className="text-sm text-gray-500">{event.date}</span>
+                                </div>
+                                <div className="flex items-center mt-2">
+                                    <MapPin className="w-4 h-4 mr-2" />
+                                    <span className="text-sm text-gray-500">{event.location}</span>
+                                </div>
+                            </CardContent>
+                            <CardFooter>
+                                <Button className="w-full">View Details</Button>
+                            </CardFooter>
+                        </Card>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
+}
+
+// Component 4: Event Agenda Builder
+const EventAgendaBuilder = () => {
+    const [selectedSessions, setSelectedSessions] = useState([])
+
+    const toggleSession = (session) => {
+        setSelectedSessions(prev =>
+            prev.some(s => s.title === session.title)
+                ? prev.filter(s => s.title !== session.title)
+                : [...prev, session]
+        )
+    }
+
+    return (
+        <div className="bg-gradient-to-br from-yellow-100 to-orange-100  py-12">
+            <div className="container mx-auto px-4">
+                <h1 className="text-4xl font-bold text-center mb-12">Build Your Agenda</h1>
+                <div className="flex flex-col lg:flex-row gap-8">
+                    <div className="lg:w-2/3">
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>{events[0].title} Sessions</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                {events[0].sessions.map((session, index) => (
+                                    <div key={index} className="flex items-center justify-between p-4 border-b last:border-b-0">
+                                        <div>
+                                            <h3 className="font-semibold">{session.title}</h3>
+                                            <p className="text-sm text-gray-500">{session.time} - {session.speaker}</p>
+                                        </div>
+                                        <Button
+                                            variant={selectedSessions.some(s => s.title === session.title) ? "default" : "outline"}
+                                            onClick={() => toggleSession(session)}
+                                        >
+                                            {selectedSessions.some(s => s.title === session.title) ? "Remove" : "Add"}
+                                        </Button>
+                                    </div>
+                                ))}
+                            </CardContent>
+                        </Card>
+                    </div>
+                    <div className="lg:w-1/3">
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Your Agenda</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                {selectedSessions.length > 0 ? (
+
+                                    selectedSessions.map((session, index) => (
+                                        <div key={index} className="mb-4 p-4 bg-gray-100 rounded-lg">
+                                            <h3 className="font-semibold">{session.title}</h3>
+                                            <p className="text-sm text-gray-500">{session.time}</p>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p className="text-gray-500">No sessions added yet</p>
+                                )}
+                            </CardContent>
+                            <CardFooter>
+                                <Button className="w-full" disabled={selectedSessions.length === 0}>
+                                    Save Agenda
+                                </Button>
+                            </CardFooter>
+                        </Card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+// Component 5: Event Networking Hub
+const EventNetworkingHub = () => {
+    const [activeTab, setActiveTab] = useState("attendees")
+
+    const attendees = [
+        { name: "Alice Johnson", role: "Software Engineer", company: "Tech Co", avatar: "https://i.pravatar.cc/150?img=1" },
+        { name: "Bob Smith", role: "Product Manager", company: "Innovate Inc", avatar: "https://i.pravatar.cc/150?img=2" },
+        { name: "Carol Williams", role: "Data Scientist", company: "AI Solutions", avatar: "https://i.pravatar.cc/150?img=3" },
+    ]
+
+    return (
+        <div className="bg-gradient-to-br from-blue-100 to-purple-100  py-12">
+            <div className="container mx-auto px-4">
+                <h1 className="text-4xl font-bold text-center mb-12">Event Networking Hub</h1>
+                <Card className="max-w-4xl mx-auto">
+                    <CardHeader>
+                        <Tabs defaultValue="attendees" className="w-full">
+                            <TabsList className="grid w-full grid-cols-3">
+                                <TabsTrigger value="attendees" onClick={() => setActiveTab("attendees")}>Attendees</TabsTrigger>
+                                <TabsTrigger value="schedule" onClick={() => setActiveTab("schedule")}>Schedule</TabsTrigger>
+                                <TabsTrigger value="messages" onClick={() => setActiveTab("messages")}>Messages</TabsTrigger>
+                            </TabsList>
+                        </Tabs>
+                    </CardHeader>
+                    <CardContent>
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={activeTab}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                {activeTab === "attendees" && (
+                                    <div className="space-y-4">
+                                        {attendees.map((attendee, index) => (
+                                            <div key={index} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+                                                <Avatar>
+                                                    <AvatarImage src={attendee.avatar} />
+                                                    <AvatarFallback>{attendee.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                                                </Avatar>
+                                                <div>
+                                                    <h3 className="font-semibold">{attendee.name}</h3>
+                                                    <p className="text-sm text-gray-500">{attendee.role} at {attendee.company}</p>
+                                                </div>
+                                                <Button variant="outline" className="ml-auto">Connect</Button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                                {activeTab === "schedule" && (
+                                    <div className="space-y-4">
+                                        {events[0].sessions.map((session, index) => (
+                                            <div key={index} className="p-4 bg-gray-50 rounded-lg">
+                                                <h3 className="font-semibold">{session.title}</h3>
+                                                <p className="text-sm text-gray-500">{session.time} - {session.speaker}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                                {activeTab === "messages" && (
+                                    <div className="text-center py-8">
+                                        <p className="text-gray-500">No messages yet</p>
+                                        <Button className="mt-4">Start a Conversation</Button>
+                                    </div>
+                                )}
+                            </motion.div>
+                        </AnimatePresence>
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
+    )
+}
+
 export default function EventLayouts() {
     return (
         <div>
@@ -411,6 +803,11 @@ export default function EventLayouts() {
             <InteractiveScheduleLayout />
             <ImmersiveHeroLayout />
             <MultiEventDashboard />
+            <InteractiveEventMap />
+            <EventCountdownTimer />
+            <EventSearchAndFilter />
+            <EventAgendaBuilder />
+            <EventNetworkingHub />
         </div>
     )
 }
