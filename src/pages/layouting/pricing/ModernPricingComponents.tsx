@@ -473,52 +473,52 @@ export default function ModernPricingComponents() {
             </div>
             <div className="container mx-auto py-8 space-y-12">
                 <section>
-                    <h2 className="text-2xl font-bold mb-4">1. Toggle Pricing Cards</h2>
+                    <h2 className="text-2xl font-bold mb-4">Toggle Pricing Cards</h2>
                     <TogglePricingCards />
                 </section>
 
                 <section>
-                    <h2 className="text-2xl font-bold mb-4">2. Pricing Table</h2>
+                    <h2 className="text-2xl font-bold mb-4">Pricing Table</h2>
                     <PricingTable />
                 </section>
 
                 <section>
-                    <h2 className="text-2xl font-bold mb-4">3. Pricing Slider</h2>
+                    <h2 className="text-2xl font-bold mb-4">Pricing Slider</h2>
                     <PricingSlider />
                 </section>
 
                 <section>
-                    <h2 className="text-2xl font-bold mb-4">4. Animated Pricing Cards</h2>
+                    <h2 className="text-2xl font-bold mb-4">Animated Pricing Cards</h2>
                     <AnimatedPricingCards />
                 </section>
 
                 <section>
-                    <h2 className="text-2xl font-bold mb-4">5. Expandable Pricing Comparison</h2>
+                    <h2 className="text-2xl font-bold mb-4">Expandable Pricing Comparison</h2>
                     <ExpandablePricingComparison />
                 </section>
 
                 <section>
-                    <h2 className="text-3xl font-bold mb-8">6. Interactive 3D Pricing Cards</h2>
+                    <h2 className="text-3xl font-bold mb-8">Interactive 3D Pricing Cards</h2>
                     <Interactive3DPricingCards />
                 </section>
 
                 <section>
-                    <h2 className="text-3xl font-bold mb-8">7. Pricing Timeline</h2>
+                    <h2 className="text-3xl font-bold mb-8">Pricing Timeline</h2>
                     <PricingTimeline />
                 </section>
 
                 <section>
-                    <h2 className="text-3xl font-bold mb-8">8. Pricing Comparison Slider</h2>
+                    <h2 className="text-3xl font-bold mb-8">Pricing Comparison Slider</h2>
                     <PricingComparisonSlider />
                 </section>
 
                 <section>
-                    <h2 className="text-3xl font-bold mb-8">9. Animated Feature Highlight</h2>
+                    <h2 className="text-3xl font-bold mb-8">Animated Feature Highlight</h2>
                     <AnimatedFeatureHighlight />
                 </section>
 
                 <section>
-                    <h2 className="text-3xl font-bold mb-8">10. Day/Night Theme Pricing Toggle</h2>
+                    <h2 className="text-3xl font-bold mb-8">Day/Night Theme Pricing Toggle</h2>
                     <DayNightThemePricing />
                 </section>
             </div>

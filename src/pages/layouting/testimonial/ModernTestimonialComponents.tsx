@@ -334,52 +334,52 @@ export default function ModernTestimonialComponents() {
     return (
         <div className="container mx-auto py-12 space-y-24">
             <section>
-                <h2 className="text-3xl font-bold mb-8 text-center">1. Modern Carousel Testimonial</h2>
+                <h2 className="text-3xl font-bold mb-8 text-center">Modern Carousel Testimonial</h2>
                 <ModernCarouselTestimonial />
             </section>
 
             <section>
-                <h2 className="text-3xl font-bold mb-8 text-center">2. Grid Testimonial</h2>
+                <h2 className="text-3xl font-bold mb-8 text-center">Grid Testimonial</h2>
                 <GridTestimonial />
             </section>
 
             <section>
-                <h2 className="text-3xl font-bold mb-8 text-center">3. Minimalist Card Testimonial</h2>
+                <h2 className="text-3xl font-bold mb-8 text-center">Minimalist Card Testimonial</h2>
                 <MinimalistCardTestimonial />
             </section>
 
             <section>
-                <h2 className="text-3xl font-bold mb-8 text-center">4. Animated Quote Testimonial</h2>
+                <h2 className="text-3xl font-bold mb-8 text-center">Animated Quote Testimonial</h2>
                 <AnimatedQuoteTestimonial />
             </section>
 
             <section>
-                <h2 className="text-3xl font-bold mb-8 text-center">5. Horizontal Scroll Testimonial</h2>
+                <h2 className="text-3xl font-bold mb-8 text-center">Horizontal Scroll Testimonial</h2>
                 <HorizontalScrollTestimonial />
             </section>
 
             <section>
-                <h2 className="text-3xl font-bold mb-8 text-center">6. Fading Testimonial</h2>
+                <h2 className="text-3xl font-bold mb-8 text-center">Fading Testimonial</h2>
                 <FadingTestimonial />
             </section>
 
             <section>
-                <h2 className="text-3xl font-bold mb-8 text-center">7. Video Testimonial (Simulated)</h2>
+                <h2 className="text-3xl font-bold mb-8 text-center">Video Testimonial (Simulated)</h2>
                 <VideoTestimonial />
             </section>
 
             <section>
-                <h2 className="text-3xl font-bold mb-8 text-center">8. Testimonial with Background Pattern</h2>
+                <h2 className="text-3xl font-bold mb-8 text-center">Testimonial with Background Pattern</h2>
                 <PatternTestimonial />
             </section>
 
             <section>
-                <h2 className="text-3xl font-bold mb-8 text-center">9. Testimonial with Hover Effect</h2>
+                <h2 className="text-3xl font-bold mb-8 text-center">Testimonial with Hover Effect</h2>
                 <HoverEffectTestimonial />
             </section>
 
             <section>
-                <h2 className="text-3xl font-bold mb-8 text-center">10. Testimonial with Read More</h2>
+                <h2 className="text-3xl font-bold mb-8 text-center">Testimonial with Read More</h2>
                 <ReadMoreTestimonial />
             </section>
         </div>

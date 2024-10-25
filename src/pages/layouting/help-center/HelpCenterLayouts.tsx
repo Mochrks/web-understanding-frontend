@@ -5,8 +5,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 
@@ -19,13 +17,6 @@ const helpArticles = [
     { id: 5, title: 'Advanced Features Tutorial', category: 'Features', content: 'Learn how to use our advanced features...' },
 ]
 
-const faqItems = [
-    { id: 1, question: 'How do I create an account?', answer: 'To create an account, click on the "Sign Up" button in the top right corner of our homepage...' },
-    { id: 2, question: 'What payment methods do you accept?', answer: 'We accept various payment methods including credit/debit cards (Visa, MasterCard, American Express), PayPal, and bank transfers...' },
-    { id: 3, question: 'How can I reset my password?', answer: 'To reset your password, click on the "Forgot Password" link on the login page...' },
-    { id: 4, question: 'What is your refund policy?', answer: 'We offer a 30-day money-back guarantee on all our products...' },
-    { id: 5, question: 'How do I contact customer support?', answer: 'You can contact our customer support team via email at support@example.com or by phone at +1 (800) 123-4567...' },
-]
 
 // 1. AI-Powered Chatbot
 const AIPoweredChatbot = () => {
@@ -46,7 +37,7 @@ const AIPoweredChatbot = () => {
     }
 
     return (
-        <Card className="w-full max-w-xl mx-auto">
+        <Card className="w-full  mx-auto">
             <CardHeader>
                 <CardTitle>AI Assistant</CardTitle>
                 <CardDescription>Get instant help from our AI chatbot</CardDescription>
@@ -98,7 +89,7 @@ const InteractiveTroubleshooter = () => {
     }
 
     return (
-        <Card className="w-full max-w-md mx-auto">
+        <Card className="w-full mx-auto mt-5 p-5">
             <CardHeader>
                 <CardTitle>Interactive Troubleshooter</CardTitle>
                 <CardDescription>Let's solve your problem step by step</CardDescription>
@@ -131,14 +122,14 @@ const InteractiveTroubleshooter = () => {
 // 3. Video Tutorial Library
 const VideoTutorialLibrary = () => {
     const tutorials = [
-        { id: 1, title: "Getting Started", duration: "5:30", thumbnail: "/placeholder.svg?height=120&width=200" },
-        { id: 2, title: "Advanced Features", duration: "10:15", thumbnail: "/placeholder.svg?height=120&width=200" },
-        { id: 3, title: "Troubleshooting Guide", duration: "7:45", thumbnail: "/placeholder.svg?height=120&width=200" },
-        { id: 4, title: "Tips and Tricks", duration: "8:20", thumbnail: "/placeholder.svg?height=120&width=200" },
+        { id: 1, title: "Getting Started", duration: "5:30", thumbnail: "https://img.freepik.com/free-psd/education-template-design_23-2151095367.jpg" },
+        { id: 2, title: "Advanced Features", duration: "10:15", thumbnail: "https://img.freepik.com/free-psd/education-template-design_23-2151095367.jpg" },
+        { id: 3, title: "Troubleshooting Guide", duration: "7:45", thumbnail: "https://img.freepik.com/free-psd/education-template-design_23-2151095367.jpg" },
+        { id: 4, title: "Tips and Tricks", duration: "8:20", thumbnail: "https://img.freepik.com/free-psd/education-template-design_23-2151095367.jpg" },
     ]
 
     return (
-        <Card className="w-full max-w-3xl mx-auto">
+        <Card className="w-full  mx-auto mt-5 p-5 ">
             <CardHeader>
                 <CardTitle>Video Tutorial Library</CardTitle>
                 <CardDescription>Learn through our comprehensive video guides</CardDescription>
@@ -178,7 +169,7 @@ const KnowledgeBaseSearch = () => {
     }
 
     return (
-        <Card className="w-full max-w-3xl mx-auto">
+        <Card className="w-full mt-5 p-5  mx-auto">
             <CardHeader>
                 <CardTitle>Knowledge Base</CardTitle>
                 <CardDescription>Search our extensive knowledge base for answers</CardDescription>
@@ -223,7 +214,7 @@ const CommunityForum = () => {
     ]
 
     return (
-        <Card className="w-full max-w-3xl mx-auto">
+        <Card className="w-full mt-5 p-5 mx-auto">
             <CardHeader>
                 <CardTitle>Community Forum</CardTitle>
                 <CardDescription>Connect with other users and share knowledge</CardDescription>
@@ -266,7 +257,7 @@ const FeedbackAndSuggestions = () => {
     }
 
     return (
-        <Card className="w-full max-w-md mx-auto">
+        <Card className="w-full p-5 mt-5  mx-auto">
             <CardHeader>
                 <CardTitle>Feedback and Suggestions</CardTitle>
                 <CardDescription>Help us improve our product</CardDescription>
@@ -299,7 +290,7 @@ const InteractiveProductTour = () => {
     ]
 
     return (
-        <Card className="w-full max-w-2xl mx-auto">
+        <Card className="w-full p-5 mt-5 mx-auto">
             <CardHeader>
                 <CardTitle>Interactive Product Tour</CardTitle>
                 <CardDescription>Step {currentStep + 1} of {steps.length}</CardDescription>
@@ -339,7 +330,7 @@ const LiveSupportQueue = () => {
     }
 
     return (
-        <Card className="w-full max-w-md mx-auto">
+        <Card className="w-full mt-5 p-5 mx-auto">
             <CardHeader>
                 <CardTitle>Live Support</CardTitle>
                 <CardDescription>Get help from our support team in real-time</CardDescription>
@@ -367,7 +358,7 @@ const LiveSupportQueue = () => {
 // 9. Help Center Dashboard
 const HelpCenterDashboard = () => {
     return (
-        <Card className="w-full max-w-4xl mx-auto">
+        <Card className="w-full p-5 mt-5 mx-auto">
             <CardHeader>
                 <CardTitle>Help Center Dashboard</CardTitle>
                 <CardDescription>Quick access to all support resources</CardDescription>
@@ -457,7 +448,7 @@ const ContextualHelpOverlay = () => {
     ]
 
     return (
-        <Card className="w-full max-w-4xl mx-auto">
+        <Card className="w-full mt-5 p-5 mx-auto">
             <CardHeader>
                 <CardTitle>Contextual Help Overlay</CardTitle>
                 <CardDescription>Get help for specific areas of the application</CardDescription>
@@ -481,7 +472,7 @@ const ContextualHelpOverlay = () => {
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -10 }}
-                                    className="absolute top-full left-0 right-0 mt-2 p-4 bg-white border rounded-lg shadow-lg z-10"
+                                    className="absolute top-full left-0 right-0 mt-2 p-4 bg-gray-200 border rounded-lg shadow-lg z-10"
                                 >
                                     <h4 className="font-semibold mb-2">{item.title} Help</h4>
                                     <p>{item.content}</p>
@@ -499,17 +490,68 @@ const ContextualHelpOverlay = () => {
 export default function HelpCenterLayouts() {
     return (
         <div className="space-y-12 p-8">
-            <h1 className="text-3xl font-bold text-center mb-8">Modern Help Center Components</h1>
-            <AIPoweredChatbot />
-            <InteractiveTroubleshooter />
-            <VideoTutorialLibrary />
-            <KnowledgeBaseSearch />
-            <CommunityForum />
-            <FeedbackAndSuggestions />
-            <InteractiveProductTour />
-            <LiveSupportQueue />
-            <HelpCenterDashboard />
-            <ContextualHelpOverlay />
+            <div className='mt-4'>
+                <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+                    Chat AI help Assistant
+                </h2>
+                <AIPoweredChatbot />
+            </div>
+            <div className='mt-4'>
+                <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+                    InteractiveTroubleshooter
+                </h2>
+                <InteractiveTroubleshooter />
+            </div>
+            <div className='mt-4'>
+                <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+                    VideoTutorialLibrary
+                </h2>
+                <VideoTutorialLibrary />
+            </div>
+
+            <div className='mt-4'>
+                <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+                    KnowledgeBaseSearch
+                </h2>
+                <KnowledgeBaseSearch />
+            </div>
+            <div className='mt-4'>
+                <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+                    CommunityForum
+                </h2>
+                <CommunityForum />
+            </div>
+            <div className='mt-4'>
+                <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+                    FeedbackAndSuggestions
+                </h2>
+                <FeedbackAndSuggestions />
+            </div>
+
+            <div className='mt-4'>
+                <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+                    InteractiveProductTour
+                </h2>
+                <InteractiveProductTour />
+            </div>
+            <div className='mt-4'>
+                <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+                    LiveSupport
+                </h2>
+                <LiveSupportQueue />
+            </div>
+            <div className='mt-4'>
+                <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+                    HelpCenterDashboard
+                </h2>
+                <HelpCenterDashboard />
+            </div>
+            <div className='mt-4'>
+                <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+                    ContextualHelpOverlay
+                </h2>
+                <ContextualHelpOverlay />
+            </div>
         </div>
     )
 }

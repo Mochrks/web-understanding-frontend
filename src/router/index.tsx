@@ -39,6 +39,7 @@ import EventLayouts from '@/pages/layouting/event-page/EventLayouts';
 import HelpCenterLayouts from '@/pages/layouting/help-center/HelpCenterLayouts';
 import LMSLayouts from '@/pages/layouting/lms/LMSLayouts';
 import ModernTeamLayouts from '@/pages/layouting/team-page/TeamLayouts';
+import CMSLayouts from '@/pages/layouting/cms/CMSLayout';
 
 const AppRoutes: React.FC = () => {
     return (
@@ -84,6 +85,7 @@ const AppRoutes: React.FC = () => {
             <Route path="/event-pages-layout" element={<EventLayouts />} />
             <Route path="/help-center-layout" element={<HelpCenterLayouts />} />
             <Route path="/lms-layout" element={<LMSLayouts />} />
+            <Route path="/cms-layout" element={<CMSLayouts />} />
         </Routes>
     );
 };

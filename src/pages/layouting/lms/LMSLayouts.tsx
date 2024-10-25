@@ -2,7 +2,10 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Video, FileText, CheckCircle, User, BarChart, Clock, Calendar, ChevronDown, Play, Pause, Star } from 'lucide-react'
+import { Video, FileText, CheckCircle, User, BarChart, Clock, Calendar, ChevronDown, Play, Pause, Star, MessageCircle } from 'lucide-react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 
 // Dummy data for courses
 const courses = [
@@ -475,6 +478,54 @@ const VideoLessonLayout = ({ isPlaying, setIsPlaying }) => {
     )
 }
 
+
+// New Settings Component
+const SettingsLayout = () => {
+    return (
+        <div className="min-h-screen bg-gray-100 p-8">
+            <div className="max-w-4xl mx-auto">
+                <h1 className="text-4xl font-bold mb-8">Account Settings</h1>
+                <Card className="mb-8">
+                    <CardHeader>
+                        <CardTitle>Profile Information</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="space-y-4">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Name</label>
+                                <input type="text" className="mt-1 block w-full border rounded-md shadow-sm" defaultValue="John Doe" />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" className="mt-1 block w-full border rounded-md shadow-sm" defaultValue="john@example.com" />
+                            </div>
+                            <Button>Update Profile</Button>
+                        </div>
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Notification Preferences</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="space-y-4">
+                            <div className="flex items-center justify-between">
+                                <span>Email notifications</span>
+                                <input type="checkbox" defaultChecked />
+                            </div>
+                            <div className="flex items-center justify-between">
+                                <span>Push notifications</span>
+                                <input type="checkbox" />
+                            </div>
+                            <Button>Save Preferences</Button>
+                        </div>
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
+    )
+}
+
 // Main component to showcase all layouts
 export default function LMSLayouts() {
     const [activeLayout, setActiveLayout] = useState(0)
@@ -488,6 +539,7 @@ export default function LMSLayouts() {
         { name: 'Course Detail', component: CourseDetailLayout },
         { name: 'Quiz', component: QuizLayout },
         { name: 'Video Lesson', component: VideoLessonLayout },
+        { name: 'Settings', component: SettingsLayout, },
     ]
 
     return (

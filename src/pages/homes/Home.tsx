@@ -288,6 +288,26 @@ const layoutData = [
         "description": " Layout for managing courses, lessons, quizzes, and student progress, used in e-learning platforms.",
         "route": "/lms-layout"
     },
+    {
+        "name": "Content Management System (CMS) Pages Layout",
+        "description": "Layout for managing content, including articles, images, and videos.",
+        "route": "/cms-layout"
+    },
+    {
+        "name": "User  Onboarding Pages Layout",
+        "description": "Layout for the onboarding process of new users, including tutorials and guides.",
+        "route": "/user-onboarding-layout"
+    },
+    {
+        "name": "Affiliate Program Pages Layout",
+        "description": "Layout for the affiliate program, including registration and commission tracking.",
+        "route": "/affiliate-program-layout"
+    },
+    {
+        "name": "Customer Support Pages Layout",
+        "description": "Layout for customer support, including ticketing systems and live chat.",
+        "route": "/customer-support-layout"
+    }
 ];
 
 

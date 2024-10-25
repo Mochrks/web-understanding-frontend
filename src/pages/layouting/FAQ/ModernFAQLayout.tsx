@@ -439,52 +439,52 @@ export default function ModernFAQComponents() {
             </div>
             <div className="container mx-auto py-8 space-y-12">
                 <section>
-                    <h2 className="text-2xl font-bold mb-4">1. Accordion FAQ</h2>
+                    <h2 className="text-2xl font-bold mb-4"> Accordion FAQ</h2>
                     <AccordionFAQ />
                 </section>
 
                 <section>
-                    <h2 className="text-2xl font-bold mb-4">2. Flip Card FAQ</h2>
+                    <h2 className="text-2xl font-bold mb-4">Flip Card FAQ</h2>
                     <FlipCardFAQ />
                 </section>
 
                 <section>
-                    <h2 className="text-2xl font-bold mb-4">3. Vertical Tabs FAQ</h2>
+                    <h2 className="text-2xl font-bold mb-4">Vertical Tabs FAQ</h2>
                     <TabsFAQ />
                 </section>
 
                 <section>
-                    <h2 className="text-2xl font-bold mb-4">4. Timeline FAQ</h2>
+                    <h2 className="text-2xl font-bold mb-4">Timeline FAQ</h2>
                     <TimelineFAQ />
                 </section>
 
                 <section>
-                    <h2 className="text-2xl font-bold mb-4">5. Modal Popup FAQ</h2>
+                    <h2 className="text-2xl font-bold mb-4">Modal Popup FAQ</h2>
                     <ModalFAQ />
                 </section>
 
                 <section>
-                    <h2 className="text-3xl font-bold mb-6">6. Animated Sidebar FAQ</h2>
+                    <h2 className="text-3xl font-bold mb-6">Animated Sidebar FAQ</h2>
                     <AnimatedSidebarFAQ />
                 </section>
 
                 <section>
-                    <h2 className="text-3xl font-bold mb-6">7. Expandable Card FAQ</h2>
+                    <h2 className="text-3xl font-bold mb-6">Expandable Card FAQ</h2>
                     <ExpandableCardFAQ />
                 </section>
 
                 <section>
-                    <h2 className="text-3xl font-bold mb-6">8. Searchable Grid FAQ</h2>
+                    <h2 className="text-3xl font-bold mb-6"> Searchable Grid FAQ</h2>
                     <SearchableGridFAQ />
                 </section>
 
                 <section>
-                    <h2 className="text-3xl font-bold mb-6">9. Carousel FAQ</h2>
+                    <h2 className="text-3xl font-bold mb-6">Carousel FAQ</h2>
                     <CarouselFAQ />
                 </section>
 
                 <section>
-                    <h2 className="text-3xl font-bold mb-6">10. Interactive Timeline FAQ</h2>
+                    <h2 className="text-3xl font-bold mb-6">Interactive Timeline FAQ</h2>
                     <InteractiveTimelineFAQ />
                 </section>
             </div>
