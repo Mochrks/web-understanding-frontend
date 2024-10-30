@@ -39,7 +39,10 @@ import EventLayouts from '@/pages/layouting/event-page/EventLayouts';
 import HelpCenterLayouts from '@/pages/layouting/help-center/HelpCenterLayouts';
 import LMSLayouts from '@/pages/layouting/lms/LMSLayouts';
 import ModernTeamLayouts from '@/pages/layouting/team-page/TeamLayouts';
-import CMSLayouts from '@/pages/layouting/cms/CMSLayout';
+import CMSLayout from '@/pages/layouting/cms/CMSLayout';
+import OnboardingLayout from '@/pages/layouting/user-onboarding/OnboardingLayout';
+import AffiliateLayout from '@/pages/layouting/affiliate/AffiliateLayout';
+import CustomerSupportLayout from '@/pages/layouting/customer-support/CustomerSupportLayout';
 
 const AppRoutes: React.FC = () => {
     return (
@@ -85,7 +88,10 @@ const AppRoutes: React.FC = () => {
             <Route path="/event-pages-layout" element={<EventLayouts />} />
             <Route path="/help-center-layout" element={<HelpCenterLayouts />} />
             <Route path="/lms-layout" element={<LMSLayouts />} />
-            <Route path="/cms-layout" element={<CMSLayouts />} />
+            <Route path="/cms-layout" element={<CMSLayout />} />
+            <Route path="/user-onboarding-layout" element={<OnboardingLayout />} />
+            <Route path="/affiliate-program-layout" element={<AffiliateLayout />} />
+            <Route path="/customer-support-layout" element={<CustomerSupportLayout />} />
         </Routes>
     );
 };
