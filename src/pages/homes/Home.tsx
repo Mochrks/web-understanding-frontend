@@ -1,4 +1,3 @@
-import React from 'react';
 import { Title } from '@/components/demo/Title';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -156,160 +155,6 @@ const devData = [
 
 ];
 
-const layoutData = [
-    // layouting FE
-    {
-        name: 'Dashboards Pages layout',
-        description: 'Dashboard Layout  for React applications.',
-        route: '/dashboard-layout'
-    },
-    {
-        name: 'Authentification Pages layout',
-        description: 'Authentification Pages  for React applications.',
-        route: '/authentification-layout'
-    },
-    {
-        name: 'User Profile Pages layout',
-        description: 'User Profile pages  for React applications.',
-        route: '/user-profiles-layout'
-    },
-    {
-        name: 'E-Commerce Pages layout',
-        description: 'E-Commerce pages  for React applications.',
-        route: '/e-commerce-layout'
-    },
-    {
-        name: 'Multi Step form Pages layout',
-        description: 'Multi Step form pages  for React applications.',
-        route: '/multi-step-layout'
-    },
-    {
-        name: 'Notification And Message Pages layout',
-        description: 'Notification And Message pages  for React applications.',
-        route: '/notif-message-layout'
-    },
-    {
-        name: 'User Feedback & Rating Pages layout',
-        description: 'User Feedback and Rating pages  for React applications.',
-        route: '/feedback-rating-layout'
-    },
-    {
-        name: 'Coding Practice Pages layout',
-        description: 'Coding practice pages  for React applications.',
-        route: '/coding-practice-layout'
-    },
-    {
-        name: 'Carousel images Pages layout',
-        description: 'Carousel images page  for React applications.',
-        route: '/carousel-layout'
-    },
-    {
-        name: 'Hero bg animation Pages layout',
-        description: 'Hero Bg animation pages  for React applications.',
-        route: '/hero-bg-layout'
-    },
-    {
-        name: 'Loading Animations Pages layout',
-        description: 'Loading Animations  for React applications.',
-        route: '/loading-animation-layout'
-    },
-    {
-        name: 'Alert Animations  Pages layout',
-        description: 'Alert Animations  for React applications.',
-        route: '/alert-layout'
-    },
-    {
-        name: 'Modal Dialog Pages Layout',
-        description: 'Modal dialog layout for React applications.',
-        route: '/modal-dialog-layout'
-    },
-    {
-        name: 'Footer  Pages Layout',
-        description: 'Footer layout for React applications.',
-        route: '/footer-layout'
-    },
-    {
-        name: 'Navbar  Pages Layout',
-        description: 'Navbar layout for React applications.',
-        route: '/navbar-layout'
-    },
-    {
-        "name": "FAQ Pages Layout",
-        "description": "Frequently Asked Questions (FAQ) pages with collapsible sections.",
-        "route": "/faq-pages-layout"
-    },
-    {
-        "name": "Pricing Pages Layout",
-        "description": "Pricing pages for product or service offerings.",
-        "route": "/pricing-pages-layout"
-    },
-    {
-        "name": "404 Error Pages Layout",
-        "description": "Custom 404 error page with navigation options.",
-        "route": "/404-error-layout"
-    },
-    {
-        "name": "Testimonial Pages Layout",
-        "description": "Testimonial pages to showcase user or client feedback.",
-        "route": "/testimonial-pages-layout"
-    },
-    {
-        "name": "Blog Pages Layout",
-        "description": "Blog layout for displaying articles, posts, and comments.",
-        "route": "/blog-pages-layout"
-    },
-    {
-        "name": "Team Pages Layout",
-        "description": "Layout to showcase team members with photos, descriptions, and their roles in the company.",
-        "route": "/team-pages-layout"
-    },
-    {
-        "name": "Roadmap Pages Layout",
-        "description": "Layout to display a product or feature roadmap in an interactive timeline format.",
-        "route": "/roadmap-pages-layout"
-    },
-    {
-        "name": "Gallery Pages Layout",
-        "description": "Layout to display photo or video galleries, commonly used for photography or art exhibit websites.",
-        "route": "/gallery-pages-layout"
-    },
-    {
-        "name": "Event Pages Layout",
-        "description": "Layout for event pages, featuring event descriptions, schedules, and registration options.",
-        "route": "/event-pages-layout"
-    },
-    {
-        "name": "Help Center Pages Layout",
-        "description": "Layout for a help center, typically including help articles, FAQs, and contact forms.",
-        "route": "/help-center-layout"
-    },
-    {
-        "name": "Learning Management System (LMS) Pages Layout",
-        "description": " Layout for managing courses, lessons, quizzes, and student progress, used in e-learning platforms.",
-        "route": "/lms-layout"
-    },
-    {
-        "name": "Content Management System (CMS) Pages Layout",
-        "description": "Layout for managing content, including articles, images, and videos.",
-        "route": "/cms-layout"
-    },
-    {
-        "name": "User  Onboarding Pages Layout",
-        "description": "Layout for the onboarding process of new users, including tutorials and guides.",
-        "route": "/user-onboarding-layout"
-    },
-    {
-        "name": "Affiliate Program Pages Layout",
-        "description": "Layout for the affiliate program, including registration and commission tracking.",
-        "route": "/affiliate-program-layout"
-    },
-    {
-        "name": "Customer Support Pages Layout",
-        "description": "Layout for customer support, including ticketing systems and live chat.",
-        "route": "/customer-support-layout"
-    }
-];
-
 
 
 export const Home = () => {
@@ -343,10 +188,7 @@ export const Home = () => {
                 {renderCards(devData)}
             </section>
 
-            <section>
-                <h2 className="text-2xl font-bold py-10">Front-end Layout</h2>
-                {renderCards(layoutData)}
-            </section>
+
         </div>
     );
 };
