@@ -39,8 +39,8 @@ This project is designed to help understand **frontend fundamentals** as a whole
 - **Clone the repository**
 
     ```bash
-    git clone https://github.com/mochrks/project-understanding-frontend.git
-    cd project-understanding-frontend
+    git clone https://github.com/mochrks/web-understanding-frontend.git
+    cd web-understanding-frontend
     ```
 
 - **Install dependencies**
@@ -55,7 +55,7 @@ This project is designed to help understand **frontend fundamentals** as a whole
     npm run dev
     ```
 
-- The application will be running on [http://localhost:port](http://localhost:port).
+- The application will be running on [http://localhost:5173](http://localhost:5173).
 
 
 
