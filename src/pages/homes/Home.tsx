@@ -151,7 +151,106 @@ const devData = [
         name: 'Testing React Applications',
         description: 'Understand how to write unit and integration tests for React applications.',
         route: '/testing-app'
+    }, {
+        "name": "Component Lifecycle in React",
+        "description": "Learn about the component lifecycle in React and how to manage side effects at each stage.",
+        "route": "/component-lifecycle"
     },
+    {
+        "name": "Custom Hooks in React",
+        "description": "Learn how to create and use custom hooks to manage reusable logic in React applications.",
+        "route": "/custom-hooks"
+    },
+    {
+        "name": "Error Boundaries in React",
+        "description": "Understand how to handle errors in React applications using Error Boundaries.",
+        "route": "/error-boundaries"
+    },
+    {
+        "name": "Context API for State Management",
+        "description": "Learn how to use the Context API for global state management in React applications.",
+        "route": "/context-api"
+    },
+    {
+        "name": "React Router for Navigation",
+        "description": "Learn how to use React Router to manage navigation within React applications.",
+        "route": "/react-router"
+    },
+    {
+        "name": "Building Forms in React",
+        "description": "Learn how to build and manage forms in React with controlled and uncontrolled components.",
+        "route": "/building-forms"
+    },
+    {
+        "name": "Using TypeScript with React",
+        "description": "Learn how to use TypeScript in React application development to enhance type safety and code quality.",
+        "route": "/typescript-react"
+    },
+    {
+        "name": "CSS-in-JS Libraries",
+        "description": "Understand how to use CSS-in-JS libraries like Styled Components or Emotion for styling components.",
+        "route": "/css-in-js"
+    },
+    {
+        "name": "Performance Optimization in React",
+        "description": "Learn techniques to optimize the performance of React applications, including memoization and lazy loading.",
+        "route": "/performance-optimization"
+    },
+    {
+        "name": "Web Accessibility (a11y)",
+        "description": "Understand the importance of web accessibility and how to implement best practices to make applications accessible to all users.",
+        "route": "/web-accessibility"
+    },
+    {
+        "name": "Using WebSockets for Real-Time Communication",
+        "description": "Learn how to use WebSockets to build applications that require real-time communication.",
+        "route": "/websockets"
+    },
+    {
+        "name": "Service Workers and Caching",
+        "description": "Understand how Service Workers work and how to implement caching to improve application performance.",
+        "route": "/service-workers"
+    },
+    {
+        "name": "Static Site Generation (SSG) and Server-Side Rendering (SSR)",
+        "description": "Learn the differences between SSG and SSR and how to implement them in React applications using Next.js.",
+        "route": "/ssg-ssr"
+    },
+    {
+        "name": "Using Third-Party Libraries",
+        "description": "Learn how to integrate and use third-party libraries in front-end applications.",
+        "route": "/third-party-libraries"
+    },
+    {
+        "name": "Building a Component Library",
+        "description": "Learn how to build and document a reusable component library.",
+        "route": "/component-library"
+    },
+    {
+        "name": "Understanding the Virtual DOM",
+        "description": "Understand the concept of the Virtual DOM and how React uses it to improve rendering performance.",
+        "route": "/virtual-dom"
+    },
+    {
+        "name": "Code Splitting and Dynamic Imports",
+        "description": "Learn how to split code and use dynamic imports to optimize application load times.",
+        "route": "/code-splitting"
+    },
+    {
+        "name": "Using GraphQL Subscriptions",
+        "description": "Learn how to use GraphQL subscriptions to receive real-time updates from the server.",
+        "route": "/graphql-subscriptions"
+    },
+    {
+        "name": "Micro Frontends Architecture",
+        "description": "Understand micro frontends architecture and how to implement it to build large applications.",
+        "route": "/micro-frontends"
+    },
+    {
+        "name": "Using CSS Frameworks (Bootstrap, Tailwind CSS)",
+        "description": "Learn how to use CSS frameworks like Bootstrap or Tailwind CSS to speed up UI development.",
+        "route": "/css-frameworks"
+    }
 
 ];
 
