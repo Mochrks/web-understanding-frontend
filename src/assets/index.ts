@@ -1,5 +1,3 @@
-import notFoundImage from "@/assets/img/notFound.png";
+import notfound from "@/assets/img/notfound.png";
 
-export {
-    notFoundImage
-};
+export { notfound };
