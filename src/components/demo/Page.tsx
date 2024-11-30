@@ -15,6 +15,8 @@ interface PageProps {
     onPageChange: (pageNumber: number) => void;
 }
 
+
+
 export const Page: React.FC<PageProps> = ({ currentPage, totalPages, onPageChange }) => {
     const handleNext = () => {
         if (currentPage < totalPages) onPageChange(currentPage + 1);
@@ -94,7 +96,7 @@ export const Page: React.FC<PageProps> = ({ currentPage, totalPages, onPageChang
                         href="#"
                         onClick={handlePrevious}
                         className={`${currentPage === 1 ? 'cursor-not-allowed opacity-50' : ''}`}
-                        disabled={currentPage === 1}
+                        isDisabled={currentPage === 1}
                     />
                 </PaginationItem>
 
@@ -105,7 +107,7 @@ export const Page: React.FC<PageProps> = ({ currentPage, totalPages, onPageChang
                         href="#"
                         onClick={handleNext}
                         className={`${currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''}`}
-                        disabled={currentPage === totalPages}
+                        isDisabled={currentPage === totalPages}
                     />
                 </PaginationItem>
             </PaginationContent>

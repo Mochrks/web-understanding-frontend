@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
@@ -16,7 +16,7 @@ const AnimationSection: React.FC<{ title: string; children: React.ReactNode }> =
 )
 
 const GsapAnimation: React.FC = () => {
-    const [count, setCount] = useState(0)
+
     const boxRef = useRef<HTMLDivElement>(null)
     const textRef = useRef<HTMLDivElement>(null)
     const circleRef = useRef<HTMLDivElement>(null)
@@ -179,7 +179,7 @@ const GsapAnimation: React.FC = () => {
             <AnimationSection title="3. Motion Path Animation">
                 <svg width="200" height="100">
                     <path d="M0,0 C50,-50 50,50 100,0 C150,-50 150,50 200,0" fill="none" stroke="gray" />
-                    <circle ref={circleRef} r="5" fill="red" />
+                    {/* <circle ref={circleRef} r="5" fill="red" /> */}
                 </svg>
             </AnimationSection>
 

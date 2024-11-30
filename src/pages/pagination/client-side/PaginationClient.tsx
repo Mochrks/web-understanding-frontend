@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Page } from '@/components/demo/Page';
 import { Title } from '@/components/demo/Title';
 import { SearchItem, dummyData } from '@/apis/SearchApi';

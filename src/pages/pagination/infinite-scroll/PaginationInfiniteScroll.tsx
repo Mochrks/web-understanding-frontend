@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { SearchItem, dummyData } from '@/apis/SearchApi'; // Assuming the dummy data is imported here
 import { Card } from '@/components/ui/card';
 import { Title } from '@/components/demo/Title';
