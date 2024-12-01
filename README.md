@@ -27,8 +27,7 @@ This project is designed to help understand **frontend fundamentals** as a whole
 ## Tech Stack
 
 - **React 18.0.0**
-- **Vite 4.0.0** for fast development and build optimization
-- **TypeScript 4.0.0** for type safety
+- **Vite 5.0.0** for fast development and build optimization
 - **Tailwind CSS** for utility-first styling
 - **ShadCN UI** for modern UI components
 
