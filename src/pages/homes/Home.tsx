@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { 
   Rocket, 
   ShieldCheck, 
-  Cpu, 
+  Database,
   Zap, 
   ChevronRight,
   Layout,
@@ -60,12 +60,12 @@ export const Home = () => {
         >
           <h1 className="text-4xl md:text-8xl font-black tracking-tight leading-[0.9] text-balance">
             Mastering <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500">
-              Frontend Architecture.
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 via-blue-500 to-indigo-500">
+              Fullstack Architecture.
             </span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-medium">
-            Elevate your engineering expertise with 100+ professional theories. From core fundamentals to high-level system design—curated for the next generation of Senior Engineers.
+            Elevate your engineering expertise with 200+ specialized theories. Choose your path—from pixel-perfect Frontend systems to high-performance Backend architecture.
           </p>
         </motion.div>
 
@@ -77,7 +77,13 @@ export const Home = () => {
         >
           <Link to="/theory">
             <Button size="lg" className="px-12 h-16 text-lg bg-blue-600 hover:bg-blue-700 shadow-2xl shadow-blue-500/40 group rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95">
-              Access Knowledge Hub
+              Front-End Expertise
+              <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
+          <Link to="/theory-be">
+            <Button size="lg" variant="outline" className="px-12 h-16 text-lg border-2 border-emerald-500/50 hover:bg-emerald-500 hover:text-white shadow-2xl shadow-emerald-500/10 group rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95">
+              Back-End Expertise
               <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
@@ -90,10 +96,10 @@ export const Home = () => {
            className="flex flex-wrap justify-center gap-10 pt-10"
         >
           {[
-            { icon: Layout, label: 'Fundamental' },
-            { icon: Cpu, label: 'Core Engine' },
+            { icon: Layout, label: 'UI/UX' },
+            { icon: Database, label: 'Database' },
             { icon: Zap, label: 'Architecture' },
-            { icon: ShieldCheck, label: 'Advanced' }
+            { icon: ShieldCheck, label: 'Security' }
           ].map((item, i) => (
             <div key={i} className="flex items-center gap-2 text-muted-foreground/40 transition-all hover:text-primary hover:scale-110 cursor-default">
               <item.icon className="w-4 h-4" />
